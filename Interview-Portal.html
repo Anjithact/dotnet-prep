@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5-Year .NET Full-Stack Interview Portal (340+ Q&As)</title>
+  <style>
+    :root[data-theme="dark"] {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #1e293b;
+      --bg-code: #090d16;
+      --bg-hover: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.14);
+      --border: #334155;
+      --success: #22c55e;
+      --quote-bg: rgba(56, 189, 248, 0.08);
+      --quote-border: #38bdf8;
+      --table-stripe: rgba(255, 255, 255, 0.03);
+    }
+
+    :root[data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-code: #0f172a;
+      --bg-hover: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --accent: #0284c7;
+      --accent-soft: rgba(2, 132, 199, 0.12);
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --quote-bg: #f0f9ff;
+      --quote-border: #0284c7;
+      --table-stripe: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 340px;
+      min-width: 340px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .sidebar-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .progress-box {
+      margin-top: 12px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    .progress-bar-bg {
+      height: 7px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--success);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .search-box {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+
+    .nav-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 12px 24px;
+    }
+
+    .chapter-group {
+      margin-bottom: 10px;
+    }
+
+    .chapter-header {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      padding: 8px 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 6px;
+    }
+
+    .chapter-header:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .lesson-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      padding: 9px 12px;
+      border-radius: 7px;
+      font-size: 0.87rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+      transition: background 0.15s;
+    }
+
+    .lesson-btn:hover {
+      background: var(--bg-hover);
+    }
+
+    .lesson-btn.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      border-left: 3px solid var(--accent);
+    }
+
+    .lesson-check {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .lesson-check.done {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    /* Main Content Area */
+    .main-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .topbar {
+      height: 60px;
+      min-height: 60px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-tool {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-tool:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-complete {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-complete.completed {
+      background: var(--success);
+      color: #fff;
+      border-color: var(--success);
+    }
+
+    .content-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 36px 48px 80px;
+    }
+
+    .content-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Markdown Typography */
+    .markdown-body h1 {
+      font-size: 1.85rem;
+      color: var(--accent);
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .markdown-body h2 {
+      font-size: 1.32rem;
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+    }
+
+    .markdown-body h3 {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .markdown-body p {
+      margin-bottom: 12px;
+    }
+
+    .markdown-body ul, .markdown-body ol {
+      margin: 8px 0 16px 24px;
+    }
+
+    .markdown-body li {
+      margin-bottom: 6px;
+    }
+
+    .markdown-body strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .markdown-body blockquote {
+      background: var(--quote-bg);
+      border-left: 4px solid var(--quote-border);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+      color: var(--text-primary);
+      font-style: italic;
+    }
+
+    .markdown-body code {
+      font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    .markdown-body pre {
+      background: var(--bg-code);
+      color: #e2e8f0;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      margin: 14px 0 20px;
+      line-height: 1.5;
+    }
+
+    .markdown-body pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .markdown-body hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    .markdown-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .markdown-body th {
+      background: var(--bg-secondary);
+      color: var(--accent);
+      text-align: left;
+      padding: 11px 14px;
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+    }
+
+    .markdown-body td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .markdown-body tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    .lesson-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .nav-card-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .nav-card-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .search-result-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      cursor: pointer;
+    }
+
+    .search-result-card:hover {
+      border-color: var(--accent);
+    }
+
+    .search-result-chapter {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 90;
+    }
+
+    /* Mobile Phone & Tablet Responsive View */
+    @media (max-width: 820px) {
+      .sidebar {
+        position: fixed;
+        left: -350px;
+        top: 0;
+        bottom: 0;
+        width: 310px;
+        min-width: 310px;
+        z-index: 100;
+        transition: left 0.25s ease;
+      }
+
+      .sidebar.open {
+        left: 0;
+      }
+
+      .sidebar-overlay.open {
+        display: block;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .topbar {
+        padding: 0 12px;
+        height: auto;
+        min-height: 56px;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .content-scroll {
+        padding: 20px 16px 70px;
+      }
+
+      .markdown-body h1 {
+        font-size: 1.4rem;
+      }
+
+      .markdown-body h2 {
+        font-size: 1.12rem;
+        padding: 10px 12px;
+      }
+
+      .markdown-body table {
+        display: block;
+        overflow-x: auto;
+      }
+
+      .lesson-footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleMobileSidebar(false)"></div>
+
+  <!-- Left Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">
+        <span>.NET 5-Year Interview Hub</span>
+      </div>
+      <div class="sidebar-subtitle">10 Chapters • 28 Lessons • 340+ Q&As</div>
+      <div class="progress-box">
+        <div class="progress-label">
+          <span>Study Progress</span>
+          <span id="progress-text">0 / 28 Lessons</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input
+        type="text"
+        id="search-input"
+        class="search-input"
+        placeholder="Search any question (e.g., Abstract, JWT, Cursor, Scoped)..."
+      />
+    </div>
+
+    <nav class="nav-list" id="nav-list"></nav>
+  </aside>
+
+  <!-- Main Reading Area -->
+  <main class="main-area">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ Chapters</button>
+        <span class="badge" id="current-chapter-badge">Chapter 1: OOP</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn-tool" onclick="changeFontSize(-1)">A-</button>
+        <button class="btn-tool" onclick="changeFontSize(1)">A+</button>
+        <button class="btn-tool" onclick="toggleTheme()" id="theme-btn">☀️ Light Mode</button>
+        <button class="btn-complete" id="complete-btn" onclick="toggleCurrentLessonDone()">✓ Mark Completed</button>
+      </div>
+    </header>
+
+    <div class="content-scroll" id="content-scroll">
+      <div class="content-container">
+        <article class="markdown-body" id="lesson-content"></article>
+        <div class="lesson-footer" id="lesson-footer"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Load All Chapter Lesson Data Scripts (Works 100% Offline via file://) -->
+  <script src="portal-data/data-oop-di.js"></script>
+  <script src="portal-data/data-csharp.js"></script>
+  <script src="portal-data/data-mvc-webapi.js"></script>
+  <script src="portal-data/data-js-oracle.js"></script>
+  <script src="portal-data/data-coding-ef-scenarios.js"></script>
+
+  <script>
+    const CURRICULUM = [
+      {
+        chapter: "Chapter 1: OOP (40 Q&As)",
+        lessons: [
+          { id: "oop-01", title: "Lesson 1: Classes, Constructors, Encapsulation & Abstraction (Q1–Q10)" },
+          { id: "oop-02", title: "Lesson 2: Inheritance, Polymorphism, Overloading vs Overriding (Q11–Q20)" },
+          { id: "oop-03", title: "Lesson 3: Abstract vs Interface, SOLID & Design Patterns (Q21–Q30)" },
+          { id: "oop-04", title: "Lesson 4: Aggregation vs Composition, Copying & Output Puzzles (Q31–Q40)" }
+        ]
+      },
+      {
+        chapter: "Chapter 2: C# Core & Advanced (60 Q&As)",
+        lessons: [
+          { id: "csharp-01", title: "Lesson 1: CLR, Value vs Reference, Boxing & Strings" },
+          { id: "csharp-02", title: "Lesson 2: const/readonly, ref/out, var/dynamic, static & sealed" },
+          { id: "csharp-03", title: "Lesson 3: Collections, Generics, LINQ & IEnumerable vs IQueryable" },
+          { id: "csharp-04", title: "Lesson 4: Delegates, async/await, Exceptions & Garbage Collection" },
+          { id: "csharp-05", title: "Lesson 5: Extension Methods, record, lock, Deadlocks & CancellationToken" }
+        ]
+      },
+      {
+        chapter: "Chapter 3: ASP.NET MVC & Core (34 Q&As)",
+        lessons: [
+          { id: "mvc-01", title: "Lesson 1: MVC Architecture, Routing, TempData & Model Binding" },
+          { id: "mvc-02", title: "Lesson 2: Program.cs, Middleware (Use/Run/Map), Filters & IOptions" },
+          { id: "mvc-03", title: "Lesson 3: State Management, Auth, Security (CSRF/XSS) & Caching" }
+        ]
+      },
+      {
+        chapter: "Chapter 4: Web API & Web Services (33 Q&As)",
+        lessons: [
+          { id: "api-01", title: "Lesson 1: REST, HTTP Verbs, Idempotency & Status Codes" },
+          { id: "api-02", title: "Lesson 2: JWT Auth, Refresh Tokens, CORS & IHttpClientFactory" },
+          { id: "api-03", title: "Lesson 3: Legacy VB.NET Web Services (SOAP/ASMX/WCF) vs Web API" }
+        ]
+      },
+      {
+        chapter: "Chapter 5: Dependency Injection (20 Q&As)",
+        lessons: [
+          { id: "di-01", title: "Lesson 1: Loose Coupling, IoC vs DI & Injection Types (Q1–Q5)" },
+          { id: "di-02", title: "Lesson 2: Transient, Scoped, Singleton & Captive Dependency (Q6–Q10)" },
+          { id: "di-03", title: "Lesson 3: Circular DI, Middleware DI, Open Generics & Filters (Q11–Q20)" }
+        ]
+      },
+      {
+        chapter: "Chapter 6: JavaScript (36 Q&As)",
+        lessons: [
+          { id: "js-01", title: "Lesson 1: Data Types, == vs ===, var/let/const, Hoisting & Closures" },
+          { id: "js-02", title: "Lesson 2: Arrow Functions, this, Array Methods, DOM & Events" },
+          { id: "js-03", title: "Lesson 3: Event Loop, Promises, async/await, fetch() & AJAX" }
+        ]
+      },
+      {
+        chapter: "Chapter 7: Oracle SQL & PL/SQL (46 Q&As)",
+        lessons: [
+          { id: "ora-01", title: "Lesson 1: Joins, WHERE vs HAVING, Analytical Functions & NVL" },
+          { id: "ora-02", title: "Lesson 2: Constraints, Views vs MViews, Indexes & Query Tuning" },
+          { id: "ora-03", title: "Lesson 3: PL/SQL, Procedures vs Functions, Packages & Autonomous Tx" },
+          { id: "ora-04", title: "Lesson 4: Cursors (SYS_REFCURSOR), Triggers, ORA-04091 & BULK COLLECT" }
+        ]
+      },
+      {
+        chapter: "Chapter 8: Practical Coding & Queries (35 Programs)",
+        lessons: [
+          { id: "code-01", title: "Lesson 1: 20 Must-Know Oracle SQL & C# LINQ Queries" },
+          { id: "code-02", title: "Lesson 2: Top 15 C# Live Coding Interview Programs" }
+        ]
+      },
+      {
+        chapter: "Chapter 9: ADO.NET, EF Core & Dapper (24 Q&As)",
+        lessons: [
+          { id: "ef-01", title: "Lesson 1: ADO.NET, DataReader vs DataSet & Calling Oracle Packages" },
+          { id: "ef-02", title: "Lesson 2: EF Core DbContext, Tracking, AsNoTracking, N+1 & Migrations" }
+        ]
+      },
+      {
+        chapter: "Chapter 10: Architecture, Testing & Git (12 Q&As)",
+        lessons: [
+          { id: "scen-01", title: "Lesson 1: Self-Intro, Project Architecture, Prod Debugging, xUnit & Git" }
+        ]
+      },
+      {
+        chapter: "Chapter 11: Spoken English for Interviews",
+        lessons: [
+          { id: "eng-01", title: "Lesson 1: 3-Sentence Formula, Speaking Starters, Intro Script & Daily Method" }
+        ]
+      }
+    ];
+
+    const FLAT_LESSONS = [];
+    CURRICULUM.forEach(ch => {
+      ch.lessons.forEach(l => FLAT_LESSONS.push({ ...l, chapter: ch.chapter }));
+    });
+
+    let currentLessonId = "oop-01";
+    let currentFontSize = 16;
+    let completedLessons = JSON.parse(localStorage.getItem("dotnet_prep_done") || "{}");
+
+    // Built-in Offline Markdown Parser (Tables, Code Blocks, Blockquotes, Lists, Headings)
+    function renderMarkdown(md) {
+      if (!md) return "<p>Lesson content loading...</p>";
+
+      const codeBlocks = [];
+      let text = md.replace(/\r\n/g, "\n");
+
+      // Extract fenced code blocks
+      text = text.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g, (_, lang, code) => {
+        const escaped = escapeHtml(code.replace(/\n$/, ""));
+        const idx = codeBlocks.length;
+        codeBlocks.push(`<pre><code class="lang-${lang}">${escaped}</code></pre>`);
+        return `\n@@CODEBLOCK_${idx}@@\n`;
+      });
+
+      const lines = text.split("\n");
+      let html = "";
+      let inList = false;
+      let listType = "ul";
+      let inTable = false;
+      let tableRows = [];
+      let inQuote = false;
+
+      function flushList() {
+        if (inList) {
+          html += `</${listType}>`;
+          inList = false;
+        }
+      }
+
+      function flushQuote() {
+        if (inQuote) {
+          html += `</blockquote>`;
+          inQuote = false;
+        }
+      }
+
+      function flushTable() {
+        if (!inTable) return;
+        inTable = false;
+        if (tableRows.length === 0) return;
+        html += "<table><thead><tr>";
+        const headers = parseTableRow(tableRows[0]);
+        headers.forEach(h => (html += `<th>${formatInline(h)}</th>`));
+        html += "</tr></thead><tbody>";
+        for (let i = 1; i < tableRows.length; i++) {
+          if (/^[\s|:-]+$/.test(tableRows[i])) continue;
+          const cols = parseTableRow(tableRows[i]);
+          html += "<tr>";
+          cols.forEach(c => (html += `<td>${formatInline(c)}</td>`));
+          html += "</tr>";
+        }
+        html += "</tbody></table>";
+        tableRows = [];
+      }
+
+      function parseTableRow(row) {
+        return row
+          .trim()
+          .replace(/^\|/, "")
+          .replace(/\|$/, "")
+          .split("|")
+          .map(c => c.trim());
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        const raw = lines[i];
+        const trimmed = raw.trim();
+
+        if (trimmed.startsWith("@@CODEBLOCK_")) {
+          flushList();
+          flushQuote();
+          flushTable();
+          const idx = parseInt(trimmed.replace("@@CODEBLOCK_", "").replace("@@", ""), 10);
+          html += codeBlocks[idx];
+          continue;
+        }
+
+        if (trimmed.startsWith("|") && trimmed.endsWith("|")) {
+          flushList();
+          flushQuote();
+          inTable = true;
+          tableRows.push(trimmed);
+          continue;
+        } else if (inTable) {
+          flushTable();
+        }
+
+        if (trimmed === "---" || trimmed === "***") {
+          flushList();
+          flushQuote();
+          html += "<hr />";
+          continue;
+        }
+
+        if (trimmed.startsWith(">")) {
+          flushList();
+          if (!inQuote) {
+            html += "<blockquote>";
+            inQuote = true;
+          }
+          const qContent = trimmed.replace(/^>\s?/, "");
+          if (qContent) html += `<p>${formatInline(qContent)}</p>`;
+          continue;
+        } else if (inQuote) {
+          flushQuote();
+        }
+
+        if (trimmed.startsWith("# ")) {
+          flushList();
+          html += `<h1>${formatInline(trimmed.slice(2))}</h1>`;
+        } else if (trimmed.startsWith("## ")) {
+          flushList();
+          html += `<h2>${formatInline(trimmed.slice(3))}</h2>`;
+        } else if (trimmed.startsWith("### ")) {
+          flushList();
+          html += `<h3>${formatInline(trimmed.slice(4))}</h3>`;
+        } else if (trimmed.startsWith("#### ")) {
+          flushList();
+          html += `<h3>${formatInline(trimmed.slice(5))}</h3>`;
+        } else if (/^(\*|-)\s+/.test(trimmed)) {
+          if (!inList || listType !== "ul") {
+            flushList();
+            html += "<ul>";
+            inList = true;
+            listType = "ul";
+          }
+          html += `<li>${formatInline(trimmed.replace(/^(\*|-)\s+/, ""))}</li>`;
+        } else if (/^\d+\.\s+/.test(trimmed)) {
+          if (!inList || listType !== "ol") {
+            flushList();
+            html += "<ol>";
+            inList = true;
+            listType = "ol";
+          }
+          html += `<li>${formatInline(trimmed.replace(/^\d+\.\s+/, ""))}</li>`;
+        } else if (trimmed === "") {
+          flushList();
+        } else {
+          flushList();
+          html += `<p>${formatInline(trimmed)}</p>`;
+        }
+      }
+
+      flushList();
+      flushQuote();
+      flushTable();
+      return html;
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function formatInline(str) {
+      const inlineCodes = [];
+      let s = str.replace(/`([^`]+)`/g, (_, c) => {
+        const idx = inlineCodes.length;
+        inlineCodes.push(`<code>${escapeHtml(c)}</code>`);
+        return `@@INLINECODE_${idx}@@`;
+      });
+
+      s = escapeHtml(s);
+      s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      s = s.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+      s = s.replace(/\\rightarrow/g, "→").replace(/\$/g, "");
+
+      s = s.replace(/@@INLINECODE_(\d+)@@/g, (_, idx) => inlineCodes[parseInt(idx, 10)]);
+      return s;
+    }
+
+    function renderSidebar() {
+      const nav = document.getElementById("nav-list");
+      nav.innerHTML = "";
+
+      CURRICULUM.forEach(group => {
+        const groupDiv = document.createElement("div");
+        groupDiv.className = "chapter-group";
+
+        const header = document.createElement("div");
+        header.className = "chapter-header";
+        header.innerHTML = `<span>${group.chapter}</span>`;
+        groupDiv.appendChild(header);
+
+        group.lessons.forEach(lesson => {
+          const btn = document.createElement("button");
+          btn.className = "lesson-btn" + (lesson.id === currentLessonId ? " active" : "");
+          const isDone = !!completedLessons[lesson.id];
+          btn.innerHTML = `
+            <span class="lesson-check ${isDone ? "done" : ""}">${isDone ? "✓" : ""}</span>
+            <span>${lesson.title}</span>
+          `;
+          btn.onclick = () => selectLesson(lesson.id);
+          groupDiv.appendChild(btn);
+        });
+
+        nav.appendChild(groupDiv);
+      });
+
+      updateProgressUI();
+    }
+
+    function selectLesson(id) {
+      currentLessonId = id;
+      document.getElementById("search-input").value = "";
+      const meta = FLAT_LESSONS.find(l => l.id === id);
+      document.getElementById("current-chapter-badge").textContent = meta ? meta.chapter : "";
+
+      const rawMd = (window.INTERVIEW_LESSONS && window.INTERVIEW_LESSONS[id]) || "# Lesson Not Found";
+      document.getElementById("lesson-content").innerHTML = renderMarkdown(rawMd);
+
+      // Update complete button
+      const compBtn = document.getElementById("complete-btn");
+      if (completedLessons[id]) {
+        compBtn.className = "btn-complete completed";
+        compBtn.textContent = "✓ Completed";
+      } else {
+        compBtn.className = "btn-complete";
+        compBtn.textContent = "Mark Completed";
+      }
+
+      // Render Next / Prev footer
+      const idx = FLAT_LESSONS.findIndex(l => l.id === id);
+      const footer = document.getElementById("lesson-footer");
+      footer.innerHTML = "";
+
+      if (idx > 0) {
+        const prev = FLAT_LESSONS[idx - 1];
+        const prevBtn = document.createElement("button");
+        prevBtn.className = "nav-card-btn";
+        prevBtn.textContent = `← Previous: ${prev.title.split(":")[0]}`;
+        prevBtn.onclick = () => selectLesson(prev.id);
+        footer.appendChild(prevBtn);
+      } else {
+        footer.appendChild(document.createElement("div"));
+      }
+
+      if (idx < FLAT_LESSONS.length - 1) {
+        const next = FLAT_LESSONS[idx + 1];
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "nav-card-btn";
+        nextBtn.textContent = `Next: ${next.title.split(":")[0]} →`;
+        nextBtn.onclick = () => selectLesson(next.id);
+        footer.appendChild(nextBtn);
+      }
+
+      renderSidebar();
+      document.getElementById("content-scroll").scrollTop = 0;
+      toggleMobileSidebar(false);
+    }
+
+    function toggleMobileSidebar(forceState) {
+      const sb = document.getElementById("sidebar");
+      const ov = document.getElementById("sidebar-overlay");
+      if (!sb || !ov) return;
+      const shouldOpen = typeof forceState === "boolean" ? forceState : !sb.classList.contains("open");
+      sb.classList.toggle("open", shouldOpen);
+      ov.classList.toggle("open", shouldOpen);
+    }
+
+    function toggleCurrentLessonDone() {
+      if (completedLessons[currentLessonId]) {
+        delete completedLessons[currentLessonId];
+      } else {
+        completedLessons[currentLessonId] = true;
+      }
+      localStorage.setItem("dotnet_prep_done", JSON.stringify(completedLessons));
+      selectLesson(currentLessonId);
+    }
+
+    function updateProgressUI() {
+      const doneCount = Object.keys(completedLessons).length;
+      const total = FLAT_LESSONS.length;
+      document.getElementById("progress-text").textContent = `${doneCount} / ${total} Lessons`;
+      document.getElementById("progress-fill").style.width = `${Math.round((doneCount / total) * 100)}%`;
+    }
+
+    function toggleTheme() {
+      const root = document.documentElement;
+      const current = root.getAttribute("data-theme");
+      const next = current === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      document.getElementById("theme-btn").textContent = next === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+    }
+
+    function changeFontSize(delta) {
+      currentFontSize = Math.min(22, Math.max(13, currentFontSize + delta));
+      document.body.style.fontSize = currentFontSize + "px";
+    }
+
+    // Live Search Across All 28 Lessons
+    document.getElementById("search-input").addEventListener("input", function (e) {
+      const q = e.target.value.trim().toLowerCase();
+      if (!q) {
+        selectLesson(currentLessonId);
+        return;
+      }
+
+      document.getElementById("current-chapter-badge").textContent = `Search Results for "${e.target.value}"`;
+      document.getElementById("lesson-footer").innerHTML = "";
+
+      let resultsHtml = `<h1>Search Results for "${escapeHtml(e.target.value)}"</h1>`;
+      let matchCount = 0;
+
+      FLAT_LESSONS.forEach(lesson => {
+        const md = (window.INTERVIEW_LESSONS && window.INTERVIEW_LESSONS[lesson.id]) || "";
+        const sections = md.split(/\n(?=##\s)/);
+        sections.forEach(sec => {
+          if (sec.toLowerCase().includes(q)) {
+            matchCount++;
+            resultsHtml += `
+              <div class="search-result-card" onclick="selectLesson('${lesson.id}')">
+                <div class="search-result-chapter">${lesson.chapter} — ${lesson.title} (Click to open full lesson)</div>
+                ${renderMarkdown(sec)}
+              </div>
+            `;
+          }
+        });
+      });
+
+      if (matchCount === 0) {
+        resultsHtml += `<p>No matching questions found. Try another keyword like <code>Interface</code>, <code>Scoped</code>, <code>JWT</code>, or <code>Cursor</code>.</p>`;
+      }
+
+      document.getElementById("lesson-content").innerHTML = resultsHtml;
+    });
+
+    // Initialize on load
+    window.addEventListener("DOMContentLoaded", () => {
+      selectLesson("oop-01");
+    });
+  </script>
+</body>
+</html>
+
