@@ -129,6 +129,36 @@ window.INTERVIEW_LESSONS["js-03"] = `# JavaScript Lesson 3: Event Loop, Promises
 ---
 
 ## Q1: How does the JavaScript Event Loop work if JS is Single-Threaded?
+
+\`\`\`diagram
+                    JAVASCRIPT EVENT LOOP ARCHITECTURE
+                    
+      CALL STACK (Single Thread)                     WEB APIs (Browser / Node)
+  ┌────────────────────────────────┐              ┌─────────────────────────────┐
+  │ console.log("Done")            │              │ DOM Events (click, scroll)  │
+  │ asyncFunction()                │              │ fetch() / AJAX HTTP network │
+  │ main()                         │              │ setTimeout() / setInterval  │
+  └───────────────┬────────────────┘              └──────────────┬──────────────┘
+                  │                                              │
+                  │ Call Stack executes synchronously.           │ Handed off to browser threads.
+                  │ When empty, Event Loop fetches next task:    │ When done, callbacks pushed to:
+                  ▼                                              ▼
+  ┌─────────────────────────────────────────────────────────────────────────────┐
+  │                                 EVENT LOOP                                  │
+  │   Continuously checks: Is Call Stack empty?                                 │
+  │   1. First, drain ALL tasks from MICROTASK QUEUE until completely empty.    │
+  │   2. Next, pick ONE task from MACROTASK QUEUE and push to Call Stack.       │
+  └───────────────▲──────────────────────────────────────────────▲──────────────┘
+                  │                                              │
+      MICROTASK QUEUE (High Priority)               MACROTASK QUEUE (Normal Priority)
+  ┌────────────────────────────────┐              ┌─────────────────────────────┐
+  │ • Promise callbacks (.then)    │              │ • setTimeout / setInterval  │
+  │ • async / await continuations  │              │ • I/O operations            │
+  │ • queueMicrotask()             │              │ • setImmediate (Node.js)    │
+  └────────────────────────────────┘              └─────────────────────────────┘
+  * RULE: Microtasks ALWAYS execute BEFORE the next Macrotask runs!
+\`\`\`
+
 * **Simple Meaning:** JavaScript has **only ONE Call Stack** (it runs one line of code at a time). When an asynchronous operation like \`setTimeout\`, \`fetch()\`, or an AJAX call starts, the browser's **Web APIs** handle the waiting in the background. Once finished, callbacks are placed in the **Microtask Queue** (Promises) or **Macrotask/Callback Queue** (\`setTimeout\`), and the **Event Loop** pushes them onto the Call Stack as soon as the Call Stack is empty!
 * **Important Output Rule:** **Microtasks (Promises \`.then\`) ALWAYS run BEFORE Macrotasks (\`setTimeout\`)!**
 
@@ -207,6 +237,49 @@ window.INTERVIEW_LESSONS["ora-01"] = `# Oracle SQL & PL/SQL Lesson 1: Joins, Sub
 ---
 
 ## Q2: Explain all Types of Joins in Oracle SQL + The Classic Interview Row-Count Question!
+
+\`\`\`diagram
+                 SQL JOINS VENN & SET THEORY VISUALIZATION
+                 
+  1. INNER JOIN (Intersection)          2. LEFT JOIN (All Left + Matching Right)
+       ┌──────────┬──────────┐               ┌──────────┬──────────┐
+       │          │██████████│               │██████████│██████████│
+       │  Table A │██MATCHED█│ Table B       │██Table A█│██MATCHED█│ Table B
+       │          │██ ONLY  █│               │██ (All) █│██ ONLY  █│ (NULL if no match)
+       └──────────┴──────────┘               └──────────┴──────────┘
+
+  3. RIGHT JOIN (All Right + Match Left)4. FULL OUTER JOIN (Everything)
+       ┌──────────┬──────────┐               ┌──────────┬──────────┐
+       │          │██████████│██████████│    │██████████│██████████│██████████│
+       │  Table A │██MATCHED█│██Table B█│    │██Table A█│██MATCHED█│██Table B█│
+       │(NULL row)│██ ONLY  █│██ (All) █│    │██ (All) █│██  BOTH █│██ (All) █│
+       └──────────┴──────────┘               └──────────┴──────────┘
+
+  5. LEFT ANTI-JOIN (Left Excluding Inner)
+       ┌──────────┬──────────┐
+       │██████████│          │
+       │██Left A██│  Matched │ Table B
+       │██ ONLY █│ (Omitted) │
+       └──────────┴──────────┘
+       Syntax: SELECT * FROM A LEFT JOIN B ON A.id = B.id WHERE B.id IS NULL;
+
+──────────────────────────────────────────────────────────────────────────────
+                   ROW-COUNT COMBINATORIAL MATCHING TRAP
+  Table A: (1, 1, 2)            Table B: (1, 1, 1, 3)
+  
+  Matches for Key '1':
+    A.Row 1 ('1') ──► B.Row 1 ('1'), B.Row 2 ('1'), B.Row 3 ('1')  = 3 rows
+    A.Row 2 ('1') ──► B.Row 1 ('1'), B.Row 2 ('1'), B.Row 3 ('1')  = 3 rows
+  Total Matching for Key '1' = 2 × 3 = 6 rows!
+  
+  Unmatched Keys:
+    A.Row 3 ('2') ──► No match in B (Emits NULL in LEFT JOIN)       = 1 row
+    
+  ► INNER JOIN Result:  6 Rows
+  ► LEFT JOIN Result:   7 Rows (6 matched + 1 unmatched NULL)
+  ► FULL JOIN Result:   8 Rows (6 matched + 1 for '2' + 1 for '3')
+\`\`\`
+
 * **\`INNER JOIN\`:** Returns only matching rows present in **both** tables.
 * **\`LEFT OUTER JOIN\`:** Returns **all rows from Left table** + matching rows from Right table (\`NULL\` if no match).
 * **\`RIGHT OUTER JOIN\`:** Returns **all rows from Right table** + matching rows from Left table.
@@ -287,6 +360,39 @@ window.INTERVIEW_LESSONS["ora-02"] = `# Oracle SQL & PL/SQL Lesson 2: Constraint
 ---
 
 ## Q3: Explain the Types of Indexes in Oracle (B-Tree, Bitmap, Function-Based).
+
+\`\`\`diagram
+                 ORACLE B-TREE INDEX LOOKUP ARCHITECTURE
+                 
+                          ┌─────────────────────┐
+                          │      ROOT BLOCK     │
+                          │   [Key 1..50..100]  │
+                          └──────────┬──────────┘
+                                     │
+                 ┌───────────────────┴───────────────────┐
+                 ▼                                       ▼
+     ┌───────────────────────┐               ┌───────────────────────┐
+     │     BRANCH BLOCK      │               │     BRANCH BLOCK      │
+     │     [Keys 1..49]      │               │     [Keys 50..100]    │
+     └───────────┬───────────┘               └───────────┬───────────┘
+                 │                                       │
+         ┌───────┴───────┐                       ┌───────┴───────┐
+         ▼               ▼                       ▼               ▼
+   ┌───────────┐   ┌───────────┐           ┌───────────┐   ┌───────────┐
+   │LEAF BLOCK │   │LEAF BLOCK │           │LEAF BLOCK │   │LEAF BLOCK │
+   │Key: ROWID │   │Key: ROWID │           │Key: ROWID │   │Key: ROWID │
+   └─────┬─────┘   └───────────┘           └───────────┘   └───────────┘
+         │
+         │ Direct Pointer (ROWID)
+         ▼
+   ┌───────────────────────────────────────────┐
+   │ PHYSICAL TABLE DATA BLOCK (Disk I/O Seek) │
+   └───────────────────────────────────────────┘
+   
+   ► INDEX SEEK: Traverses Root ──► Branch ──► Leaf (3-4 I/O reads). O(log N).
+   ► TABLE SCAN: Scans every single block up to High Water Mark (HWM). O(N).
+\`\`\`
+
 1. **B-Tree Index (Default):** Best for **High-Cardinality** columns (columns with many unique values like \`EMP_ID\`, \`EMAIL\`, \`INVOICE_NO\`) and OLTP tables with frequent inserts/updates.
 2. **Bitmap Index:** Best for **Low-Cardinality** columns (few distinct values like \`GENDER ('M'/'F')\`, \`STATUS ('ACTIVE'/'INACTIVE')\`) in Data Warehousing / Read-heavy reporting tables. (Avoid in heavy OLTP because locking a bitmap index locks many rows!).
 3. **Function-Based Index:** Created on an expression like \`CREATE INDEX idx_emp_upper ON employees(UPPER(emp_name));\` so \`WHERE UPPER(emp_name) = 'RAHUL'\` uses an index seek instead of a Full Table Scan!
@@ -373,6 +479,33 @@ window.INTERVIEW_LESSONS["ora-04"] = `# Oracle SQL & PL/SQL Lesson 4: Cursors, S
 ---
 
 ## Q1: What is a Cursor in PL/SQL? Explain Implicit vs Explicit Cursors and Cursor Attributes.
+
+\`\`\`diagram
+                ORACLE CURSOR EXECUTION LIFECYCLE
+                
+   ┌────────────────┐
+   │ 1. DECLARE     │ ──► Allocates Private SQL Area in PGA memory
+   └───────┬────────┘
+           ▼
+   ┌────────────────┐
+   │ 2. OPEN        │ ──► Parses SQL, binds variables & builds active set
+   └───────┬────────┘
+           ▼
+   ┌────────────────┐ ◄──────────┐
+   │ 3. FETCH       │            │ Loop while
+   │    INTO vars   │            │ %FOUND is TRUE
+   └───────┬────────┘            │
+           ▼                     │
+   ┌────────────────┐            │
+   │ 4. CHECK       │ ───────────┘
+   │    %NOTFOUND?  │
+   └───────┬────────┘ (When TRUE)
+           ▼
+   ┌────────────────┐
+   │ 5. CLOSE       │ ──► Releases PGA cursor memory & locks
+   └────────────────┘
+\`\`\`
+
 * **Simple Meaning:** A Cursor is a pointer to a private memory area (Context Area) in Oracle that holds the result rows of a SQL query so PL/SQL can process them.
 * **Implicit Cursor (\`SQL%...\`):** Created automatically by Oracle for every \`INSERT\`, \`UPDATE\`, \`DELETE\`, or \`SELECT INTO\`.
 * **Explicit Cursor:** Declared manually by the developer for multi-row queries (\`CURSOR c_emp IS SELECT ...\` $\\rightarrow$ \`OPEN\` $\\rightarrow$ \`FETCH\` $\\rightarrow$ \`CLOSE\`, or using a Cursor \`FOR\` loop which automatically opens, fetches, and closes!).
@@ -412,6 +545,29 @@ END;
 ---
 
 ## Q4: 5-Year Senior Oracle Question — What is the **Mutating Table Error (\`ORA-04091\`)** and how do you fix it?
+
+\`\`\`diagram
+           ORA-04091: MUTATING TABLE TRIGGER ERROR CAUSE & FIX
+           
+   User DML: UPDATE EMPLOYEES SET SALARY = 90000;
+      │
+      ▼
+   ┌────────────────────────────────────────────────────────┐
+   │ EMPLOYEES Table is currently changing (MUTATING state) │
+   └──────────────────────────┬─────────────────────────────┘
+                              │
+   Fires Row-Level Trigger:   ▼
+   FOR EACH ROW
+   BEGIN
+      SELECT AVG(SALARY) FROM EMPLOYEES;  <─── ❌ BOOM! ORA-04091!
+      -- Cannot query a table while it is in the middle of being modified!
+   END;
+   
+   ► SOLUTION 1: Use Compound Trigger (combines BEFORE, AFTER ROW, and AFTER STATEMENT)
+   ► SOLUTION 2: Use Statement-Level Trigger (no 'FOR EACH ROW')
+   ► SOLUTION 3: Use Autonomous Transaction (PRAGMA AUTONOMOUS_TRANSACTION)
+\`\`\`
+
 * **Simple Meaning:**
   * If you write a **Row-Level Trigger (\`FOR EACH ROW\`)** on the \`EMPLOYEES\` table, and inside that trigger you try to run a **\`SELECT\` or DML query on the exact same \`EMPLOYEES\` table**, Oracle throws **\`ORA-04091: table EMPLOYEES is mutating, trigger/function may not see it\`** because the table is in the middle of being modified!
 * **How to Fix It (Best Answer in Oracle 11g/12c/19c):**
@@ -458,4 +614,3 @@ BEGIN
 END;
 \`\`\`
 `;
-

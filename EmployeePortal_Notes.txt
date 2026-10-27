@@ -1,0 +1,60 @@
+================================================================================
+           ASP.NET CORE MVC - EMPLOYEE PORTAL STEP-BY-STEP TRACKER
+================================================================================
+
+PROJECT NAME: EmployeePortal
+FRAMEWORK   : .NET 8.0 (LTS)
+ARCHITECTURE: Model-View-Controller (MVC) + Entity Framework Core
+
+--------------------------------------------------------------------------------
+OVERALL ROADMAP (SECTIONS TO COMPLETE ONE BY ONE):
+--------------------------------------------------------------------------------
+[X] SECTION 1: Project Creation & Initial Run Verification (COMPLETED)
+[X] SECTION 2: Employee Model Creation (COMPLETED)
+[ ] SECTION 3: Entity Framework Core Setup & Connection String (IN PROGRESS)
+[ ] SECTION 4: Database Migrations (Creating the Database)
+[ ] SECTION 5: Employee Controller (CRUD Operations)
+[ ] SECTION 6: Razor Views (Index, Create, Edit, Delete UI)
+[ ] SECTION 7: Validation, Search & Polish
+
+================================================================================
+SECTION 1: CREATE PROJECT & VERIFY (COMPLETED)
+================================================================================
+- Created ASP.NET Core MVC project named 'EmployeePortal'.
+- Verified by running with Ctrl + F5.
+
+================================================================================
+SECTION 2: CREATE EMPLOYEE MODEL (COMPLETED)
+================================================================================
+- Created Models/Employee.cs with properties and validation data annotations.
+
+================================================================================
+SECTION 3: ENTITY FRAMEWORK CORE & CONNECTION STRING
+================================================================================
+1. Install NuGet Packages:
+   - Microsoft.EntityFrameworkCore.SqlServer
+   - Microsoft.EntityFrameworkCore.Tools
+   (Via Package Manager Console:
+      Install-Package Microsoft.EntityFrameworkCore.SqlServer
+      Install-Package Microsoft.EntityFrameworkCore.Tools
+    Or via Right Click Project -> Manage NuGet Packages)
+
+2. Create Data Folder and DbContext:
+   - Right-click Project -> Add -> New Folder -> "Data"
+   - Right-click Data folder -> Add -> Class -> "ApplicationDbContext.cs"
+   - Inherit from DbContext and add DbSet<Employee> Employees property.
+
+3. Add Connection String in appsettings.json:
+   "ConnectionStrings": {
+     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=EmployeePortalDb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
+   }
+
+4. Register DbContext in Program.cs:
+   builder.Services.AddDbContext<ApplicationDbContext>(options =>
+       options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+5. Press Ctrl + Shift + B to verify build succeeds.
+
+================================================================================
+(Next sections will be updated as we proceed!)
+================================================================================

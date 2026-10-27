@@ -253,6 +253,34 @@ public class InvoiceController : BaseController
 ---
 
 ## Q12: What are the Different Types of Inheritance? Which ones are supported in C#?
+
+\`\`\`diagram
+1. Single Inheritance               2. Multilevel Inheritance
+   ┌──────────────────────┐             ┌──────────────────────┐
+   │  Base: BaseEntity    │             │  Grandparent: Object │
+   └──────────┬───────────┘             └──────────┬───────────┘
+              │ (IS-A)                             ▼
+              ▼                         ┌──────────────────────┐
+   ┌──────────────────────┐             │  Parent: BaseEntity  │
+   │ Derived: Invoice     │             └──────────┬───────────┘
+   └──────────────────────┘                        ▼
+                                        ┌──────────────────────┐
+                                        │  Child: OrderInvoice │
+                                        └──────────────────────┘
+
+3. Hierarchical Inheritance         4. Multiple Inheritance (Interfaces Only!)
+       ┌──────────────────┐             ┌──────────────┐   ┌──────────────┐
+       │ Parent: Vehicle  │             │ IPdfExporter │   │ IExcelExport │
+       └───┬──────────┬───┘             └──────┬───────┘   └──────┬───────┘
+           │          │                        │                  │
+     ┌─────┘          └─────┐                  └────────┬─────────┘
+     ▼                      ▼                           ▼
+┌──────────────┐      ┌──────────────┐          ┌──────────────────────┐
+│ Child: Car   │      │ Child: Truck │          │ OrderReportService   │
+└──────────────┘      └──────────────┘          │ (Implements Both)    │
+                                                └──────────────────────┘
+\`\`\`
+
 1. **Single Inheritance:** \`class B : A\` $\\rightarrow$ **Supported**
 2. **Multilevel Inheritance:** \`A -> B -> C\` $\\rightarrow$ **Supported**
 3. **Hierarchical Inheritance:** Multiple classes (\`Car\`, \`Truck\`) inherit from one parent (\`Vehicle\`) $\\rightarrow$ **Supported**
@@ -261,12 +289,52 @@ public class InvoiceController : BaseController
 ---
 
 ## Q13: Why does C# NOT support Multiple Inheritance with Classes? (The Diamond Problem)
+
+\`\`\`diagram
+                 ┌───────────────────────────┐
+                 │       Class A (Base)      │
+                 │   public void Print() { } │
+                 └─────────────┬─────────────┘
+                               │
+               ┌───────────────┴───────────────┐
+               ▼                               ▼
+  ┌─────────────────────────┐     ┌─────────────────────────┐
+  │     Class B (Child 1)   │     │    Class C (Child 2)    │
+  │ Override Print() -> "B" │     │ Override Print() -> "C" │
+  └────────────┬────────────┘     └────────────┬────────────┘
+               │                               │
+               └───────────────┬───────────────┘
+                               ▼
+                 ┌───────────────────────────┐
+                 │     Class D : B, C (??)   │
+                 │ Which Print() to execute? │
+                 │ ❌ AMBIGUITY / CONFLICT!   │
+                 └───────────────────────────┘
+     Resolution in C#: Use Interfaces (contracts without state).
+\`\`\`
+
 * **Interview Answer (What to Speak):**
   > "C# prevents a class from inheriting from more than one base class to avoid **ambiguity**, known as the **Diamond Problem**. If \`ClassA\` and \`ClassB\` both define a \`Save()\` method and \`ClassC\` inherits from both, the compiler cannot determine which \`Save()\` method to execute. Instead, C# supports implementing **multiple interfaces** (\`class ReportService : IPdfExporter, IExcelExporter\`), because interfaces only define the contract."
 
 ---
 
 ## Q14: In Inheritance, in what order do Constructors run when you create a Child class object?
+
+\`\`\`diagram
+     CONSTRUCTOR EXECUTION SEQUENCE WHEN CALLING: new Child()
+   
+   Step 1: Child static constructor (if present) ──► Initialized once per AppDomain
+   Step 2: Parent static constructor (if present)
+   Step 3: Parent instance constructor (base())  ──► Allocates & sets up base state first!
+   Step 4: Child instance constructor            ──► Sets up child specific fields
+   
+   ┌────────────────────────────────────────────────────────┐
+   │ [Parent Instance] ──► Runs FIRST (LIFO Base Unwinding) │
+   │       ▼                                                │
+   │ [Child Instance]  ──► Runs SECOND                      │
+   └────────────────────────────────────────────────────────┘
+\`\`\`
+
 * **Simple Rule:** **Parent (Base) instance constructor ALWAYS runs FIRST, then Child (Derived) instance constructor!**
 * **If Static Constructors are also present:**
   1. Child \`static\` constructor runs first.
@@ -390,6 +458,27 @@ window.INTERVIEW_LESSONS["oop-03"] = `# OOP Lesson 3: Abstract Class, Interface,
 
 ## Q24: What is the Difference Between an \`Abstract Class\` and an \`Interface\`? (Top #1 OOP Question)
 
+\`\`\`diagram
+                 ABSTRACT CLASS vs INTERFACE ARCHITECTURE
+                 
+  ABSTRACT CLASS (IS-A Identity & State)     INTERFACE (CAN-DO Contract / Capability)
+  ┌────────────────────────────────────┐     ┌────────────────────────────────────┐
+  │ abstract class BasePaymentGateway  │     │ interface IPaymentService          │
+  ├────────────────────────────────────┤     ├────────────────────────────────────┤
+  │ - protected string _apiKey;        │     │ - Only method signatures           │
+  │ - public BasePaymentGateway(...)   │     │ - NO instance fields / state       │
+  │ - public void LogAudit() { ... }   │     │ - NO instance constructors         │
+  │ - public abstract bool Charge();   │     │ - bool ProcessPayment(OrderDto dto)│
+  └─────────────────┬──────────────────┘     └─────────────────┬──────────────────┘
+                    │                                          │
+                    │ (Single Inheritance Only)                │ (Multiple Implementations)
+                    ▼                                          ▼
+  ┌────────────────────────────────────┐     ┌────────────────────────────────────┐
+  │ class StripeGateway : BasePayment  │     │ class OrderService : IPayment,     │
+  │ (Reuses base code & fields)        │     │                      IOrderRepo    │
+  └────────────────────────────────────┘     └────────────────────────────────────┘
+\`\`\`
+
 | Feature | \`abstract class\` | \`interface\` |
 | :--- | :--- | :--- |
 | **Relationship Type** | **"IS-A" Identity** (Closely related classes) | **"CAN-DO" Capability / Contract** |
@@ -420,6 +509,23 @@ public class DocumentManager : ISaveToDatabase, ISaveToFile
 ---
 
 ## Q27: What are the **S** and **O** in SOLID Principles? (SRP & OCP)
+
+\`\`\`diagram
+                    THE 5 SOLID DESIGN PRINCIPLES
+                    
+  [S] Single Responsibility  ──► 1 Class = 1 Job (OrderValidator != OrderRepository)
+  [O] Open / Closed          ──► Open for Extension, Closed for Modification (Use Interfaces)
+  [L] Liskov Substitution    ──► Derived classes must fully substitute base without errors
+  [I] Interface Segregation  ──► Small client-specific interfaces > One giant fat interface
+  [D] Dependency Inversion   ──► High-level modules depend on abstractions (DI), not concrete!
+  
+   ┌────────────────────────────────────────────────────────┐
+   │ Controllers / Services  ──► Depend on ──► [Interfaces] │
+   │                                                 ▲      │
+   │ Concrete Repositories   ──► Implements ─────────┘      │
+   └────────────────────────────────────────────────────────┘
+\`\`\`
+
 * **S — Single Responsibility Principle (SRP):** A class should have **only ONE job** (only one reason to change). E.g., separate \`OrderController\`, \`OrderValidator\`, \`OrderRepository\`, and \`EmailService\`.
 * **O — Open/Closed Principle (OCP):** Classes should be **Open for Extension, but Closed for Modification**. Add new features (like \`CsvExporter : IReportExporter\`) by adding a new class rather than editing an existing \`if-else\` block.
 
@@ -466,6 +572,32 @@ window.INTERVIEW_LESSONS["oop-04"] = `# OOP Lesson 4: Relationships, Copying, Ad
 ---
 
 ## Q31: What is the difference between Association, Aggregation, and Composition?
+
+\`\`\`diagram
+                 OBJECT RELATIONSHIPS (IS-A vs HAS-A)
+                 
+  1. Inheritance (IS-A Relationship)
+     ┌────────────────┐
+     │ Parent: Person │
+     └───────┬────────┘
+             │ (IS-A)
+             ▼
+     ┌────────────────┐
+     │ Child: Employee│
+     └────────────────┘
+     
+  2. Aggregation (Weak HAS-A / Independent Lifetimes)
+     ┌────────────────┐           ◇ (Empty Diamond)
+     │   Department   │───────────◇  ┌────────────────┐
+     └────────────────┘              │    Employee    │ (If Dept is deleted,
+                                     └────────────────┘  Employee still exists)
+                                     
+  3. Composition (Strong HAS-A / Bound Lifetimes)
+     ┌────────────────┐           ◆ (Filled Diamond)
+     │     Order      │───────────◆  ┌────────────────┐
+     │    (Parent)    │              │   OrderItem    │ (If Order is deleted,
+     └────────────────┘              └────────────────┘  OrderItems are DESTROYED!)
+\`\`\`
 
 | Relationship | Keyword | Ownership | If Parent is Deleted, Does Child Survive? | Example |
 | :--- | :--- | :--- | :--- | :--- |
@@ -633,6 +765,32 @@ window.INTERVIEW_LESSONS["di-02"] = `# Dependency Injection (DI) Lesson 2: Servi
 ---
 
 ## Q7: Visual Scenario — How Many Instances Are Created Across 2 Requests?
+
+\`\`\`diagram
+           DEPENDENCY INJECTION LIFETIMES (TRANSIENT vs SCOPED vs SINGLETON)
+           
+  HTTP REQUEST 1                           HTTP REQUEST 2
+  ──────────────────────────────────────   ──────────────────────────────────────
+  
+  1. TRANSIENT (AddTransient)
+     • Controller requests ITransient ──► Instance #1
+     • Service requests ITransient    ──► Instance #2   • Controller requests ITransient ──► Instance #3
+     (Always a NEW instance per injection point)        (Always a NEW instance per injection point)
+     
+  2. SCOPED (AddScoped) - e.g., DbContext
+     • Controller requests IScoped    ──► ┌──────────┐  • Controller requests IScoped    ──► ┌──────────┐
+     • Service requests IScoped       ──► │Instance#1│  • Service requests IScoped       ──► │Instance#2│
+     (Shared within Request 1 scope)      └──────────┘  (Shared within Request 2 scope)      └──────────┘
+                                               │                                                  │
+                                               ▼ Disposed on Request 1 End                        ▼ Disposed
+                                               
+  3. SINGLETON (AddSingleton) - e.g., Cache
+     • Controller requests ISingleton ──► ┌────────────────────────────────────────────────────────┐
+     • Service requests ISingleton    ──► │                 SHARED INSTANCE #1                     │
+     (Created once, reused forever across │    (Lives in Memory for Entire Application Lifetime)   │
+      all requests and all users!)        └────────────────────────────────────────────────────────┘
+\`\`\`
+
 Suppose \`ServiceX\` is injected into **both** \`OrderController\` AND \`PaymentHelper\` in Request 1 and Request 2:
 * **Transient:** Request 1 gets **2 instances** (#1, #2). Request 2 gets **2 new instances** (#3, #4).
 * **Scoped:** Request 1 shares **1 instance** (#1). Request 2 shares **1 new instance** (#2).
@@ -756,4 +914,3 @@ builder.Services.AddScoped<IOracleDbConnection>(sp =>
 * Injecting a single \`ITaxService\` resolves the **last registered class**.
 * Injecting \`IEnumerable<ITaxService>\` resolves **all registered classes**.
 `;
-

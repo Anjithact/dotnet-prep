@@ -2,8 +2,11 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5-Year .NET Full-Stack Interview Portal (340+ Q&As)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>DotNetForge 360 | 5-Year .NET Full-Stack Interview Portal (400+ Q&As)</title>
   <style>
     :root[data-theme="dark"] {
       --bg-primary: #0f172a;
@@ -47,15 +50,24 @@
       padding: 0;
     }
 
+    html {
+      height: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
     body {
-      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       display: flex;
       height: 100vh;
+      height: 100dvh;
       overflow: hidden;
       font-size: 16px;
       line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* Sidebar */
@@ -67,6 +79,7 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
+      height: 100dvh;
     }
 
     .sidebar-header {
@@ -306,7 +319,7 @@
     }
 
     .markdown-body h2 {
-      font-size: 1.32rem;
+      font-size: 1.25rem;
       color: var(--text-primary);
       background: var(--bg-secondary);
       border: 1px solid var(--border);
@@ -315,6 +328,52 @@
       border-radius: 8px;
       margin-top: 32px;
       margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .q-title-text {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .btn-chatgpt {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 163, 127, 0.12);
+      color: #10a37f;
+      border: 1px solid rgba(16, 163, 127, 0.35);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .btn-chatgpt:hover {
+      background: #10a37f;
+      color: #ffffff;
+      border-color: #10a37f;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(16, 163, 127, 0.35);
+    }
+
+    .btn-chatgpt svg {
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .btn-chatgpt:hover svg {
+      transform: rotate(45deg);
     }
 
     .markdown-body h3 {
@@ -376,6 +435,51 @@
       color: inherit;
       padding: 0;
       font-size: 0.9rem;
+    }
+
+    /* Visual Diagram Box Component */
+    .visual-diagram-card {
+      background: var(--bg-card);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      margin: 18px 0 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+    .visual-diagram-header {
+      background: linear-gradient(90deg, var(--accent-soft), transparent);
+      border-bottom: 1px solid var(--border);
+      padding: 9px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .visual-diagram-icon {
+      font-size: 1.1rem;
+    }
+    .visual-diagram-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .visual-diagram-pre {
+      background: var(--bg-code) !important;
+      color: #38bdf8 !important;
+      font-family: 'Cascadia Code', Consolas, 'Courier New', monospace !important;
+      font-size: 0.86rem !important;
+      line-height: 1.45 !important;
+      padding: 16px 20px !important;
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      overflow-x: auto !important;
+      white-space: pre !important;
+    }
+    .visual-diagram-pre code {
+      color: inherit !important;
+      background: transparent !important;
     }
 
     .markdown-body hr {
@@ -455,6 +559,285 @@
       margin-bottom: 4px;
     }
 
+    /* Home / Front Page Styles */
+    .home-nav-box {
+      padding: 10px 14px 4px;
+    }
+    .home-nav-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    .home-nav-btn:hover, .home-nav-btn.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+    }
+    .fp-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding-bottom: 40px;
+    }
+    .fp-hero {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.18), rgba(30, 41, 59, 0.65));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .fp-hero::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .fp-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+    .fp-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .fp-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 780px;
+      margin-bottom: 20px;
+    }
+    .fp-stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .fp-stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .fp-stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    .fp-stat-num {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .fp-stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .fp-quote-box {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.07), rgba(34, 197, 94, 0.05));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-left: 6px solid var(--accent);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .fp-quote-icon {
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+    .fp-quote-text {
+      font-size: 1.15rem;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      transition: opacity 0.25s ease;
+    }
+    .fp-quote-author {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .fp-quote-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .fp-quote-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .fp-section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 32px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .fp-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .fp-pillar-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      transition: all 0.2s ease;
+    }
+    .fp-pillar-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+    .fp-pillar-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+    .fp-pillar-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .fp-pillar-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .fp-roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .fp-module-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .fp-module-card:hover {
+      border-color: var(--accent);
+      background: var(--bg-hover);
+      transform: translateY(-2px);
+    }
+    .fp-module-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .fp-module-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .fp-module-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: inline-block;
+      margin-top: 6px;
+    }
+    .fp-cta-box {
+      background: linear-gradient(135deg, #0284c7, #0f172a);
+      border-radius: 14px;
+      padding: 30px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.25);
+    }
+    .fp-cta-btn {
+      background: #ffffff;
+      color: #0369a1;
+      border: none;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      transition: all 0.2s;
+    }
+    .fp-cta-btn:hover {
+      background: #f0f9ff;
+      transform: scale(1.03);
+    }
+
     .mobile-menu-btn {
       display: none;
       background: var(--accent-soft);
@@ -475,64 +858,1984 @@
       z-index: 90;
     }
 
-    /* Mobile Phone & Tablet Responsive View */
+    .sidebar-close-btn {
+      display: none;
+    }
+
+    .visual-diagram-hint {
+      display: none;
+    }
+
+    .mobile-top-btn {
+      display: none;
+      position: fixed;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      font-size: 1.3rem;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      cursor: pointer;
+      z-index: 85;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-top-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* Mobile Phone & Tablet Responsive View (Optimized for iPhone 16 & Modern Mobiles) */
     @media (max-width: 820px) {
       .sidebar {
         position: fixed;
-        left: -350px;
+        left: -360px;
         top: 0;
         bottom: 0;
-        width: 310px;
-        min-width: 310px;
+        width: min(320px, 86vw);
+        min-width: unset;
         z-index: 100;
-        transition: left 0.25s ease;
+        transition: left 0.28s cubic-bezier(0.33, 1, 0.68, 1);
+        padding-top: max(10px, env(safe-area-inset-top));
+        padding-bottom: max(18px, env(safe-area-inset-bottom));
+        box-shadow: none;
       }
 
       .sidebar.open {
         left: 0;
+        box-shadow: 6px 0 28px rgba(0, 0, 0, 0.5);
+      }
+
+      .sidebar-close-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-soft);
+        color: var(--accent);
+        border: 1px solid var(--border);
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
       }
 
       .sidebar-overlay.open {
         display: block;
       }
 
+      .search-input {
+        font-size: 16px !important; /* Critical for iOS Safari: prevents viewport auto-zoom! */
+      }
+
       .mobile-menu-btn {
         display: inline-flex;
         align-items: center;
         gap: 6px;
+        min-height: 36px;
       }
 
       .topbar {
-        padding: 0 12px;
+        padding: 8px 14px;
+        padding-top: max(8px, env(safe-area-inset-top));
         height: auto;
-        min-height: 56px;
-        flex-wrap: wrap;
+        min-height: unset;
+        display: flex;
+        flex-direction: column;
         gap: 8px;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .topbar-left {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .badge {
+        max-width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.76rem;
+      }
+
+      .topbar-actions {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+      }
+
+      .btn-tool {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-complete {
+        flex: 1;
+        text-align: center;
+        padding: 6px 12px;
+        font-size: 0.82rem;
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .content-scroll {
-        padding: 20px 16px 70px;
+        padding: 16px 14px calc(75px + env(safe-area-inset-bottom));
+        -webkit-overflow-scrolling: touch;
       }
 
       .markdown-body h1 {
-        font-size: 1.4rem;
+        font-size: 1.35rem;
+        line-height: 1.35;
+        margin-bottom: 16px;
       }
 
       .markdown-body h2 {
-        font-size: 1.12rem;
+        font-size: 1.05rem;
         padding: 10px 12px;
+        margin-top: 24px;
+        margin-bottom: 14px;
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .q-title-text {
+        width: 100%;
+        min-width: unset;
+        line-height: 1.45;
+      }
+
+      .btn-chatgpt {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 0.82rem;
+        min-height: 36px;
       }
 
       .markdown-body table {
         display: block;
+        width: 100%;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        font-size: 0.82rem;
+        scrollbar-width: thin;
+      }
+
+      .markdown-body table th, .markdown-body table td {
+        padding: 8px 10px;
+      }
+
+      .markdown-body pre {
+        padding: 12px 14px;
+        font-size: 0.82rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+
+      /* Mobile Visual Diagram Card */
+      .visual-diagram-card {
+        margin: 14px 0 20px;
+        border-radius: 10px;
+      }
+
+      .visual-diagram-header {
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .visual-diagram-hint {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--accent);
+        background: var(--accent-soft);
+        padding: 2px 7px;
+        border-radius: 4px;
+        border: 1px solid var(--accent);
+        letter-spacing: 0.04em;
+      }
+
+      .visual-diagram-pre {
+        font-size: 0.74rem !important;
+        line-height: 1.4 !important;
+        padding: 12px 12px !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+
+      /* Front Page & Roadmap Mobile */
+      .fp-hero {
+        padding: 22px 16px;
+        border-radius: 12px;
+      }
+
+      .fp-hero-title {
+        font-size: 1.45rem;
+      }
+
+      .fp-hero-sub {
+        font-size: 0.88rem;
+      }
+
+      .fp-stats-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+      }
+
+      .fp-stat-card {
+        padding: 12px 14px;
+      }
+
+      .fp-stat-val {
+        font-size: 1.4rem;
+      }
+
+      .fp-timetable-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .fp-tt-btn {
+        width: 100%;
+        text-align: center;
+        padding: 11px;
+      }
+
+      .fp-roadmap-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      /* Timetable Engine Mobile */
+      .tt-hero {
+        padding: 20px 16px;
+        border-radius: 12px;
+      }
+
+      .tt-title {
+        font-size: 1.45rem;
+      }
+
+      .tt-subtitle {
+        font-size: 0.88rem;
+      }
+
+      .tt-stats-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+      }
+
+      .tt-stat-card {
+        padding: 10px 12px;
+      }
+
+      .tt-stat-val {
+        font-size: 1.35rem;
+      }
+
+      .tt-filter-nav {
+        padding-bottom: 8px;
+        gap: 6px;
+      }
+
+      .tt-filter-btn {
+        padding: 7px 12px;
+        font-size: 0.78rem;
+      }
+
+      .tt-day-card {
+        padding: 14px 12px;
+        border-radius: 10px;
+      }
+
+      .tt-day-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .tt-day-left {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      .tt-day-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .tt-task-item {
+        padding: 8px 10px;
+        gap: 8px;
+      }
+
+      .tt-task-checkbox {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+      }
+
+      .tt-task-title {
+        font-size: 0.84rem;
+      }
+
+      .tt-task-goto {
+        flex-shrink: 0;
+        padding: 5px 9px;
+        font-size: 0.74rem;
+      }
+
+      .tt-rollover-box {
+        padding: 14px 12px;
+      }
+
+      .tt-rollover-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
       }
 
       .lesson-footer {
         flex-direction: column;
         gap: 10px;
+        margin-top: 36px;
+        padding-top: 18px;
+      }
+
+      .nav-card-btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px 14px;
+        font-size: 0.88rem;
+      }
+    }
+
+    @media print {
+      .btn-chatgpt, .sidebar, .topbar, .mobile-menu-btn, .sidebar-overlay, .search-box, .lesson-footer {
+        display: none !important;
+      }
+      body, .main-area, .content-scroll {
+        overflow: visible !important;
+        height: auto !important;
+      }
+    }
+
+    /* Timetable & Carry-Forward Styles */
+    .fp-timetable-banner {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(16, 185, 129, 0.15));
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .fp-timetable-banner:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.2);
+      border-color: #38bdf8;
+    }
+    .fp-tt-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .fp-tt-icon {
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+    .fp-tt-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .fp-tt-sub {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .fp-tt-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 7px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .fp-tt-btn:hover {
+      opacity: 0.9;
+    }
+
+    .tt-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding-bottom: 50px;
+    }
+    .tt-hero {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.16), rgba(30, 41, 59, 0.7));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px 28px;
+      margin-bottom: 24px;
+    }
+    .tt-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .tt-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 760px;
+      line-height: 1.55;
+    }
+    .tt-stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .tt-stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .tt-stat-card.alert-card {
+      border-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.08);
+    }
+    .tt-stat-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .tt-stat-card.alert-card .tt-stat-val {
+      color: #f59e0b;
+    }
+    .tt-stat-lbl {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    /* Rollover & Carry-Forward Alert Box */
+    .tt-rollover-box {
+      background: rgba(245, 158, 11, 0.09);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .tt-rollover-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .tt-rollover-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #f59e0b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tt-rollover-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .tt-rollover-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .tt-rollover-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+    .tt-rollover-item:hover {
+      border-color: #f59e0b;
+    }
+    .tt-rollover-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+    .tt-day-tag {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .tt-rollover-text {
+      font-size: 0.86rem;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+    .tt-rollover-text:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .tt-success-box {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--success);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* Filter Nav Tabs */
+    .tt-filter-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      scrollbar-width: thin;
+    }
+    .tt-filter-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tt-filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+    .tt-filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .tt-filter-btn.alert-filter.active {
+      background: #f59e0b;
+      border-color: #f59e0b;
+      color: #ffffff;
+    }
+
+    /* Day Cards List */
+    .tt-days-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .tt-day-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.2s ease;
+    }
+    .tt-day-card.status-done {
+      border-color: var(--success);
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(34, 197, 94, 0.04) 100%);
+    }
+    .tt-day-card.status-progress {
+      border-color: #f59e0b;
+    }
+    .tt-day-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .tt-day-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tt-day-badge {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .tt-day-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .tt-day-meta {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .tt-day-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tt-status-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .tt-status-pill.pill-done {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+    }
+    .tt-status-pill.pill-progress {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+    }
+    .tt-status-pill.pill-todo {
+      background: var(--border);
+      color: var(--text-secondary);
+    }
+    .tt-btn-day {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tt-btn-day:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Tasks Checklist */
+    .tt-task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .tt-task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      transition: all 0.2s;
+    }
+    .tt-task-item.checked {
+      opacity: 0.75;
+      background: rgba(34, 197, 94, 0.05);
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+    .tt-task-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+    .tt-task-checkbox {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--success);
+    }
+    .tt-task-title {
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      line-height: 1.45;
+      cursor: pointer;
+    }
+    .tt-task-item.checked .tt-task-title {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+    .tt-task-goto {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tt-task-goto:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    /* ============================================================
+       DAILY ROUTINE HABIT TRACKER & JOURNAL STYLES
+       ============================================================ */
+    .dt-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 10px 0 40px;
+    }
+    .dt-hero {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(2, 132, 199, 0.12) 50%, rgba(139, 92, 246, 0.10) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dt-hero::after {
+      content: "🧘";
+      position: absolute;
+      right: 20px;
+      bottom: -10px;
+      font-size: 7rem;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .dt-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 10px 0 6px;
+      line-height: 1.25;
+    }
+    .dt-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
+    .dt-stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .dt-stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .dt-stat-card:hover {
+      transform: translateY(-2px);
+    }
+    .dt-stat-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .dt-stat-lbl {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .dt-stat-card.stat-emerald .dt-stat-val { color: #10b981; }
+    .dt-stat-card.stat-amber .dt-stat-val { color: #f59e0b; }
+    .dt-stat-card.stat-blue .dt-stat-val { color: #0284c7; }
+    .dt-stat-card.stat-purple .dt-stat-val { color: #8b5cf6; }
+
+    /* Date Navigation Bar */
+    .dt-date-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-bottom: 24px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .dt-date-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dt-date-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .dt-date-badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      letter-spacing: 0.03em;
+    }
+    .dt-date-badge.is-today {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .dt-date-nav-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dt-nav-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .dt-nav-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .dt-nav-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .dt-nav-btn.primary:hover {
+      opacity: 0.9;
+    }
+
+    /* Main Grid Layout */
+    .dt-main-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .dt-column {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Habit Card & Checklist */
+    .dt-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+    .dt-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .dt-card-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dt-card-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .dt-habits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .dt-habit-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+    .dt-habit-item.is-done {
+      border-color: #10b981;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.08) 0%, var(--bg-card) 100%);
+    }
+    .dt-habit-item.is-missed {
+      border-color: #ef4444;
+      background: linear-gradient(90deg, rgba(239, 68, 68, 0.08) 0%, var(--bg-card) 100%);
+    }
+    .dt-habit-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+    .dt-habit-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      padding: 6px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .dt-habit-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+    .dt-habit-time {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .dt-habit-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .dt-habit-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .dt-btn-action {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .dt-btn-action.btn-done {
+      color: var(--text-secondary);
+    }
+    .dt-btn-action.btn-done:hover {
+      border-color: #10b981;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+    }
+    .dt-btn-action.btn-done.active {
+      background: #10b981;
+      border-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+    }
+    .dt-btn-action.btn-missed {
+      color: var(--text-secondary);
+    }
+    .dt-btn-action.btn-missed:hover {
+      border-color: #ef4444;
+      color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+    .dt-btn-action.btn-missed.active {
+      background: #ef4444;
+      border-color: #ef4444;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
+    }
+
+    /* Daily Journal Box */
+    .dt-journal-box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .dt-journal-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .dt-chip-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .dt-chip-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .dt-journal-textarea {
+      width: 100%;
+      min-height: 220px;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 16px; /* iOS Safari auto-zoom prevention */
+      line-height: 1.6;
+      resize: vertical;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    .dt-journal-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .dt-journal-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Monthly Calendar */
+    .dt-cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .dt-cal-month-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .dt-cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+    .dt-cal-weekday {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-align: center;
+      padding-bottom: 6px;
+    }
+    .dt-cal-cell {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      min-height: 48px;
+      padding: 6px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+    .dt-cal-cell:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .dt-cal-cell.is-selected {
+      border-color: var(--accent) !important;
+      background: var(--accent-soft) !important;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .dt-cal-cell.is-today {
+      font-weight: 800;
+    }
+    .dt-cal-cell.is-today .dt-cal-day-num {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .dt-cal-cell.other-month {
+      opacity: 0.35;
+      cursor: default;
+    }
+    .dt-cal-day-num {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+    .dt-cal-badge-pill {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: 4px;
+      line-height: 1.2;
+    }
+    .dt-cal-badge-pill.perfect {
+      background: rgba(16, 185, 129, 0.2);
+      color: #10b981;
+    }
+    .dt-cal-badge-pill.partial {
+      background: rgba(245, 158, 11, 0.2);
+      color: #f59e0b;
+    }
+    .dt-cal-badge-pill.has-miss {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+    }
+
+    .dt-cal-legend {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .dt-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.73rem;
+      color: var(--text-secondary);
+    }
+
+    /* Discipline tips card */
+    .dt-tips-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dt-tip-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .dt-tip-item strong {
+      color: var(--text-primary);
+    }
+
+    /* Mobile Responsive for Tracker */
+    @media (max-width: 820px) {
+      .dt-hero {
+        padding: 18px 16px;
+      }
+      .dt-title {
+        font-size: 1.35rem;
+      }
+      .dt-stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .dt-main-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .dt-date-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 14px;
+      }
+      .dt-date-nav-btns {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .dt-habit-item {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        gap: 12px;
+      }
+      .dt-habit-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .dt-btn-action {
+        justify-content: center;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        min-height: 44px; /* iPhone touch target */
+      }
+      .dt-cal-cell {
+        min-height: 42px;
+        padding: 4px 2px;
+      }
+      .dt-cal-day-num {
+        font-size: 0.72rem;
+      }
+    }
+
+    /* ============================================================
+       CODE BLOCK RUN & COPY ACTIONS
+       ============================================================ */
+    .code-block-wrapper {
+      margin: 16px 0 22px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--bg-code);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 12px;
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--border);
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .code-lang-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      font-family: 'Cascadia Code', Consolas, monospace;
+    }
+    .code-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .code-action-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+    .code-action-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .code-action-btn.btn-fiddle {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+    }
+    .code-action-btn.btn-fiddle:hover {
+      background: rgba(56, 189, 248, 0.3);
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+    .code-action-btn.btn-livesql {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #f87171;
+    }
+    .code-action-btn.btn-livesql:hover {
+      background: rgba(239, 68, 68, 0.3);
+      color: #ffffff;
+      border-color: #ef4444;
+    }
+    .code-block-wrapper pre {
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+    }
+
+    /* Floating Toast Notification */
+    .portal-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0f172a;
+      color: #f8fafc;
+      border: 1px solid var(--accent);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 99999;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .portal-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ============================================================
+       CLOUD CODING PLAYGROUNDS STYLES (.NET Fiddle & Oracle Live SQL)
+       ============================================================ */
+    .pg-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 10px 0 40px;
+    }
+    .pg-hero {
+      background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(56, 189, 248, 0.15) 50%, rgba(239, 68, 68, 0.12) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pg-hero::after {
+      content: "⚡";
+      position: absolute;
+      right: 20px;
+      bottom: -15px;
+      font-size: 7.5rem;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    .pg-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 10px 0 6px;
+      line-height: 1.25;
+    }
+    .pg-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      max-width: 820px;
+      margin-bottom: 16px;
+    }
+    .pg-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+    .pg-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .pg-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .pg-card.card-fiddle {
+      border-left: 4px solid #38bdf8;
+    }
+    .pg-card.card-livesql {
+      border-left: 4px solid #ef4444;
+    }
+    .pg-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .pg-card-icon {
+      font-size: 2.2rem;
+      line-height: 1;
+      padding: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .pg-card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .pg-card-meta {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .pg-card-desc {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.48;
+    }
+    .pg-badge-free {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-top: 4px;
+    }
+    .pg-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .pg-btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .pg-btn-primary:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+    .pg-btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .pg-btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* Starter Templates Section */
+    .pg-templates-section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+    .pg-sec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .pg-sec-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pg-template-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .pg-tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 7px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .pg-tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+    .pg-tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .pg-code-preview-box {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-code);
+    }
+    .pg-code-preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pg-code-preview-pre {
+      padding: 16px;
+      margin: 0;
+      overflow-x: auto;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      font-family: 'Cascadia Code', Consolas, monospace;
+      max-height: 380px;
+      overflow-y: auto;
+    }
+
+    /* Mobile Responsive for Playgrounds */
+    @media (max-width: 820px) {
+      .pg-hero {
+        padding: 18px 16px;
+      }
+      .pg-title {
+        font-size: 1.35rem;
+      }
+      .pg-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .pg-card {
+        padding: 16px;
+      }
+      .pg-btn-primary, .pg-btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      .code-action-btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+      }
+    }
+
+    /* ============================================================
+       CODE COMPARE MODAL & COMPARATOR STYLES
+       ============================================================ */
+    .cc-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 29, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 100000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    .cc-modal-overlay.open {
+      display: flex;
+    }
+    .cc-modal-dialog {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 980px;
+      max-height: 90vh;
+      max-height: 90dvh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+      overflow: hidden;
+      animation: ccModalFadeIn 0.22s ease-out;
+    }
+    @keyframes ccModalFadeIn {
+      from { opacity: 0; transform: scale(0.96) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .cc-modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-card);
+      gap: 12px;
+    }
+    .cc-modal-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-top: 4px;
+    }
+    .cc-modal-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 2px 8px;
+      border-radius: 999px;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cc-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .cc-close-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+    }
+    .cc-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 22px 28px;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .cc-input-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cc-textarea {
+      width: 100%;
+      min-height: 160px;
+      background: var(--bg-code);
+      color: #e2e8f0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      font-family: 'Cascadia Code', Consolas, monospace;
+      font-size: 16px; /* Prevents auto-zoom on iOS */
+      line-height: 1.5;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    .cc-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .cc-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .cc-btn-primary {
+      background: #10b981;
+      color: #ffffff;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .cc-btn-primary:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+    .cc-btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .cc-btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* Comparison Result Columns */
+    .cc-result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .cc-col-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .cc-col-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .cc-col-header.user-header {
+      border-top: 3px solid #38bdf8;
+    }
+    .cc-col-header.actual-header {
+      border-top: 3px solid #10b981;
+    }
+    .cc-col-pre {
+      padding: 14px;
+      margin: 0;
+      background: var(--bg-code);
+      color: #e2e8f0;
+      font-family: 'Cascadia Code', Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      max-height: 340px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* Rubric / Scorecard Card */
+    .cc-rubric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .cc-rubric-title {
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cc-rubric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .cc-rubric-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .cc-rubric-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .cc-rubric-val {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .cc-spoken-script {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 14px;
+      font-size: 0.84rem;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    /* Question Library Select Box in Playgrounds */
+    .pg-select-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .pg-select-label {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+    .pg-select-dropdown {
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      outline: none;
+    }
+    .pg-select-dropdown:focus {
+      border-color: var(--accent);
+    }
+
+    /* Mobile Responsive for Modal */
+    @media (max-width: 820px) {
+      .cc-modal-dialog {
+        max-height: 94dvh;
+      }
+      .cc-result-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .cc-actions-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .cc-btn-primary, .cc-btn-secondary {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
@@ -545,18 +2848,38 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-title">
-        <span>.NET 5-Year Interview Hub</span>
+        <span>DotNetForge 360</span>
+        <button class="sidebar-close-btn" onclick="toggleMobileSidebar(false)" aria-label="Close menu">✕</button>
       </div>
-      <div class="sidebar-subtitle">10 Chapters • 28 Lessons • 340+ Q&As</div>
+      <div class="sidebar-subtitle">14 Chapters • 39 Lessons • 400+ Q&As (10/10 Score)</div>
       <div class="progress-box">
         <div class="progress-label">
           <span>Study Progress</span>
-          <span id="progress-text">0 / 28 Lessons</span>
+          <span id="progress-text">0 / 39 Lessons</span>
         </div>
         <div class="progress-bar-bg">
           <div class="progress-bar-fill" id="progress-fill"></div>
         </div>
       </div>
+    </div>
+
+    <div class="home-nav-box" style="display:flex; flex-direction:column; gap:8px;">
+      <button class="home-nav-btn active" id="home-nav-btn" onclick="selectLesson('welcome')">
+        <span style="font-size: 1.15rem;">🚀</span>
+        <span>Home & Motivation Hub</span>
+      </button>
+      <button class="home-nav-btn" id="timetable-nav-btn" onclick="selectLesson('timetable')">
+        <span style="font-size: 1.15rem;">📅</span>
+        <span>30-Day Timetable & Carryover</span>
+      </button>
+      <button class="home-nav-btn" id="tracker-nav-btn" onclick="selectLesson('tracker')">
+        <span style="font-size: 1.15rem;">🧘</span>
+        <span>Daily Routine & Habit Journal</span>
+      </button>
+      <button class="home-nav-btn" id="playgrounds-nav-btn" onclick="selectLesson('playgrounds')">
+        <span style="font-size: 1.15rem;">⚡</span>
+        <span>.NET Fiddle & Oracle Live SQL</span>
+      </button>
     </div>
 
     <div class="search-box">
@@ -579,6 +2902,7 @@
         <span class="badge" id="current-chapter-badge">Chapter 1: OOP</span>
       </div>
       <div class="topbar-actions">
+        <button class="btn-tool" onclick="selectLesson('playgrounds')" title="Cloud Compilers (.NET Fiddle & Oracle Live SQL)">⚡ Compilers</button>
         <button class="btn-tool" onclick="changeFontSize(-1)">A-</button>
         <button class="btn-tool" onclick="changeFontSize(1)">A+</button>
         <button class="btn-tool" onclick="toggleTheme()" id="theme-btn">☀️ Light Mode</button>
@@ -592,6 +2916,57 @@
         <div class="lesson-footer" id="lesson-footer"></div>
       </div>
     </div>
+    <button class="mobile-top-btn" id="mobile-top-btn" onclick="scrollToTopContent()" aria-label="Back to top">↑</button>
+    <div id="portal-toast" class="portal-toast"></div>
+
+    <!-- Code Compare & Solution Grader Modal -->
+    <div class="cc-modal-overlay" id="code-compare-modal" onclick="onCodeCompareOverlayClick(event)">
+      <div class="cc-modal-dialog" onclick="event.stopPropagation()">
+        <div class="cc-modal-header">
+          <div>
+            <span class="cc-modal-badge" id="cc-modal-badge">C# / Oracle SQL Solution Grader</span>
+            <div class="cc-modal-title" id="cc-modal-title">Compare Your Code With 10/10 Production Solution</div>
+          </div>
+          <button class="cc-close-btn" onclick="closeCodeCompareModal()" aria-label="Close modal">✕</button>
+        </div>
+        <div class="cc-modal-body">
+          <div style="background:var(--bg-card); padding:12px 16px; border-radius:10px; border:1px solid var(--border); font-size:0.84rem; color:var(--text-secondary); line-height:1.45;">
+            💡 <strong>How to practice without a laptop:</strong> Write your solution on paper in your notebook first (or test on .NET Fiddle / Oracle Live SQL). Then paste or type your code below and click <strong>[ 🔍 Compare with 10/10 Solution ]</strong> to inspect differences, missing edge cases, and time complexity trade-offs!
+          </div>
+
+          <div class="cc-input-box">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="cc-user-code-input" style="font-size:0.82rem; font-weight:700; color:var(--text-primary);">
+                ✍️ Your Solution Attempt (Typed or Pasted):
+              </label>
+              <button class="cc-btn-secondary" style="padding:3px 8px; font-size:0.74rem;" onclick="clearUserCompareCode()">Clear</button>
+            </div>
+            <textarea 
+              id="cc-user-code-input" 
+              class="cc-textarea" 
+              placeholder="// Paste what you wrote in your notebook or .NET Fiddle here...&#10;// e.g. public static int[] TwoSum(int[] nums, int target) { ... }"
+            ></textarea>
+          </div>
+
+          <div class="cc-actions-bar">
+            <button class="cc-btn-primary" onclick="runCodeComparison()">
+              <span>🔍 Compare My Code with 10/10 Solution</span>
+            </button>
+            <div style="display:flex; gap:8px;">
+              <button class="cc-btn-secondary" id="cc-modal-cloud-btn" onclick="launchModalCloudCompiler()">
+                <span>▶ Test in Cloud</span>
+              </button>
+              <button class="cc-btn-secondary" onclick="closeCodeCompareModal()">
+                Close
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Comparison Result Container -->
+          <div id="cc-result-area" style="display:none; flex-direction:column; gap:16px;"></div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- Load All Chapter Lesson Data Scripts (Works from both portal-data/ folder OR root folder on GitHub!) -->
@@ -600,11 +2975,15 @@
   <script src="portal-data/data-mvc-webapi.js"></script>
   <script src="portal-data/data-js-oracle.js"></script>
   <script src="portal-data/data-coding-ef-scenarios.js"></script>
+  <script src="portal-data/data-mastery-10.js"></script>
+  <script src="portal-data/data-timetable.js"></script>
   <script src="data-oop-di.js"></script>
   <script src="data-csharp.js"></script>
   <script src="data-mvc-webapi.js"></script>
   <script src="data-js-oracle.js"></script>
   <script src="data-coding-ef-scenarios.js"></script>
+  <script src="data-mastery-10.js"></script>
+  <script src="data-timetable.js"></script>
 
   <script>
     const CURRICULUM = [
@@ -618,29 +2997,32 @@
         ]
       },
       {
-        chapter: "Chapter 2: C# Core & Advanced (60 Q&As)",
+        chapter: "Chapter 2: C# Core & Advanced (10/10 Score)",
         lessons: [
           { id: "csharp-01", title: "Lesson 1: CLR, Value vs Reference, Boxing & Strings" },
           { id: "csharp-02", title: "Lesson 2: const/readonly, ref/out, var/dynamic, static & sealed" },
           { id: "csharp-03", title: "Lesson 3: Collections, Generics, LINQ & IEnumerable vs IQueryable" },
           { id: "csharp-04", title: "Lesson 4: Delegates, async/await, Exceptions & Garbage Collection" },
-          { id: "csharp-05", title: "Lesson 5: Extension Methods, record, lock, Deadlocks & CancellationToken" }
+          { id: "csharp-05", title: "Lesson 5: Extension Methods, record, lock, Deadlocks & CancellationToken" },
+          { id: "csharp-06", title: "Lesson 6: 10/10 Mastery: Memory (GC, IDisposable, using), Span & Concurrency" }
         ]
       },
       {
-        chapter: "Chapter 3: ASP.NET MVC & Core (34 Q&As)",
+        chapter: "Chapter 3: ASP.NET MVC & Core (10/10 Score)",
         lessons: [
           { id: "mvc-01", title: "Lesson 1: MVC Architecture, Routing, TempData & Model Binding" },
           { id: "mvc-02", title: "Lesson 2: Program.cs, Middleware (Use/Run/Map), Filters & IOptions" },
-          { id: "mvc-03", title: "Lesson 3: State Management, Auth, Security (CSRF/XSS) & Caching" }
+          { id: "mvc-03", title: "Lesson 3: State Management, Auth, Security (CSRF/XSS) & Caching" },
+          { id: "mvc-04", title: "Lesson 4: 10/10 Mastery: Pipeline, IConfiguration, Rate Limiting & Health Checks" }
         ]
       },
       {
-        chapter: "Chapter 4: Web API & Web Services (33 Q&As)",
+        chapter: "Chapter 4: Web API & Web Services (10/10 Score)",
         lessons: [
           { id: "api-01", title: "Lesson 1: REST, HTTP Verbs, Idempotency & Status Codes" },
           { id: "api-02", title: "Lesson 2: JWT Auth, Refresh Tokens, CORS & IHttpClientFactory" },
-          { id: "api-03", title: "Lesson 3: Legacy VB.NET Web Services (SOAP/ASMX/WCF) vs Web API" }
+          { id: "api-03", title: "Lesson 3: Legacy VB.NET Web Services (SOAP/ASMX/WCF) vs Web API" },
+          { id: "api-04", title: "Lesson 4: 10/10 Mastery: OAuth vs JWT, CORS, Versioning & Idempotency" }
         ]
       },
       {
@@ -660,12 +3042,13 @@
         ]
       },
       {
-        chapter: "Chapter 7: Oracle SQL & PL/SQL (46 Q&As)",
+        chapter: "Chapter 7: Oracle SQL & PL/SQL (10/10 Score)",
         lessons: [
           { id: "ora-01", title: "Lesson 1: Joins, WHERE vs HAVING, Analytical Functions & NVL" },
           { id: "ora-02", title: "Lesson 2: Constraints, Views vs MViews, Indexes & Query Tuning" },
           { id: "ora-03", title: "Lesson 3: PL/SQL, Procedures vs Functions, Packages & Autonomous Tx" },
-          { id: "ora-04", title: "Lesson 4: Cursors (SYS_REFCURSOR), Triggers, ORA-04091 & BULK COLLECT" }
+          { id: "ora-04", title: "Lesson 4: Cursors (SYS_REFCURSOR), Triggers, ORA-04091 & BULK COLLECT" },
+          { id: "ora-05", title: "Lesson 5: 10/10 Mastery: Query Optimization, ACID, Isolation Levels & Window Functions" }
         ]
       },
       {
@@ -676,10 +3059,11 @@
         ]
       },
       {
-        chapter: "Chapter 9: ADO.NET, EF Core & Dapper (24 Q&As)",
+        chapter: "Chapter 9: ADO.NET, EF Core & Dapper (10/10 Score)",
         lessons: [
           { id: "ef-01", title: "Lesson 1: ADO.NET, DataReader vs DataSet & Calling Oracle Packages" },
-          { id: "ef-02", title: "Lesson 2: EF Core DbContext, Tracking, AsNoTracking, N+1 & Migrations" }
+          { id: "ef-02", title: "Lesson 2: EF Core DbContext, Tracking, AsNoTracking, N+1 & Migrations" },
+          { id: "ef-03", title: "Lesson 3: 10/10 Mastery: Tracking, Concurrency Tokens, Compiled Queries & Bulk Operations" }
         ]
       },
       {
@@ -689,7 +3073,28 @@
         ]
       },
       {
-        chapter: "Chapter 11: Spoken English for Interviews",
+        chapter: "Chapter 11: System Design & Scalability (10/10 Score)",
+        lessons: [
+          { id: "sys-01", title: "Lesson 1: Clean, Hexagonal & Onion Architectures" },
+          { id: "sys-02", title: "Lesson 2: Horizontal vs Vertical Scaling, Redis Caching, Polly & CAP Theorem" }
+        ]
+      },
+      {
+        chapter: "Chapter 12: Microservices Architecture (10/10 Score)",
+        lessons: [
+          { id: "ms-01", title: "Lesson 1: Microservices Fundamentals, REST vs gRPC & API Gateway" },
+          { id: "ms-02", title: "Lesson 2: Database per Service, Saga Pattern, Docker & Kubernetes" }
+        ]
+      },
+      {
+        chapter: "Chapter 13: Microsoft Azure Cloud & DevOps (10/10 Score)",
+        lessons: [
+          { id: "az-01", title: "Lesson 1: Azure Fundamentals (IaaS/PaaS/SaaS) & Core Services" },
+          { id: "az-02", title: "Lesson 2: Managed Identity, Key Vault, CI/CD YAML & Application Insights" }
+        ]
+      },
+      {
+        chapter: "Chapter 14: Spoken English for Interviews",
         lessons: [
           { id: "eng-01", title: "Lesson 1: 3-Sentence Formula, Speaking Starters, Intro Script & Daily Method" }
         ]
@@ -716,7 +3121,72 @@
       text = text.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g, (_, lang, code) => {
         const escaped = escapeHtml(code.replace(/\n$/, ""));
         const idx = codeBlocks.length;
-        codeBlocks.push(`<pre><code class="lang-${lang}">${escaped}</code></pre>`);
+        if (lang === "diagram" || lang === "flowchart" || lang === "architecture") {
+          codeBlocks.push(`
+            <div class="visual-diagram-card">
+              <div class="visual-diagram-header">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <span class="visual-diagram-icon">📊</span>
+                  <span class="visual-diagram-title">Visual Architecture & Concept Flow</span>
+                </div>
+                <span class="visual-diagram-hint">Swipe ⇄</span>
+              </div>
+              <pre class="visual-diagram-pre"><code class="lang-${lang}">${escaped}</code></pre>
+            </div>
+          `);
+        } else {
+          const lLower = (lang || "").toLowerCase();
+          const isCSharp = lLower === "csharp" || lLower === "c#" || lLower === "cs";
+          const isSql = lLower === "sql" || lLower === "oracle" || lLower === "plsql";
+
+          let runBtn = "";
+          let compareBtn = "";
+          if (isCSharp) {
+            runBtn = `
+              <button class="code-action-btn btn-fiddle" onclick="launchInFiddle(this)" title="Copy code & Open .NET Fiddle in new tab">
+                <span>▶ Run in .NET Fiddle</span>
+              </button>
+            `;
+            compareBtn = `
+              <button class="code-action-btn" style="color:#10b981; border-color:rgba(16, 185, 129, 0.4);" onclick="openCodeCompareModal(this)" title="Compare your code with this actual solution">
+                <span>🔍 Compare My Code</span>
+              </button>
+            `;
+          } else if (isSql) {
+            runBtn = `
+              <button class="code-action-btn btn-livesql" onclick="launchInOracleLiveSql(this)" title="Copy SQL & Open Oracle Live SQL in new tab">
+                <span>▶ Run in Oracle Live SQL</span>
+              </button>
+            `;
+            compareBtn = `
+              <button class="code-action-btn" style="color:#10b981; border-color:rgba(16, 185, 129, 0.4);" onclick="openCodeCompareModal(this)" title="Compare your query with this actual solution">
+                <span>🔍 Compare My Query</span>
+              </button>
+            `;
+          } else {
+            compareBtn = `
+              <button class="code-action-btn" style="color:#10b981; border-color:rgba(16, 185, 129, 0.4);" onclick="openCodeCompareModal(this)" title="Compare your code with this actual solution">
+                <span>🔍 Compare Code</span>
+              </button>
+            `;
+          }
+
+          codeBlocks.push(`
+            <div class="code-block-wrapper">
+              <div class="code-block-header">
+                <span class="code-lang-tag">${lang ? lang.toUpperCase() : "CODE"}</span>
+                <div class="code-header-actions">
+                  ${runBtn}
+                  ${compareBtn}
+                  <button class="code-action-btn" onclick="copyCodeSnippet(this)" title="Copy code to clipboard">
+                    <span>📋 Copy</span>
+                  </button>
+                </div>
+              </div>
+              <pre><code class="lang-${lang}">${escaped}</code></pre>
+            </div>
+          `);
+        }
         return `\n@@CODEBLOCK_${idx}@@\n`;
       });
 
@@ -818,7 +3288,19 @@
           html += `<h1>${formatInline(trimmed.slice(2))}</h1>`;
         } else if (trimmed.startsWith("## ")) {
           flushList();
-          html += `<h2>${formatInline(trimmed.slice(3))}</h2>`;
+          const rawQ = trimmed.slice(3).trim();
+          const cleanQ = rawQ.replace(/[`*_#]/g, "").replace(/"/g, "'").trim();
+          const gptPrompt = `Explain this technical interview question in detail with real-world .NET / C# production examples, edge cases, and architectural best practices: "${cleanQ}"`;
+          const gptUrl = `https://chatgpt.com/?q=${encodeURIComponent(gptPrompt)}`;
+          html += `<h2>
+            <span class="q-title-text">${formatInline(rawQ)}</span>
+            <a href="${gptUrl}" target="_blank" rel="noopener noreferrer" class="btn-chatgpt" onclick="event.stopPropagation()" title="Ask ChatGPT to explain this question in detail">
+              <svg class="chatgpt-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.5045 4.5045 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.8956zm16.0993 3.8558L12.5973 8.3829 14.6174 7.2144a.0757.0757 0 0 1 .0711 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6726a.79.79 0 0 0-.4022-.6859zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813v6.7227zm1.1458-1.7891l2.5475-1.4725 2.5522 1.4725v2.9404l-2.5522 1.4725-2.5475-1.4725z"/>
+              </svg>
+              <span>Ask ChatGPT</span>
+            </a>
+          </h2>`;
         } else if (trimmed.startsWith("### ")) {
           flushList();
           html += `<h3>${formatInline(trimmed.slice(4))}</h3>`;
@@ -910,9 +3392,2371 @@
       updateProgressUI();
     }
 
+    const MOTIVATIONAL_QUOTES = [
+      {
+        quote: "You are not just preparing for an interview; you are rewriting the trajectory of your career. Every complex concept you master—from garbage collection to distributed microservices—is transforming you into the senior engineer companies compete to hire. The pain of discipline is far less than the pain of regret. Stay relentless.",
+        author: "Senior Full-Stack Mindset"
+      },
+      {
+        quote: "Don't be a know-it-all; be a learn-it-all. Great developers aren't born with 5 years of mastery—they build it one concept, one day, and one solved bug at a time.",
+        author: "Satya Nadella, CEO of Microsoft"
+      },
+      {
+        quote: "The senior engineer is not the one who knows all the syntax, but the one who stays calm under pressure, understands memory and concurrency trade-offs, and designs resilient systems.",
+        author: "Software Architecture Principle"
+      },
+      {
+        quote: "Simplicity is prerequisite for reliability. When you master the core mechanics of memory, query execution, and async pipelines, distributed systems become second nature.",
+        author: "Edsger W. Dijkstra"
+      },
+      {
+        quote: "Confidence does not come from having memorized answers. It comes from having the battle-tested preparation to break down and solve any unexpected problem thrown at you.",
+        author: "Technical Interview Rule"
+      },
+      {
+        quote: "Small daily improvements over time lead to stunning results. 14 chapters. 39 lessons. 400 questions. One chapter per day, and in 30 days you are unstoppable.",
+        author: "Consistency Formula"
+      }
+    ];
+
+    function shuffleQuote() {
+      const qObj = MOTIVATIONAL_QUOTES[Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)];
+      const qEl = document.getElementById("active-quote-text");
+      const aEl = document.getElementById("active-quote-author");
+      if (qEl && aEl) {
+        qEl.style.opacity = "0";
+        setTimeout(() => {
+          qEl.textContent = `"${qObj.quote}"`;
+          aEl.textContent = `— ${qObj.author}`;
+          qEl.style.opacity = "1";
+        }, 200);
+      }
+    }
+
+    function renderFrontPage() {
+      const q = MOTIVATIONAL_QUOTES[0];
+      return `
+        <div class="fp-container">
+          <!-- Hero Section -->
+          <div class="fp-hero">
+            <div class="fp-badge-pill">🚀 The 5-Year Senior .NET Engineering Hub</div>
+            <h1 class="fp-title">DotNetForge 360</h1>
+            <p class="fp-subtitle">
+              Your battle-tested blueprint to crack Senior Full-Stack .NET Developer interviews. 
+              Comprehensive spoken answers, low-level CLR memory models, production SQL tuning, and cloud architecture rated <strong>10/10</strong> by senior hiring managers.
+            </p>
+
+            <div class="fp-stats-bar">
+              <div class="fp-stat-card">
+                <div class="fp-stat-num">14</div>
+                <div class="fp-stat-label">Mastery Chapters</div>
+              </div>
+              <div class="fp-stat-card">
+                <div class="fp-stat-num">39</div>
+                <div class="fp-stat-label">Deep Lessons</div>
+              </div>
+              <div class="fp-stat-card">
+                <div class="fp-stat-num">400+</div>
+                <div class="fp-stat-label">Production Q&As</div>
+              </div>
+              <div class="fp-stat-card">
+                <div class="fp-stat-num">10/10</div>
+                <div class="fp-stat-label">Curriculum Score</div>
+              </div>
+              <div class="fp-stat-card">
+                <div class="fp-stat-num">AI</div>
+                <div class="fp-stat-label">1-Click ChatGPT Deep-Dive</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Motivational Quote Card -->
+          <div class="fp-quote-box">
+            <div class="fp-quote-icon">“</div>
+            <div class="fp-quote-text" id="active-quote-text">
+              "${q.quote}"
+            </div>
+            <div class="fp-quote-author">
+              <span id="active-quote-author">— ${q.author}</span>
+              <button class="fp-quote-btn" onclick="shuffleQuote()">
+                <span>🎲 Next Motivational Quote</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive 30-Day Timetable Banner -->
+          <div class="fp-timetable-banner" onclick="selectLesson('timetable')">
+            <div class="fp-tt-left">
+              <span class="fp-tt-icon">📅</span>
+              <div>
+                <div class="fp-tt-title">30-Day Guided Timetable & Carry-Forward Tracker</div>
+                <div class="fp-tt-sub">Check off daily questions as you study. Uncovered questions stay highlighted in your backlog so you remember to start them on another day!</div>
+              </div>
+            </div>
+            <button class="fp-tt-btn">Open My Schedule →</button>
+          </div>
+
+          <!-- Daily Habit Tracker & Reflection Journal Banner -->
+          <div class="fp-timetable-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(2, 132, 199, 0.15)); border-color: #10b981;" onclick="selectLesson('tracker')">
+            <div class="fp-tt-left">
+              <span class="fp-tt-icon">🧘</span>
+              <div>
+                <div class="fp-tt-title">Daily Routine Tracker & Habit Journal (4:30 AM Protocol)</div>
+                <div class="fp-tt-sub">Track 4:30 AM Wakeup, Meditation (4:45–5 AM), Morning Deep Study (5–6:30 AM), Evening Revision (9–10 PM) & Sleep. Mark ✓ Done or ✗ Missed, view monthly heatmap, and write daily reflection journals!</div>
+              </div>
+            </div>
+            <button class="fp-tt-btn" style="background:#10b981;">Open Daily Tracker →</button>
+          </div>
+
+          <!-- Cloud Coding Playgrounds Banner (.NET Fiddle & Oracle Live SQL) -->
+          <div class="fp-timetable-banner" style="background: linear-gradient(135deg, rgba(147, 51, 234, 0.22), rgba(2, 132, 199, 0.18)); border-color: #a855f7;" onclick="selectLesson('playgrounds')">
+            <div class="fp-tt-left">
+              <span class="fp-tt-icon">⚡</span>
+              <div>
+                <div class="fp-tt-title">Cloud Coding Sandboxes: .NET Fiddle & Oracle Live SQL</div>
+                <div class="fp-tt-sub">No laptop? No problem! Practice C# code, LINQ queries, and Oracle SQL joins directly on your phone with zero setup. 1-click starter templates included!</div>
+              </div>
+            </div>
+            <button class="fp-tt-btn" style="background:#a855f7;">Open Cloud Sandboxes →</button>
+          </div>
+
+          <!-- 3 Senior Interview Pillars -->
+          <h2 class="fp-section-title">🏆 3 Golden Rules to Clear Senior Interviews</h2>
+          <div class="fp-pillars-grid">
+            <div class="fp-pillar-card">
+              <div class="fp-pillar-icon">🗣️</div>
+              <div class="fp-pillar-heading">1. The 3-Sentence Spoken Formula</div>
+              <div class="fp-pillar-desc">
+                Never ramble. Lead with the <strong>Formal Definition</strong> (15 seconds), explain the <strong>Under-the-Hood Mechanism</strong> (Heap/Stack, Execution Plan, vtable), and anchor it with a <strong>Real Production Project Story</strong>.
+              </div>
+            </div>
+            <div class="fp-pillar-card">
+              <div class="fp-pillar-icon">🏗️</div>
+              <div class="fp-pillar-heading">2. Think Architecture, Not Syntax</div>
+              <div class="fp-pillar-desc">
+                Junior developers talk about loops and if-conditions. Senior developers talk about <strong>throughput, thread starvation, Gen 2 GC pressure, index sargability, deadlock mitigation, and distributed resilience</strong>.
+              </div>
+            </div>
+            <div class="fp-pillar-card">
+              <div class="fp-pillar-icon">🛡️</div>
+              <div class="fp-pillar-heading">3. Consultative Mindset</div>
+              <div class="fp-pillar-desc">
+                Treat the interviewer as a peer seeking your technical advice, not as an examiner grading a test. Discuss trade-offs transparently, analyze edge cases, and stay calm when exploring unfamiliar questions.
+              </div>
+            </div>
+          </div>
+
+          <!-- Fast-Track Modules Grid -->
+          <h2 class="fp-section-title">🗺️ Curriculum Fast-Track (Click to Launch)</h2>
+          <div class="fp-roadmap-grid">
+            <div class="fp-module-card" onclick="selectLesson('oop-01')">
+              <div class="fp-module-top">
+                <span style="font-size:1.4rem;">🧱</span>
+                <span class="fp-module-name">OOP & SOLID Principles</span>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-secondary);">Encapsulation, Polymorphism, vtables, Abstract vs Interface, Design Patterns.</p>
+              <div><span class="fp-module-badge">4 Lessons • 40 Q&As</span></div>
+            </div>
+
+            <div class="fp-module-card" onclick="selectLesson('csharp-01')">
+              <div class="fp-module-top">
+                <span style="font-size:1.4rem;">⚡</span>
+                <span class="fp-module-name">C# Deep Internals & Concurrency</span>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-secondary);">CLR, GC Generations, Span&lt;T&gt;, async/await state machines, SemaphoreSlim.</p>
+              <div><span class="fp-module-badge">6 Lessons • 72 Q&As</span></div>
+            </div>
+
+            <div class="fp-module-card" onclick="selectLesson('mvc-01')">
+              <div class="fp-module-top">
+                <span style="font-size:1.4rem;">🌐</span>
+                <span class="fp-module-name">ASP.NET Core & Web API</span>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-secondary);">Middleware pipelines, IConfiguration precedence, Rate Limiting, JWT & CORS.</p>
+              <div><span class="fp-module-badge">8 Lessons • 75 Q&As</span></div>
+            </div>
+
+            <div class="fp-module-card" onclick="selectLesson('ora-01')">
+              <div class="fp-module-top">
+                <span style="font-size:1.4rem;">🗄️</span>
+                <span class="fp-module-name">Database Tuning & SQL Performance</span>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-secondary);">Covering Indexes, Sargability, ACID, Isolation Levels, Deadlocks, DENSE_RANK.</p>
+              <div><span class="fp-module-badge">5 Lessons • 55 Q&As</span></div>
+            </div>
+
+            <div class="fp-module-card" onclick="selectLesson('ef-01')">
+              <div class="fp-module-top">
+                <span style="font-size:1.4rem;">📦</span>
+                <span class="fp-module-name">EF Core & Concurrency</span>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-secondary);">Change Tracker, AsNoTracking, RowVersion, Compiled Queries, Bulk ExecuteUpdate.</p>
+              <div><span class="fp-module-badge">3 Lessons • 28 Q&As</span></div>
+            </div>
+
+            <div class="fp-module-card" onclick="selectLesson('sys-01')">
+              <div class="fp-module-top">
+                <span style="font-size:1.4rem;">🏗️</span>
+                <span class="fp-module-name">System Design & Scalability</span>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-secondary);">Clean Architecture, Horizontal Scaling, Redis Caching, Polly Resilience, CAP.</p>
+              <div><span class="fp-module-badge">2 Lessons • 10/10 Score</span></div>
+            </div>
+
+            <div class="fp-module-card" onclick="selectLesson('ms-01')">
+              <div class="fp-module-top">
+                <span style="font-size:1.4rem;">🧩</span>
+                <span class="fp-module-name">Microservices Architecture</span>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-secondary);">REST vs gRPC, API Gateway, Database per Service, Saga Pattern, Kubernetes.</p>
+              <div><span class="fp-module-badge">2 Lessons • 10/10 Score</span></div>
+            </div>
+
+            <div class="fp-module-card" onclick="selectLesson('az-01')">
+              <div class="fp-module-top">
+                <span style="font-size:1.4rem;">☁️</span>
+                <span class="fp-module-name">Microsoft Azure Cloud & DevOps</span>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-secondary);">App Service, Azure SQL, Managed Identity, Key Vault, CI/CD YAML, App Insights.</p>
+              <div><span class="fp-module-badge">2 Lessons • 10/10 Score</span></div>
+            </div>
+          </div>
+
+          <!-- Bottom Call to Action -->
+          <div class="fp-cta-box">
+            <h3 style="font-size:1.4rem; font-weight:800; margin-bottom:8px;">Ready to Elevate Your Engineering Career?</h3>
+            <p style="font-size:0.95rem; opacity:0.9; max-width:620px; margin:0 auto;">
+              Progress through the curriculum step-by-step. Mark lessons completed as you master them, test your spoken answers, and use the <strong>Ask ChatGPT</strong> buttons whenever you want deeper exploration.
+            </p>
+            <button class="fp-cta-btn" onclick="selectLesson('oop-01')">
+              <span>🚀 Launch Chapter 1: OOP Foundations</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // ----------------------------------------------------
+    // 30-Day Interactive Timetable & Carry-Forward Engine
+    // ----------------------------------------------------
+    let currentTimetableFilter = "all";
+
+    function getTimetableProgress() {
+      try {
+        return JSON.parse(localStorage.getItem("dotnet_timetable_progress") || "{}");
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveTimetableProgress(prog) {
+      localStorage.setItem("dotnet_timetable_progress", JSON.stringify(prog));
+    }
+
+    function toggleTimetableTask(taskId) {
+      const prog = getTimetableProgress();
+      if (prog[taskId]) {
+        delete prog[taskId];
+      } else {
+        prog[taskId] = true;
+      }
+      saveTimetableProgress(prog);
+      updateTimetableUI();
+    }
+
+    function toggleDayTasks(dayNum) {
+      const days = window.TIMETABLE_DAYS || [];
+      const dayData = days.find(d => d.day === dayNum);
+      if (!dayData) return;
+      const prog = getTimetableProgress();
+      const allDone = dayData.tasks.every(t => prog[t.id]);
+      dayData.tasks.forEach(t => {
+        if (allDone) {
+          delete prog[t.id];
+        } else {
+          prog[t.id] = true;
+        }
+      });
+      saveTimetableProgress(prog);
+      updateTimetableUI();
+    }
+
+    function filterTimetable(filter) {
+      currentTimetableFilter = filter;
+      updateTimetableUI();
+    }
+
+    function resetTimetableProgress() {
+      if (confirm("Reset all question checkmarks in your 30-Day Timetable?")) {
+        saveTimetableProgress({});
+        updateTimetableUI();
+      }
+    }
+
+    function updateTimetableUI() {
+      if (currentLessonId === "timetable") {
+        document.getElementById("lesson-content").innerHTML = renderTimetable();
+      }
+    }
+
+    function renderTimetable() {
+      const days = window.TIMETABLE_DAYS || [];
+      const prog = getTimetableProgress();
+
+      let totalTasks = 0;
+      let completedTasks = 0;
+      const pendingList = [];
+
+      days.forEach(d => {
+        d.tasks.forEach(t => {
+          totalTasks++;
+          if (prog[t.id]) {
+            completedTasks++;
+          } else {
+            pendingList.push({
+              ...t,
+              day: d.day,
+              weekLabel: d.weekLabel,
+              dayTitle: d.title
+            });
+          }
+        });
+      });
+
+      const pct = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+      const completedDaysCount = days.filter(d => d.tasks.every(t => prog[t.id])).length;
+
+      // Filter days
+      let filteredDays = days;
+      if (currentTimetableFilter === "week1") filteredDays = days.filter(d => d.week === 1);
+      else if (currentTimetableFilter === "week2") filteredDays = days.filter(d => d.week === 2);
+      else if (currentTimetableFilter === "week3") filteredDays = days.filter(d => d.week === 3);
+      else if (currentTimetableFilter === "week4") filteredDays = days.filter(d => d.week === 4);
+      else if (currentTimetableFilter === "week5") filteredDays = days.filter(d => d.week === 5);
+      else if (currentTimetableFilter === "pending_only") {
+        filteredDays = days.filter(d => !d.tasks.every(t => prog[t.id]));
+      }
+
+      // Rollover / Carry-Forward Alert Box HTML
+      let rolloverHtml = "";
+      if (pendingList.length > 0) {
+        rolloverHtml = `
+          <div class="tt-rollover-box" id="tt-rollover-box">
+            <div class="tt-rollover-header">
+              <div>
+                <div class="tt-rollover-title">
+                  <span>⏳</span>
+                  <span>Rollover & Carry-Forward Reminder (${pendingList.length} Questions Backlog)</span>
+                </div>
+                <div class="tt-rollover-desc">
+                  Questions left unticked stay active below so you can easily remember to cover them on another day. 
+                  Clear your backlog to guarantee 100% interview readiness!
+                </div>
+              </div>
+              <button class="tt-filter-btn alert-filter ${currentTimetableFilter === 'pending_only' ? 'active' : ''}" onclick="filterTimetable('${currentTimetableFilter === 'pending_only' ? 'all' : 'pending_only'}')">
+                ${currentTimetableFilter === 'pending_only' ? 'Show All Days' : '🚨 Show Incomplete Days Only'}
+              </button>
+            </div>
+            <div class="tt-rollover-items">
+              ${pendingList.map(item => `
+                <div class="tt-rollover-item">
+                  <div class="tt-rollover-left">
+                    <input type="checkbox" class="tt-task-checkbox" onchange="toggleTimetableTask('${item.id}')" title="Mark topic as covered" />
+                    <span class="tt-day-tag">Day ${item.day}</span>
+                    <span class="tt-rollover-text" onclick="selectLesson('${item.lessonId}')" title="Click to open lesson">${escapeHtml(item.title)}</span>
+                  </div>
+                  <button class="tt-task-goto" onclick="selectLesson('${item.lessonId}')">Study Lesson →</button>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      } else {
+        rolloverHtml = `
+          <div class="tt-success-box">
+            <span style="font-size:1.4rem;">🎉</span>
+            <div>
+              <strong>Flawless Consistency! Zero Backlog.</strong>
+              <div style="font-size:0.85rem; opacity:0.9;">All ${totalTasks} questions across all 30 days are covered. You are primed to ace senior interviews!</div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Filter Buttons HTML
+      const filterButtonsHtml = `
+        <div class="tt-filter-nav">
+          <button class="tt-filter-btn ${currentTimetableFilter === 'all' ? 'active' : ''}" onclick="filterTimetable('all')">
+            All 30 Days (${days.length})
+          </button>
+          <button class="tt-filter-btn ${currentTimetableFilter === 'week1' ? 'active' : ''}" onclick="filterTimetable('week1')">
+            Week 1: OOP & C# (Days 1–7)
+          </button>
+          <button class="tt-filter-btn ${currentTimetableFilter === 'week2' ? 'active' : ''}" onclick="filterTimetable('week2')">
+            Week 2: ASP.NET & APIs (Days 8–14)
+          </button>
+          <button class="tt-filter-btn ${currentTimetableFilter === 'week3' ? 'active' : ''}" onclick="filterTimetable('week3')">
+            Week 3: Database & EF (Days 15–21)
+          </button>
+          <button class="tt-filter-btn ${currentTimetableFilter === 'week4' ? 'active' : ''}" onclick="filterTimetable('week4')">
+            Week 4: Cloud & Microservices (Days 22–28)
+          </button>
+          <button class="tt-filter-btn ${currentTimetableFilter === 'week5' ? 'active' : ''}" onclick="filterTimetable('week5')">
+            Days 29–30: Mock Drill
+          </button>
+          <button class="tt-filter-btn alert-filter ${currentTimetableFilter === 'pending_only' ? 'active' : ''}" onclick="filterTimetable('pending_only')">
+            🚨 Pending / Carry-Forward (${pendingList.length})
+          </button>
+        </div>
+      `;
+
+      // Days Cards HTML
+      const daysHtml = filteredDays.map(d => {
+        const doneTasksInDay = d.tasks.filter(t => prog[t.id]).length;
+        const isDayDone = doneTasksInDay === d.tasks.length;
+        const isDayProgress = doneTasksInDay > 0 && !isDayDone;
+        const statusClass = isDayDone ? "status-done" : (isDayProgress ? "status-progress" : "");
+
+        let pillHtml = `<span class="tt-status-pill pill-todo">⚪ To Do (${d.tasks.length} Qs)</span>`;
+        if (isDayDone) {
+          pillHtml = `<span class="tt-status-pill pill-done">✓ Day Completed (${doneTasksInDay}/${d.tasks.length})</span>`;
+        } else if (isDayProgress) {
+          pillHtml = `<span class="tt-status-pill pill-progress">⏳ ${doneTasksInDay}/${d.tasks.length} Covered (${d.tasks.length - doneTasksInDay} Pending)</span>`;
+        }
+
+        const tasksHtml = d.tasks.map(t => {
+          const isTaskDone = !!prog[t.id];
+          return `
+            <div class="tt-task-item ${isTaskDone ? 'checked' : ''}">
+              <div class="tt-task-left">
+                <input 
+                  type="checkbox" 
+                  class="tt-task-checkbox" 
+                  ${isTaskDone ? 'checked' : ''} 
+                  onchange="toggleTimetableTask('${t.id}')" 
+                  title="Mark topic as covered"
+                />
+                <span class="tt-task-title" onclick="toggleTimetableTask('${t.id}')">
+                  ${escapeHtml(t.title)}
+                </span>
+              </div>
+              <button class="tt-task-goto" onclick="selectLesson('${t.lessonId}')">
+                Study Lesson →
+              </button>
+            </div>
+          `;
+        }).join("");
+
+        return `
+          <div class="tt-day-card ${statusClass}">
+            <div class="tt-day-header">
+              <div class="tt-day-left">
+                <span class="tt-day-badge">DAY ${d.day < 10 ? '0' + d.day : d.day}</span>
+                <div>
+                  <div class="tt-day-title">${escapeHtml(d.title)}</div>
+                  <div class="tt-day-meta">${escapeHtml(d.weekLabel)} • Target Time: ⏱️ ${escapeHtml(d.hours)}</div>
+                </div>
+              </div>
+              <div class="tt-day-actions">
+                ${pillHtml}
+                <button class="tt-btn-day" onclick="selectLesson('${d.lessonId}')">📖 Open Lesson</button>
+                <button class="tt-btn-day" onclick="toggleDayTasks(${d.day})">${isDayDone ? "Uncheck Day" : "✓ Mark All Done"}</button>
+              </div>
+            </div>
+            <div class="tt-task-list">
+              ${tasksHtml}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      return `
+        <div class="tt-container">
+          <!-- Timetable Hero -->
+          <div class="tt-hero">
+            <div class="fp-badge-pill">📅 Interactive Preparation Blueprint</div>
+            <h1 class="tt-title">30-Day Senior .NET Interview Timetable</h1>
+            <p class="tt-subtitle">
+              Mark topics and questions covered as you study each day. 
+              <strong>Missed a question today?</strong> Leave it unticked, and the system automatically flags it in your <strong>Rollover Backlog</strong> below so you can easily remember to cover it on your next study session.
+            </p>
+
+            <div class="tt-stats-row">
+              <div class="tt-stat-card">
+                <div class="tt-stat-val">${completedDaysCount} / ${days.length}</div>
+                <div class="tt-stat-lbl">Days Completed</div>
+              </div>
+              <div class="tt-stat-card">
+                <div class="tt-stat-val">${completedTasks} / ${totalTasks}</div>
+                <div class="tt-stat-lbl">Questions & Topics Covered</div>
+              </div>
+              <div class="tt-stat-card">
+                <div class="tt-stat-val">${pct}%</div>
+                <div class="tt-stat-lbl">Overall Mastery Progress</div>
+              </div>
+              <div class="tt-stat-card alert-card">
+                <div class="tt-stat-val">${pendingList.length}</div>
+                <div class="tt-stat-lbl">Pending / Rollover Topics</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carry-Forward / Rollover Alert Box -->
+          ${rolloverHtml}
+
+          <!-- Filter Navigation Tabs -->
+          ${filterButtonsHtml}
+
+          <!-- Days Checklist Grid -->
+          <div class="tt-days-grid">
+            ${filteredDays.length > 0 ? daysHtml : '<div style="text-align:center; padding:40px; color:var(--text-secondary);">No days match the selected filter.</div>'}
+          </div>
+
+          <!-- Footer Reset Action -->
+          <div style="margin-top: 30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <button class="tt-btn-day" onclick="selectLesson('welcome')">← Back to Home & Motivation Hub</button>
+            <button class="tt-btn-day" style="color:#ef4444; border-color:rgba(239, 68, 68, 0.4);" onclick="resetTimetableProgress()">↺ Reset Timetable Checkmarks</button>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ============================================================
+       DAILY ROUTINE HABIT TRACKER & JOURNAL ENGINE
+       ============================================================ */
+    const DAILY_HABITS = [
+      {
+        id: "wakeup",
+        title: "Early Wakeup (4:30 AM)",
+        time: "⏰ 4:30 AM",
+        desc: "Rise on first alarm without snoozing. Drink 500ml water to kickstart focus.",
+        icon: "⏰",
+        tag: "Morning Foundation"
+      },
+      {
+        id: "meditation",
+        title: "Meditation & Breathwork",
+        time: "🧘 4:45 AM – 5:00 AM (15 Mins)",
+        desc: "Deep diaphragmatic breathing, mental stillness, zero phone or social media.",
+        icon: "🧘",
+        tag: "Mindfulness"
+      },
+      {
+        id: "morning_study",
+        title: "Morning Deep Study Session",
+        time: "☀️ 5:00 AM – 6:30 AM (90 Mins)",
+        desc: "Peak cognitive focus window: C# internals, CLR memory models, and system architecture.",
+        icon: "☀️",
+        tag: "Core Mastery"
+      },
+      {
+        id: "evening_study",
+        title: "Evening Study & Coding Revision",
+        time: "🌙 9:00 PM – 10:00 PM (60 Mins)",
+        desc: "Active recall: 15 C# live coding programs, Oracle queries, and spoken answer drills.",
+        icon: "🌙",
+        tag: "Coding Practice"
+      },
+      {
+        id: "sleep",
+        title: "Sleep Time & Brain Recovery",
+        time: "🛌 10:15 PM – 10:30 PM",
+        desc: "Screens off. 6+ hours of deep, uninterrupted sleep for cognitive consolidation.",
+        icon: "🛌",
+        tag: "Recovery & Rest"
+      }
+    ];
+
+    function formatLocalDate(d) {
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function parseLocalDate(dateStr) {
+      const parts = dateStr.split("-").map(Number);
+      return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    let trackerSelectedDate = formatLocalDate(new Date());
+    let trackerCalMonth = new Date().getMonth();
+    let trackerCalYear = new Date().getFullYear();
+
+    function getDailyTrackerData() {
+      try {
+        const raw = localStorage.getItem("dotnet_daily_tracker");
+        return raw ? JSON.parse(raw) : { habits: {}, journals: {} };
+      } catch (e) {
+        return { habits: {}, journals: {} };
+      }
+    }
+
+    function saveDailyTrackerData(data) {
+      try {
+        localStorage.setItem("dotnet_daily_tracker", JSON.stringify(data));
+      } catch (e) {
+        console.error("Failed to save tracker data", e);
+      }
+    }
+
+    function setDailyHabitStatus(dateStr, habitId, newStatus) {
+      const data = getDailyTrackerData();
+      if (!data.habits) data.habits = {};
+      if (!data.habits[dateStr]) data.habits[dateStr] = {};
+
+      const current = data.habits[dateStr][habitId] || "pending";
+      // If clicking same status again, toggle back to pending
+      data.habits[dateStr][habitId] = current === newStatus ? "pending" : newStatus;
+
+      saveDailyTrackerData(data);
+      updateDailyTrackerUI();
+    }
+
+    function saveJournalForDate(dateStr, text) {
+      const data = getDailyTrackerData();
+      if (!data.journals) data.journals = {};
+      data.journals[dateStr] = text;
+      saveDailyTrackerData(data);
+    }
+
+    function appendJournalPrompt(snippet) {
+      const ta = document.getElementById("dt-journal-textarea");
+      if (!ta) return;
+      const current = ta.value.trim();
+      ta.value = current ? `${current}\n\n${snippet}\n- ` : `${snippet}\n- `;
+      ta.focus();
+      saveJournalForDate(trackerSelectedDate, ta.value);
+      showJournalSaveFeedback();
+    }
+
+    function showJournalSaveFeedback() {
+      const badge = document.getElementById("journal-save-status");
+      if (badge) {
+        badge.textContent = "💾 Auto-saved";
+        badge.style.color = "#10b981";
+        setTimeout(() => {
+          if (badge) {
+            badge.textContent = "💾 Saved locally";
+            badge.style.color = "var(--text-secondary)";
+          }
+        }, 1200);
+      }
+    }
+
+    function clearJournalForDate() {
+      if (confirm(`Clear journal notes for ${trackerSelectedDate}?`)) {
+        const ta = document.getElementById("dt-journal-textarea");
+        if (ta) ta.value = "";
+        saveJournalForDate(trackerSelectedDate, "");
+        showJournalSaveFeedback();
+      }
+    }
+
+    function copyJournalForDate() {
+      const ta = document.getElementById("dt-journal-textarea");
+      if (ta && ta.value) {
+        navigator.clipboard.writeText(ta.value).then(() => {
+          alert("Journal reflection copied to clipboard!");
+        });
+      }
+    }
+
+    function shiftTrackerDate(offsetDays) {
+      const d = parseLocalDate(trackerSelectedDate);
+      d.setDate(d.getDate() + offsetDays);
+      trackerSelectedDate = formatLocalDate(d);
+      trackerCalMonth = d.getMonth();
+      trackerCalYear = d.getFullYear();
+      updateDailyTrackerUI();
+    }
+
+    function jumpTrackerToToday() {
+      const today = new Date();
+      trackerSelectedDate = formatLocalDate(today);
+      trackerCalMonth = today.getMonth();
+      trackerCalYear = today.getFullYear();
+      updateDailyTrackerUI();
+    }
+
+    function selectTrackerDate(dateStr) {
+      trackerSelectedDate = dateStr;
+      const d = parseLocalDate(dateStr);
+      trackerCalMonth = d.getMonth();
+      trackerCalYear = d.getFullYear();
+      updateDailyTrackerUI();
+    }
+
+    function changeTrackerMonth(offset) {
+      trackerCalMonth += offset;
+      if (trackerCalMonth < 0) {
+        trackerCalMonth = 11;
+        trackerCalYear--;
+      } else if (trackerCalMonth > 11) {
+        trackerCalMonth = 0;
+        trackerCalYear++;
+      }
+      updateDailyTrackerUI();
+    }
+
+    function updateDailyTrackerUI() {
+      if (currentLessonId === "tracker") {
+        document.getElementById("lesson-content").innerHTML = renderDailyTracker();
+      }
+    }
+
+    function calculateTrackerStats() {
+      const data = getDailyTrackerData();
+      const habitsData = data.habits || {};
+      const todayStr = formatLocalDate(new Date());
+
+      // 1. Selected day completion
+      const selectedDayHabits = habitsData[trackerSelectedDate] || {};
+      const selectedDoneCount = DAILY_HABITS.filter(h => selectedDayHabits[h.id] === "done").length;
+      const selectedMissCount = DAILY_HABITS.filter(h => selectedDayHabits[h.id] === "missed").length;
+      const selectedPct = Math.round((selectedDoneCount / DAILY_HABITS.length) * 100);
+
+      // 2. Wakeup rate across all tracked days
+      const trackedDays = Object.keys(habitsData);
+      let wakeupDoneCount = 0;
+      let totalWakeupTracked = 0;
+      trackedDays.forEach(date => {
+        const h = habitsData[date];
+        if (h && (h.wakeup === "done" || h.wakeup === "missed")) {
+          totalWakeupTracked++;
+          if (h.wakeup === "done") wakeupDoneCount++;
+        }
+      });
+      const wakeupRate = totalWakeupTracked > 0 ? Math.round((wakeupDoneCount / totalWakeupTracked) * 100) : 100;
+
+      // 3. Streak calculation
+      let streak = 0;
+      const checkDate = new Date();
+      const todayHabits = habitsData[todayStr] || {};
+      const todayHasDone = DAILY_HABITS.some(h => todayHabits[h.id] === "done");
+      if (!todayHasDone) {
+        checkDate.setDate(checkDate.getDate() - 1);
+      }
+
+      for (let i = 0; i < 365; i++) {
+        const dStr = formatLocalDate(checkDate);
+        const dayHabits = habitsData[dStr] || {};
+        const hasDone = DAILY_HABITS.some(h => dayHabits[h.id] === "done");
+        if (hasDone) {
+          streak++;
+          checkDate.setDate(checkDate.getDate() - 1);
+        } else {
+          break;
+        }
+      }
+      if (todayHasDone && streak === 0) streak = 1;
+
+      // 4. Daily Study Target Logged
+      const studyDone = (selectedDayHabits.morning_study === "done" ? 1.5 : 0) + (selectedDayHabits.evening_study === "done" ? 1.0 : 0);
+
+      return {
+        selectedDoneCount,
+        selectedMissCount,
+        selectedPct,
+        wakeupRate,
+        streak,
+        studyHours: studyDone.toFixed(1)
+      };
+    }
+
+    function renderTrackerCalendar() {
+      const data = getDailyTrackerData();
+      const habitsData = data.habits || {};
+      const todayStr = formatLocalDate(new Date());
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      const monthTitle = `${monthNames[trackerCalMonth]} ${trackerCalYear}`;
+
+      const firstDay = new Date(trackerCalYear, trackerCalMonth, 1);
+      const startingDayOfWeek = firstDay.getDay(); // 0 is Sunday
+      const daysInMonth = new Date(trackerCalYear, trackerCalMonth + 1, 0).getDate();
+
+      const weekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+      let headerHtml = weekdays.map(w => `<div class="dt-cal-weekday">${w}</div>`).join("");
+      let cellsHtml = "";
+
+      // Previous month padding
+      const prevMonthDays = new Date(trackerCalYear, trackerCalMonth, 0).getDate();
+      for (let i = startingDayOfWeek - 1; i >= 0; i--) {
+        const dNum = prevMonthDays - i;
+        cellsHtml += `<div class="dt-cal-cell other-month"><span class="dt-cal-day-num">${dNum}</span></div>`;
+      }
+
+      // Current month days
+      for (let day = 1; day <= daysInMonth; day++) {
+        const mStr = String(trackerCalMonth + 1).padStart(2, "0");
+        const dStr = String(day).padStart(2, "0");
+        const fullDateStr = `${trackerCalYear}-${mStr}-${dStr}`;
+
+        const isToday = fullDateStr === todayStr;
+        const isSelected = fullDateStr === trackerSelectedDate;
+
+        const dayHabits = habitsData[fullDateStr] || {};
+        const doneCount = DAILY_HABITS.filter(h => dayHabits[h.id] === "done").length;
+        const missCount = DAILY_HABITS.filter(h => dayHabits[h.id] === "missed").length;
+
+        let badgeHtml = "";
+        if (doneCount === 5) {
+          badgeHtml = `<span class="dt-cal-badge-pill perfect" title="All 5 habits completed!">5/5 ✓</span>`;
+        } else if (missCount > 0) {
+          badgeHtml = `<span class="dt-cal-badge-pill has-miss" title="${missCount} missed, ${doneCount} done">✓${doneCount} ✗${missCount}</span>`;
+        } else if (doneCount > 0) {
+          badgeHtml = `<span class="dt-cal-badge-pill partial" title="${doneCount} completed">✓${doneCount}</span>`;
+        } else {
+          badgeHtml = `<span style="font-size:0.62rem; color:var(--text-secondary); opacity:0.6;">—</span>`;
+        }
+
+        cellsHtml += `
+          <div 
+            class="dt-cal-cell ${isToday ? 'is-today' : ''} ${isSelected ? 'is-selected' : ''}" 
+            onclick="selectTrackerDate('${fullDateStr}')"
+            title="${fullDateStr}: ${doneCount} done, ${missCount} missed"
+          >
+            <span class="dt-cal-day-num">${day}</span>
+            ${badgeHtml}
+          </div>
+        `;
+      }
+
+      // Next month padding
+      const totalCells = startingDayOfWeek + daysInMonth;
+      const remaining = (7 - (totalCells % 7)) % 7;
+      for (let i = 1; i <= remaining; i++) {
+        cellsHtml += `<div class="dt-cal-cell other-month"><span class="dt-cal-day-num">${i}</span></div>`;
+      }
+
+      return `
+        <div class="dt-cal-header">
+          <button class="dt-nav-btn" onclick="changeTrackerMonth(-1)" title="Previous Month">←</button>
+          <div class="dt-cal-month-title">${monthTitle}</div>
+          <button class="dt-nav-btn" onclick="changeTrackerMonth(1)" title="Next Month">→</button>
+        </div>
+        <div class="dt-cal-grid">
+          ${headerHtml}
+          ${cellsHtml}
+        </div>
+        <div class="dt-cal-legend">
+          <div class="dt-legend-item"><span class="dt-cal-badge-pill perfect">5/5 ✓</span> Perfect</div>
+          <div class="dt-legend-item"><span class="dt-cal-badge-pill partial">✓3</span> In Progress</div>
+          <div class="dt-legend-item"><span class="dt-cal-badge-pill has-miss">✗ Miss</span> Has Missed</div>
+        </div>
+      `;
+    }
+
+    function renderDailyTracker() {
+      const stats = calculateTrackerStats();
+      const data = getDailyTrackerData();
+      const todayStr = formatLocalDate(new Date());
+      const isToday = trackerSelectedDate === todayStr;
+
+      const dateObj = parseLocalDate(trackerSelectedDate);
+      const displayDateStr = dateObj.toLocaleDateString(undefined, {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      });
+
+      const dayHabits = (data.habits && data.habits[trackerSelectedDate]) || {};
+      const journalText = (data.journals && data.journals[trackerSelectedDate]) || "";
+
+      // Render 5 habits list
+      const habitsHtml = DAILY_HABITS.map(h => {
+        const status = dayHabits[h.id] || "pending";
+        const isDone = status === "done";
+        const isMissed = status === "missed";
+        const itemClass = isDone ? "is-done" : (isMissed ? "is-missed" : "");
+
+        return `
+          <div class="dt-habit-item ${itemClass}">
+            <div class="dt-habit-left">
+              <span class="dt-habit-icon">${h.icon}</span>
+              <div>
+                <div class="dt-habit-title">${escapeHtml(h.title)}</div>
+                <div class="dt-habit-time">${escapeHtml(h.time)} • <span style="opacity:0.8;">${escapeHtml(h.tag)}</span></div>
+                <div class="dt-habit-desc">${escapeHtml(h.desc)}</div>
+              </div>
+            </div>
+            <div class="dt-habit-actions">
+              <button 
+                class="dt-btn-action btn-done ${isDone ? 'active' : ''}" 
+                onclick="setDailyHabitStatus('${trackerSelectedDate}', '${h.id}', 'done')"
+                title="Mark this routine as completed"
+              >
+                <span>✓</span>
+                <span>${isDone ? 'Completed' : 'Done'}</span>
+              </button>
+              <button 
+                class="dt-btn-action btn-missed ${isMissed ? 'active' : ''}" 
+                onclick="setDailyHabitStatus('${trackerSelectedDate}', '${h.id}', 'missed')"
+                title="Mark this routine as missed (places a red cross mark)"
+              >
+                <span>✗</span>
+                <span>${isMissed ? 'Missed (✗)' : 'Missed'}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      return `
+        <div class="dt-container">
+          <!-- Hero Section -->
+          <div class="dt-hero">
+            <div class="fp-badge-pill">🧘 Daily Discipline Engine</div>
+            <h1 class="dt-title">Daily Routine & Habit Journal</h1>
+            <p class="dt-subtitle">
+              Discipline is the bridge between goals and senior engineering accomplishment. Track your <strong>4:30 AM Wakeup</strong>, 
+              <strong>Meditation (4:45–5 AM)</strong>, <strong>Morning Deep Study (5–6:30 AM)</strong>, <strong>Evening Revision (9–10 PM)</strong>, 
+              and <strong>Sleep</strong>. Mark each as <strong>✓ Done</strong> or <strong>✗ Missed</strong>, track consistency on the calendar, 
+              and journal your technical learnings every day.
+            </p>
+
+            <div class="dt-stats-row">
+              <div class="dt-stat-card stat-emerald">
+                <div class="dt-stat-val">${stats.selectedDoneCount} / ${DAILY_HABITS.length}</div>
+                <div class="dt-stat-lbl">Day Completion (${stats.selectedPct}%)</div>
+              </div>
+              <div class="dt-stat-card stat-amber">
+                <div class="dt-stat-val">🔥 ${stats.streak} Days</div>
+                <div class="dt-stat-lbl">Active Routine Streak</div>
+              </div>
+              <div class="dt-stat-card stat-blue">
+                <div class="dt-stat-val">⏱️ ${stats.studyHours}h</div>
+                <div class="dt-stat-lbl">Study Time Logged Today</div>
+              </div>
+              <div class="dt-stat-card stat-purple">
+                <div class="dt-stat-val">⏰ ${stats.wakeupRate}%</div>
+                <div class="dt-stat-lbl">4:30 AM On-Time Rate</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Date Navigation Bar -->
+          <div class="dt-date-bar">
+            <div class="dt-date-info">
+              <span style="font-size:1.4rem;">📅</span>
+              <div class="dt-date-title">${displayDateStr}</div>
+              <span class="dt-date-badge ${isToday ? 'is-today' : ''}">${isToday ? '🟢 TODAY' : trackerSelectedDate}</span>
+            </div>
+            <div class="dt-date-nav-btns">
+              <button class="dt-nav-btn" onclick="shiftTrackerDate(-1)" title="Previous Day">
+                ← Yesterday
+              </button>
+              <button class="dt-nav-btn ${isToday ? 'primary' : ''}" onclick="jumpTrackerToToday()" title="Jump to Today">
+                ☀️ Today
+              </button>
+              <button class="dt-nav-btn" onclick="shiftTrackerDate(1)" title="Next Day">
+                Tomorrow →
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Grid -->
+          <div class="dt-main-grid">
+            <!-- Left Column: Habits & Journal -->
+            <div class="dt-column">
+              <!-- Habit Checklist Card -->
+              <div class="dt-card">
+                <div class="dt-card-header">
+                  <div>
+                    <div class="dt-card-title">
+                      <span>☀️</span>
+                      <span>Daily 4:30 AM Routine & Study Protocol</span>
+                    </div>
+                    <div class="dt-card-subtitle">
+                      Honest tracking builds unbeatable mental stamina. If you missed a habit, click <strong>[ ✗ Missed ]</strong> to log it accurately.
+                    </div>
+                  </div>
+                  <div>
+                    <span class="dt-date-badge" style="background:var(--bg-card); border:1px solid var(--border);">
+                      ${stats.selectedDoneCount} Done • ${stats.selectedMissCount} Missed
+                    </span>
+                  </div>
+                </div>
+
+                <div class="dt-habits-list">
+                  ${habitsHtml}
+                </div>
+              </div>
+
+              <!-- Journal Reflection Model -->
+              <div class="dt-card">
+                <div class="dt-card-header">
+                  <div>
+                    <div class="dt-card-title">
+                      <span>📖</span>
+                      <span>Daily Preparation Journal & Technical Log</span>
+                    </div>
+                    <div class="dt-card-subtitle">
+                      Record concepts understood, questions asked to ChatGPT, interview breakthroughs, and tomorrow's focus.
+                    </div>
+                  </div>
+                  <div id="journal-save-status" style="font-size:0.78rem; color:var(--text-secondary); font-weight:600;">
+                    💾 Saved locally
+                  </div>
+                </div>
+
+                <div class="dt-journal-box">
+                  <div class="dt-journal-chips">
+                    <span style="font-size:0.74rem; font-weight:700; color:var(--text-secondary); margin-right:4px; align-self:center;">Insert Template:</span>
+                    <button class="dt-chip-btn" onclick="appendJournalPrompt('### 📚 Topics Studied Today')">+ Study Topics</button>
+                    <button class="dt-chip-btn" onclick="appendJournalPrompt('### 💡 Key Technical Breakthroughs & Aha Moments')">+ Breakthroughs</button>
+                    <button class="dt-chip-btn" onclick="appendJournalPrompt('### ⚠️ Doubts, Blockers & Questions to Revisit')">+ Blockers</button>
+                    <button class="dt-chip-btn" onclick="appendJournalPrompt('### 🎯 Tomorrow 4:30 AM Focus Plan')">+ Tomorrow's Plan</button>
+                  </div>
+
+                  <textarea 
+                    id="dt-journal-textarea" 
+                    class="dt-journal-textarea" 
+                    placeholder="Write your daily interview reflection here...&#10;&#10;e.g.&#10;• Covered C# GC Generations 0, 1, 2 and Large Object Heap (LOH)&#10;• Practiced Oracle Execution Plans: Index Range Scan vs Full Table Scan&#10;• Breakthrough: Clear understanding of async/await state machine vs background thread"
+                    oninput="saveJournalForDate('${trackerSelectedDate}', this.value); showJournalSaveFeedback();"
+                  >${escapeHtml(journalText)}</textarea>
+
+                  <div class="dt-journal-footer">
+                    <div>
+                      <span>Logged for <strong>${displayDateStr}</strong></span>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                      <button class="dt-nav-btn" style="padding:4px 10px; font-size:0.75rem;" onclick="copyJournalForDate()">📋 Copy Notes</button>
+                      <button class="dt-nav-btn" style="padding:4px 10px; font-size:0.75rem; color:#ef4444;" onclick="clearJournalForDate()">🗑️ Clear</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Monthly Calendar & Tips -->
+            <div class="dt-column">
+              <!-- Calendar Card -->
+              <div class="dt-card">
+                <div class="dt-card-header">
+                  <div class="dt-card-title">
+                    <span>🗓️</span>
+                    <span>Monthly Consistency Heatmap</span>
+                  </div>
+                  <div class="dt-card-subtitle">
+                    Click any date to view or log habits
+                  </div>
+                </div>
+                ${renderTrackerCalendar()}
+              </div>
+
+              <!-- Golden Discipline Rules -->
+              <div class="dt-card">
+                <div class="dt-card-header">
+                  <div class="dt-card-title">
+                    <span>⚡</span>
+                    <span>The 4:30 AM Routine Architecture</span>
+                  </div>
+                </div>
+                <div class="dt-tips-list">
+                  <div class="dt-tip-item">
+                    <span>⏰</span>
+                    <div><strong>No Snooze Rule:</strong> Place your alarm away from your bed. Get vertical on the first ring at 4:30 AM.</div>
+                  </div>
+                  <div class="dt-tip-item">
+                    <span>🧘</span>
+                    <div><strong>Zero Digital Inflow:</strong> No email, WhatsApp, or YouTube between 4:30 AM and 6:30 AM. Guard your focus.</div>
+                  </div>
+                  <div class="dt-tip-item">
+                    <span>☀️</span>
+                    <div><strong>High Cognitive Load:</strong> Study your hardest topic (Low-level CLR, Microservices, System Design) in the 5:00–6:30 AM slot.</div>
+                  </div>
+                  <div class="dt-tip-item">
+                    <span>🌙</span>
+                    <div><strong>Active Coding at Night:</strong> Use 9:00–10:00 PM for writing C# code, SQL queries, and speaking answers aloud.</div>
+                  </div>
+                  <div class="dt-tip-item">
+                    <span>🛌</span>
+                    <div><strong>Protect 10:15 PM Bedtime:</strong> You cannot wake up at 4:30 AM energized if you sleep past 10:30 PM. Recovery creates mastery.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ============================================================
+       CLOUD CODING PLAYGROUNDS ENGINE (.NET Fiddle & Oracle Live SQL)
+       ============================================================ */
+    const PLAYGROUND_TEMPLATES = {
+      csharp_oop: {
+        title: "C# OOP & Polymorphism",
+        lang: "csharp",
+        url: "https://dotnetfiddle.net/",
+        desc: "Interface abstraction, loose coupling, dependency inversion, and polymorphic execution.",
+        code: `using System;
+
+public interface INotificationService 
+{
+    void Send(string message);
+}
+
+public class EmailNotification : INotificationService 
+{
+    public void Send(string message) => Console.WriteLine("[Email Sent]: " + message);
+}
+
+public class NotificationDispatcher 
+{
+    private readonly INotificationService _service;
+    public NotificationDispatcher(INotificationService service) => _service = service;
+    public void Dispatch(string msg) => _service.Send(msg);
+}
+
+public class Program 
+{
+    public static void Main() 
+    {
+        Console.WriteLine("=== .NET Fiddle: C# OOP & DI Demo ===");
+        INotificationService service = new EmailNotification();
+        var dispatcher = new NotificationDispatcher(service);
+        dispatcher.Dispatch("Senior .NET Interview Preparation on Mobile!");
+    }
+}`
+      },
+      csharp_async: {
+        title: "Async/Await & Parallel Tasks",
+        lang: "csharp",
+        url: "https://dotnetfiddle.net/",
+        desc: "Non-blocking I/O pipeline using Task.WhenAll and thread concurrency.",
+        code: `using System;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+public class Program 
+{
+    public static async Task Main() 
+    {
+        Console.WriteLine("=== .NET Fiddle: Async Pipeline Demo ===");
+        var sw = Stopwatch.StartNew();
+        
+        Task<int> taskA = FetchUserDataAsync();
+        Task<int> taskB = FetchAccountBalanceAsync();
+        
+        await Task.WhenAll(taskA, taskB);
+        
+        Console.WriteLine("User ID: " + taskA.Result + ", Balance: $" + taskB.Result);
+        Console.WriteLine("Parallel Execution Completed in " + sw.ElapsedMilliseconds + " ms");
+    }
+
+    private static async Task<int> FetchUserDataAsync() 
+    {
+        await Task.Delay(200);
+        return 101;
+    }
+
+    private static async Task<int> FetchAccountBalanceAsync() 
+    {
+        await Task.Delay(200);
+        return 8500;
+    }
+}`
+      },
+      csharp_linq: {
+        title: "LINQ GroupBy & Aggregations",
+        lang: "csharp",
+        url: "https://dotnetfiddle.net/",
+        desc: "In-memory query expressions, grouping by department, and calculating averages.",
+        code: `using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public record Employee(string Name, string Department, decimal Salary);
+
+public class Program 
+{
+    public static void Main() 
+    {
+        Console.WriteLine("=== .NET Fiddle: LINQ GroupBy Demo ===");
+        var employees = new List<Employee>
+        {
+            new("Alice", "Engineering", 120000),
+            new("Bob", "Engineering", 95000),
+            new("Charlie", "Finance", 88000),
+            new("Diana", "Finance", 110000),
+            new("Eve", "HR", 75000)
+        };
+
+        var deptSummary = employees
+            .GroupBy(e => e.Department)
+            .Select(g => new {
+                Dept = g.Key,
+                AvgSalary = g.Average(e => e.Salary),
+                Count = g.Count()
+            });
+
+        foreach (var d in deptSummary)
+        {
+            Console.WriteLine("Dept: " + d.Dept + " | Headcount: " + d.Count + " | Avg Salary: $" + d.AvgSalary.ToString("F2"));
+        }
+    }
+}`
+      },
+      csharp_coding: {
+        title: "Live Coding: First Non-Repeating Char",
+        lang: "csharp",
+        url: "https://dotnetfiddle.net/",
+        desc: "Two-pass O(N) frequency dictionary solution for string streaming interviews.",
+        code: `using System;
+using System.Collections.Generic;
+
+public class Program 
+{
+    public static void Main() 
+    {
+        Console.WriteLine("=== .NET Fiddle: First Non-Repeating Char ===");
+        string input = "swiss";
+        char result = FindFirstNonRepeating(input);
+        Console.WriteLine("Input: \\"" + input + "\\" => First Non-Repeating: '" + result + "'");
+    }
+
+    public static char FindFirstNonRepeating(string s) 
+    {
+        if (string.IsNullOrEmpty(s)) return '\\0';
+        var freq = new Dictionary<char, int>();
+        foreach (char c in s) 
+        {
+            freq[c] = freq.GetValueOrDefault(c, 0) + 1;
+        }
+        foreach (char c in s) 
+        {
+            if (freq[c] == 1) return c;
+        }
+        return '\\0';
+    }
+}`
+      },
+      oracle_joins: {
+        title: "Table Setup & Joins (Inner, Left, Full)",
+        lang: "sql",
+        url: "https://livesql.oracle.com/",
+        desc: "Creating employees & departments tables, inserting records, and performing joins with NVL.",
+        code: `-- 1. Create temporary demonstration tables
+CREATE TABLE departments (
+    dept_id NUMBER PRIMARY KEY,
+    dept_name VARCHAR2(50) NOT NULL
+);
+
+CREATE TABLE employees (
+    emp_id NUMBER PRIMARY KEY,
+    emp_name VARCHAR2(50) NOT NULL,
+    salary NUMBER(10,2),
+    dept_id NUMBER
+);
+
+-- 2. Insert sample data
+INSERT INTO departments VALUES (10, 'Engineering');
+INSERT INTO departments VALUES (20, 'Finance');
+INSERT INTO departments VALUES (30, 'Operations');
+
+INSERT INTO employees VALUES (1, 'Karthik', 125000, 10);
+INSERT INTO employees VALUES (2, 'Priya', 95000, 10);
+INSERT INTO employees VALUES (3, 'Anand', 88000, 20);
+INSERT INTO employees VALUES (4, 'Deepak', 70000, NULL); -- Employee with no dept
+
+COMMIT;
+
+-- 3. INNER JOIN vs LEFT OUTER JOIN vs FULL OUTER JOIN
+SELECT 
+    e.emp_name, 
+    NVL(e.salary, 0) AS salary, 
+    NVL(d.dept_name, 'Unassigned') AS department
+FROM employees e
+FULL OUTER JOIN departments d ON e.dept_id = d.dept_id
+ORDER BY e.emp_id NULLS LAST;`
+      },
+      oracle_window: {
+        title: "Window Functions: ROW_NUMBER vs DENSE_RANK",
+        lang: "sql",
+        url: "https://livesql.oracle.com/",
+        desc: "PARTITION BY dept_id comparing ROW_NUMBER(), RANK(), and DENSE_RANK() side-by-side.",
+        code: `-- Comparison of ROW_NUMBER(), RANK(), DENSE_RANK()
+SELECT 
+    emp_id,
+    emp_name,
+    dept_id,
+    salary,
+    ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS row_num,
+    RANK()       OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rnk,
+    DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS dense_rnk
+FROM employees
+ORDER BY dept_id, salary DESC;`
+      },
+      oracle_2nd_salary: {
+        title: "Find 2nd Highest Salary (2 Methods)",
+        lang: "sql",
+        url: "https://livesql.oracle.com/",
+        desc: "Top interview query solved with DENSE_RANK CTE and correlated subquery.",
+        code: `-- Method 1: Using DENSE_RANK (Handles duplicate salaries flawlessly)
+WITH RankedSalaries AS (
+    SELECT 
+        emp_name, 
+        salary, 
+        DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
+    FROM employees
+)
+SELECT emp_name, salary 
+FROM RankedSalaries 
+WHERE salary_rank = 2;
+
+-- Method 2: Correlated Subquery (Universal SQL)
+SELECT MAX(salary) AS second_highest_salary
+FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees);`
+      },
+      oracle_plsql: {
+        title: "PL/SQL Cursor & Exception Handling",
+        lang: "sql",
+        url: "https://livesql.oracle.com/",
+        desc: "Explicit cursor loop with %NOTFOUND, DBMS_OUTPUT, and OTHERS exception block.",
+        code: `DECLARE
+    -- Cursor declaration
+    CURSOR emp_cur IS
+        SELECT emp_name, salary 
+        FROM employees 
+        WHERE salary > 80000
+        ORDER BY salary DESC;
+        
+    v_name employees.emp_name%TYPE;
+    v_sal  employees.salary%TYPE;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('--- High Earner Report (> 80k) ---');
+    OPEN emp_cur;
+    LOOP
+        FETCH emp_cur INTO v_name, v_sal;
+        EXIT WHEN emp_cur%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('Employee: ' || RPAD(v_name, 15) || ' | Salary: $' || v_sal);
+    END LOOP;
+    CLOSE emp_cur;
+EXCEPTION
+    WHEN OTHERS THEN
+        IF emp_cur%ISOPEN THEN CLOSE emp_cur; END IF;
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+/`
+      }
+    };
+
+    let activeFiddleTab = "csharp_oop";
+    let activeOracleTab = "oracle_joins";
+
+    function showToast(msg) {
+      let toast = document.getElementById("portal-toast");
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "portal-toast";
+        toast.className = "portal-toast";
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => {
+        if (toast) toast.classList.remove("show");
+      }, 3200);
+    }
+
+    function launchInFiddle(btn) {
+      const wrapper = btn ? btn.closest(".code-block-wrapper") : null;
+      let codeText = "";
+      if (wrapper) {
+        const codeEl = wrapper.querySelector("pre code");
+        if (codeEl) codeText = codeEl.textContent;
+      }
+      if (codeText) {
+        navigator.clipboard.writeText(codeText).then(() => {
+          showToast("✓ C# Code copied! Paste into .NET Fiddle to run.");
+          window.open("https://dotnetfiddle.net/", "_blank");
+        }).catch(() => {
+          window.open("https://dotnetfiddle.net/", "_blank");
+        });
+      } else {
+        window.open("https://dotnetfiddle.net/", "_blank");
+      }
+    }
+
+    function launchInOracleLiveSql(btn) {
+      const wrapper = btn ? btn.closest(".code-block-wrapper") : null;
+      let codeText = "";
+      if (wrapper) {
+        const codeEl = wrapper.querySelector("pre code");
+        if (codeEl) codeText = codeEl.textContent;
+      }
+      if (codeText) {
+        navigator.clipboard.writeText(codeText).then(() => {
+          showToast("✓ SQL Query copied! Paste into Oracle Live SQL to run.");
+          window.open("https://livesql.oracle.com/", "_blank");
+        }).catch(() => {
+          window.open("https://livesql.oracle.com/", "_blank");
+        });
+      } else {
+        window.open("https://livesql.oracle.com/", "_blank");
+      }
+    }
+
+    function copyCodeSnippet(btn) {
+      const wrapper = btn ? btn.closest(".code-block-wrapper") : null;
+      if (!wrapper) return;
+      const codeEl = wrapper.querySelector("pre code");
+      if (codeEl) {
+        navigator.clipboard.writeText(codeEl.textContent).then(() => {
+          const orig = btn.innerHTML;
+          btn.innerHTML = "<span>✓ Copied!</span>";
+          setTimeout(() => { if (btn) btn.innerHTML = orig; }, 1800);
+          showToast("✓ Code copied to clipboard!");
+        });
+      }
+    }
+
+    /* ============================================================
+       PRACTICE QUESTIONS LIBRARY & CODE COMPARATOR ENGINE
+       ============================================================ */
+    const PRACTICE_QUESTIONS_LIBRARY = [
+      {
+        id: "q_cs_07",
+        category: "C# Live Coding",
+        title: "Program 7: Two Sum (Dictionary O(N))",
+        lang: "csharp",
+        desc: "Given an integer array and a target sum, return the 0-based indices of the two numbers that add up to the target. Must solve in a single pass O(N) using a Dictionary complement lookup.",
+        constraints: "Time: O(N), Space: O(N). Handle empty or single-element arrays by returning empty array.",
+        testCase: "Input: nums = [2, 7, 11, 15], target = 9 => Expected Output: [0, 1] (since 2 + 7 = 9)",
+        cloudUrl: "https://dotnetfiddle.net/",
+        code: `public static int[] TwoSum(int[] nums, int target)
+{
+    if (nums == null || nums.Length < 2) return Array.Empty<int>();
+    Dictionary<int, int> seen = new Dictionary<int, int>();
+    for (int i = 0; i < nums.Length; i++)
+    {
+        int needed = target - nums[i];
+        if (seen.ContainsKey(needed))
+            return new int[] { seen[needed], i };
+        seen[nums[i]] = i;
+    }
+    return Array.Empty<int>();
+}`
+      },
+      {
+        id: "q_cs_01",
+        category: "C# Live Coding",
+        title: "Program 1: Reverse String Without .Reverse()",
+        lang: "csharp",
+        desc: "Reverse a string in-place or into a char array without using built-in Array.Reverse() or LINQ .Reverse().",
+        constraints: "Time: O(N), Space: O(N). Must handle null or empty string without throwing NullReferenceException.",
+        testCase: "Input: \"hello\" => Expected: \"olleh\" | Input: \"\" => Expected: \"\"",
+        cloudUrl: "https://dotnetfiddle.net/",
+        code: `public static string ReverseString(string str)
+{
+    if (string.IsNullOrEmpty(str)) return str;
+    char[] chars = new char[str.Length];
+    int j = 0;
+    for (int i = str.Length - 1; i >= 0; i--)
+    {
+        chars[j++] = str[i];
+    }
+    return new string(chars);
+}`
+      },
+      {
+        id: "q_cs_02",
+        category: "C# Live Coding",
+        title: "Program 2: Reverse Words in a Sentence",
+        lang: "csharp",
+        desc: "Reverse the order of words in a sentence while preserving each word's characters and removing extraneous whitespace.",
+        constraints: "Time: O(N). Handle single word, trailing spaces, and multiple contiguous spaces.",
+        testCase: "Input: \"the sky is blue\" => Expected: \"blue is sky the\"",
+        cloudUrl: "https://dotnetfiddle.net/",
+        code: `public static string ReverseWords(string sentence)
+{
+    if (string.IsNullOrWhiteSpace(sentence)) return sentence;
+    string[] words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    int left = 0, right = words.Length - 1;
+    while (left < right)
+    {
+        string temp = words[left];
+        words[left] = words[right];
+        words[right] = temp;
+        left++;
+        right--;
+    }
+    return string.Join(" ", words);
+}`
+      },
+      {
+        id: "q_cs_03",
+        category: "C# Live Coding",
+        title: "Program 3: Check Palindrome (Two Pointers)",
+        lang: "csharp",
+        desc: "Determine if a string reads the same forwards and backwards, ignoring casing.",
+        constraints: "Time: O(N), Space: O(1) using two pointers moving inward from both ends.",
+        testCase: "Input: \"Racecar\" => Expected: true | Input: \"hello\" => Expected: false",
+        cloudUrl: "https://dotnetfiddle.net/",
+        code: `public static bool IsPalindrome(string str)
+{
+    if (string.IsNullOrEmpty(str)) return true;
+    int left = 0, right = str.Length - 1;
+    while (left < right)
+    {
+        if (char.ToLower(str[left]) != char.ToLower(str[right]))
+            return false;
+        left++;
+        right--;
+    }
+    return true;
+}`
+      },
+      {
+        id: "q_cs_04",
+        category: "C# Live Coding",
+        title: "Program 4: Character Frequency Count (Dictionary)",
+        lang: "csharp",
+        desc: "Count occurrences of each character in an input string and print them in order of appearance.",
+        constraints: "Time: O(N), Space: O(K) where K is unique character count. Use Dictionary<char, int>.",
+        testCase: "Input: \"developer\" => Output: d:1, e:3, v:1, l:1, o:1, p:1, r:1",
+        cloudUrl: "https://dotnetfiddle.net/",
+        code: `public static void CountCharacterFrequency(string input)
+{
+    if (string.IsNullOrEmpty(input)) return;
+    Dictionary<char, int> freq = new Dictionary<char, int>();
+    foreach (char c in input)
+    {
+        if (freq.ContainsKey(c)) freq[c]++;
+        else freq[c] = 1;
+    }
+    foreach (var kvp in freq)
+        Console.WriteLine(kvp.Key + " : " + kvp.Value);
+}`
+      },
+      {
+        id: "q_cs_05",
+        category: "C# Live Coding",
+        title: "Program 5: Second Largest Number in Array",
+        lang: "csharp",
+        desc: "Find the 2nd largest distinct number in an integer array in a single traversal without sorting.",
+        constraints: "Time: O(N), Space: O(1). Handle arrays with duplicates or fewer than 2 distinct numbers.",
+        testCase: "Input: [12, 35, 1, 10, 34, 1] => Expected: 34",
+        cloudUrl: "https://dotnetfiddle.net/",
+        code: `public static int SecondLargest(int[] arr)
+{
+    if (arr == null || arr.Length < 2) throw new ArgumentException("Array must have >= 2 items");
+    int max = int.MinValue, secondMax = int.MinValue;
+    foreach (int num in arr)
+    {
+        if (num > max)
+        {
+            secondMax = max;
+            max = num;
+        }
+        else if (num > secondMax && num != max)
+        {
+            secondMax = num;
+        }
+    }
+    return secondMax;
+}`
+      },
+      {
+        id: "q_cs_06",
+        category: "C# Live Coding",
+        title: "Program 6: Remove Duplicates (HashSet & StringBuilder)",
+        lang: "csharp",
+        desc: "Remove duplicate characters from a string, preserving the first appearance of each character.",
+        constraints: "Time: O(N), Space: O(N). Use HashSet<char>.Add(c) return value.",
+        testCase: "Input: \"programming\" => Expected: \"progamin\"",
+        cloudUrl: "https://dotnetfiddle.net/",
+        code: `public static string RemoveDuplicateChars(string input)
+{
+    if (string.IsNullOrEmpty(input)) return input;
+    HashSet<char> seen = new HashSet<char>();
+    StringBuilder result = new StringBuilder();
+    foreach (char c in input)
+    {
+        if (seen.Add(c)) result.Append(c);
+    }
+    return result.ToString();
+}`
+      },
+      {
+        id: "q_cs_10",
+        category: "C# Live Coding",
+        title: "Program 10: First Non-Repeating Character (O(N))",
+        lang: "csharp",
+        desc: "Find the first non-repeating character in a stream of characters in O(N) time.",
+        constraints: "Time: O(N), Space: O(1) or O(26). Two passes: pass 1 counts frequency, pass 2 checks first char with freq 1.",
+        testCase: "Input: \"swiss\" => Expected: 'w' | Input: \"aabb\" => Expected: '\\0'",
+        cloudUrl: "https://dotnetfiddle.net/",
+        code: `public static char FirstNonRepeating(string s)
+{
+    if (string.IsNullOrEmpty(s)) return '\\0';
+    var freq = new Dictionary<char, int>();
+    foreach (char c in s)
+    {
+        freq[c] = freq.GetValueOrDefault(c, 0) + 1;
+    }
+    foreach (char c in s)
+    {
+        if (freq[c] == 1) return c;
+    }
+    return '\\0';
+}`
+      },
+      {
+        id: "q_sql_01",
+        category: "Oracle SQL & LINQ",
+        title: "Query 1: Find 2nd / N-th Highest Salary",
+        lang: "sql",
+        desc: "Write an Oracle SQL query to find the 2nd highest salary from the EMPLOYEES table. Must handle duplicate salaries gracefully.",
+        constraints: "Time Complexity: O(N log N) via DENSE_RANK. Handle nulls and cases where less than N employees exist.",
+        testCase: "Input: Salaries [100000, 100000, 80000, 60000] => Expected Output: 80000 (Rank 2)",
+        cloudUrl: "https://livesql.oracle.com/",
+        code: `SELECT emp_name, salary
+FROM (
+    SELECT emp_name, salary,
+           DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
+    FROM employees
+)
+WHERE rnk = 2;`
+      },
+      {
+        id: "q_sql_02",
+        category: "Oracle SQL & LINQ",
+        title: "Query 2: Department-Wise Highest Salary",
+        lang: "sql",
+        desc: "Find the employee with the highest salary in EACH department, including dept_id, emp_name, and salary.",
+        constraints: "Use DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC).",
+        testCase: "Input: Multiple employees per department => Expected Output: 1 top earner per department",
+        cloudUrl: "https://livesql.oracle.com/",
+        code: `SELECT dept_id, emp_name, salary
+FROM (
+    SELECT dept_id, emp_name, salary,
+           DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rnk
+    FROM employees
+)
+WHERE rnk = 1;`
+      },
+      {
+        id: "q_sql_03",
+        category: "Oracle SQL & LINQ",
+        title: "Query 3: Find Duplicate Records in a Table",
+        lang: "sql",
+        desc: "Find duplicate records based on email address and display each email along with its count.",
+        constraints: "Use GROUP BY email HAVING COUNT(*) > 1.",
+        testCase: "Input: Multiple rows with identical emails => Output: Email and count > 1",
+        cloudUrl: "https://livesql.oracle.com/",
+        code: `SELECT email, COUNT(*) AS cnt
+FROM employees
+GROUP BY email
+HAVING COUNT(*) > 1;`
+      },
+      {
+        id: "q_sql_04",
+        category: "Oracle SQL & LINQ",
+        title: "Query 4: Delete Duplicate Rows Keeping One Copy (ROWID)",
+        lang: "sql",
+        desc: "Delete duplicate records based on email address from EMPLOYEES, preserving only ONE copy using Oracle's physical ROWID pseudo-column.",
+        constraints: "Must delete duplicates in a single SQL statement using MAX(ROWID) or MIN(ROWID).",
+        testCase: "Input: 3 rows with email 'test@company.com' => Expected: 2 deleted, 1 preserved",
+        cloudUrl: "https://livesql.oracle.com/",
+        code: `DELETE FROM employees
+WHERE ROWID NOT IN (
+    SELECT MAX(ROWID)
+    FROM employees
+    GROUP BY email
+);`
+      },
+      {
+        id: "q_sql_05",
+        category: "Oracle SQL & LINQ",
+        title: "Query 5: Employees Earning More Than Their Manager (Self Join)",
+        lang: "sql",
+        desc: "Given an EMPLOYEES table with emp_id, emp_name, salary, and manager_id, find all employees who earn more than their direct manager.",
+        constraints: "Use INNER JOIN on EMPLOYEES with itself on e.manager_id = m.emp_id.",
+        testCase: "Input: Employee ($90k, Manager ID 1), Manager ($80k, ID 1) => Output: Employee",
+        cloudUrl: "https://livesql.oracle.com/",
+        code: `SELECT e.emp_name AS employee_name,
+       e.salary   AS emp_salary,
+       m.emp_name AS manager_name,
+       m.salary   AS mgr_salary
+FROM employees e
+INNER JOIN employees m ON e.manager_id = m.emp_id
+WHERE e.salary > m.salary;`
+      },
+      {
+        id: "q_sql_06",
+        category: "Oracle SQL & LINQ",
+        title: "Query 6: Departments with NO Employees (LEFT JOIN)",
+        lang: "sql",
+        desc: "Find all departments that currently have zero assigned employees.",
+        constraints: "Use LEFT JOIN between DEPARTMENTS and EMPLOYEES with WHERE e.emp_id IS NULL.",
+        testCase: "Departments [10, 20, 30], Employees only in [10, 20] => Output: Dept 30",
+        cloudUrl: "https://livesql.oracle.com/",
+        code: `SELECT d.dept_id, d.dept_name
+FROM departments d
+LEFT JOIN employees e ON d.dept_id = e.dept_id
+WHERE e.emp_id IS NULL;`
+      },
+      {
+        id: "q_sql_08",
+        category: "Oracle SQL & LINQ",
+        title: "Query 8: Calculate Running Total (Cumulative Salary)",
+        lang: "sql",
+        desc: "Calculate the running total of salaries ordered by emp_id without using self joins or cursors.",
+        constraints: "Use SUM(salary) OVER (ORDER BY emp_id).",
+        testCase: "Salaries [1000, 2000, 1500] => Running Totals [1000, 3000, 4500]",
+        cloudUrl: "https://livesql.oracle.com/",
+        code: `SELECT emp_id, emp_name, salary,
+       SUM(salary) OVER (ORDER BY emp_id) AS running_total_salary
+FROM employees;`
+      }
+    ];
+
+    let modalCurrentActualCode = "";
+    let modalCurrentQuestionTitle = "";
+    let modalCurrentLang = "csharp";
+    let selectedPracticeQuestionId = "q_cs_07";
+
+    function showCodeCompareModal(qTitle, actualCode, lang) {
+      modalCurrentQuestionTitle = qTitle || "Technical Interview Solution";
+      modalCurrentActualCode = actualCode || "";
+      modalCurrentLang = (lang || "csharp").toLowerCase();
+
+      const modal = document.getElementById("code-compare-modal");
+      const titleEl = document.getElementById("cc-modal-title");
+      const badgeEl = document.getElementById("cc-modal-badge");
+      const cloudBtn = document.getElementById("cc-modal-cloud-btn");
+      const resultArea = document.getElementById("cc-result-area");
+      const userTextarea = document.getElementById("cc-user-code-input");
+
+      if (titleEl) titleEl.textContent = modalCurrentQuestionTitle;
+      if (badgeEl) badgeEl.textContent = `${modalCurrentLang.toUpperCase()} Solution Grader`;
+      if (cloudBtn) {
+        const isSql = modalCurrentLang.includes("sql") || modalCurrentLang.includes("oracle");
+        cloudBtn.innerHTML = isSql ? "<span>▶ Run in Oracle Live SQL ↗</span>" : "<span>▶ Run in .NET Fiddle ↗</span>";
+      }
+
+      // Check saved draft
+      const draftKey = `dotnet_code_draft_${modalCurrentQuestionTitle.slice(0, 30)}`;
+      const savedDraft = localStorage.getItem(draftKey) || "";
+      if (userTextarea) {
+        userTextarea.value = savedDraft;
+        userTextarea.oninput = () => {
+          localStorage.setItem(draftKey, userTextarea.value);
+        };
+      }
+
+      if (resultArea) {
+        resultArea.style.display = "none";
+        resultArea.innerHTML = "";
+      }
+
+      if (modal) {
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+    }
+
+    function closeCodeCompareModal() {
+      const modal = document.getElementById("code-compare-modal");
+      if (modal) modal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function onCodeCompareOverlayClick(e) {
+      if (e.target.id === "code-compare-modal") {
+        closeCodeCompareModal();
+      }
+    }
+
+    function clearUserCompareCode() {
+      const ta = document.getElementById("cc-user-code-input");
+      if (ta) {
+        ta.value = "";
+        const draftKey = `dotnet_code_draft_${modalCurrentQuestionTitle.slice(0, 30)}`;
+        localStorage.removeItem(draftKey);
+        const resultArea = document.getElementById("cc-result-area");
+        if (resultArea) resultArea.style.display = "none";
+      }
+    }
+
+    function launchModalCloudCompiler() {
+      const isSql = modalCurrentLang.includes("sql") || modalCurrentLang.includes("oracle");
+      const ta = document.getElementById("cc-user-code-input");
+      const codeToRun = (ta && ta.value.trim()) ? ta.value : modalCurrentActualCode;
+
+      navigator.clipboard.writeText(codeToRun).then(() => {
+        showToast(isSql ? "✓ SQL copied! Opening Oracle Live SQL..." : "✓ C# copied! Opening .NET Fiddle...");
+        window.open(isSql ? "https://livesql.oracle.com/" : "https://dotnetfiddle.net/", "_blank");
+      }).catch(() => {
+        window.open(isSql ? "https://livesql.oracle.com/" : "https://dotnetfiddle.net/", "_blank");
+      });
+    }
+
+    function copyActualModalCode() {
+      navigator.clipboard.writeText(modalCurrentActualCode).then(() => {
+        showToast("✓ 10/10 Actual Solution copied to clipboard!");
+      });
+    }
+
+    function openCodeCompareModal(btn) {
+      const wrapper = btn.closest(".code-block-wrapper");
+      if (!wrapper) return;
+      const codeEl = wrapper.querySelector("pre code");
+      const actualCode = codeEl ? codeEl.textContent : "";
+      const lang = wrapper.querySelector(".code-lang-tag")?.textContent || "CODE";
+
+      let qTitle = "Interview Solution";
+      let prev = wrapper.previousElementSibling;
+      while (prev) {
+        if (prev.tagName === "H2" || prev.tagName === "H3") {
+          qTitle = prev.querySelector(".q-title-text")?.textContent || prev.textContent.replace("Ask ChatGPT", "").trim();
+          break;
+        }
+        prev = prev.previousElementSibling;
+      }
+
+      showCodeCompareModal(qTitle, actualCode, lang);
+    }
+
+    function runCodeComparison() {
+      const userCode = (document.getElementById("cc-user-code-input").value || "").trim();
+      const actualCode = modalCurrentActualCode.trim();
+      const resultArea = document.getElementById("cc-result-area");
+      if (!resultArea) return;
+
+      if (!userCode) {
+        showToast("⚠️ Please paste or type your code attempt in the scratchpad first!");
+        return;
+      }
+
+      // Analyze user code
+      const userLines = userCode.split("\n");
+      const actualLines = actualCode.split("\n");
+
+      const hasNullCheck = /null|IsNullOrEmpty|IsNullOrWhiteSpace|NVL|COALESCE/i.test(userCode);
+      const usesHashOrDict = /Dictionary|HashSet|seen|freq/i.test(userCode);
+      const hasLoops = /(for\s*\(|while\s*\(|foreach\s*\()/i.test(userCode);
+      const isOptimal = usesHashOrDict || (!hasLoops && /DENSE_RANK|ROW_NUMBER|PARTITION/i.test(userCode)) || (/left\s*<\s*right/i.test(userCode));
+
+      const rubricBadgeHtml = isOptimal
+        ? `<span style="background:rgba(16,185,129,0.15); color:#10b981; padding:3px 10px; border-radius:999px; font-weight:800; font-size:0.75rem;">🌟 10/10 Senior Ready</span>`
+        : `<span style="background:rgba(245,158,11,0.15); color:#f59e0b; padding:3px 10px; border-radius:999px; font-weight:800; font-size:0.75rem;">⏳ Good Attempt • Refinements Recommended</span>`;
+
+      const spokenScript = `<strong>Senior Spoken Formula:</strong> "I began by validating inputs (${hasNullCheck ? 'defensively handled with guard clauses' : 'ensuring null checks'}). For time complexity, I avoided nested loops and selected an ${isOptimal ? 'optimal O(N) single-pass structure' : 'algorithmic approach'} to guarantee minimal memory overhead."`;
+
+      resultArea.innerHTML = `
+        <div class="cc-rubric-card">
+          <div class="cc-rubric-title">
+            <span>📊</span>
+            <span>Self-Evaluation & Senior Grading Rubric</span>
+            ${rubricBadgeHtml}
+          </div>
+          <div class="cc-rubric-grid">
+            <div class="cc-rubric-item">
+              <div class="cc-rubric-label">🛡️ Guard Clauses & Edge Cases</div>
+              <div class="cc-rubric-val">${hasNullCheck ? '✅ Detected (Great senior interview habit!)' : '⚠️ Missing (Always check for null / empty inputs first)'}</div>
+            </div>
+            <div class="cc-rubric-item">
+              <div class="cc-rubric-label">⚡ Time & Space Efficiency</div>
+              <div class="cc-rubric-val">${isOptimal ? '✅ Optimal structure detected (O(N) or in-place)' : 'ℹ️ Check if nested loops can be replaced by a Dictionary or Window Function'}</div>
+            </div>
+            <div class="cc-rubric-item">
+              <div class="cc-rubric-label">📏 Volume & Conciseness</div>
+              <div class="cc-rubric-val">Your Attempt: <strong>${userLines.length} lines</strong> | Official: <strong>${actualLines.length} lines</strong></div>
+            </div>
+          </div>
+          <div class="cc-spoken-script">
+            ${spokenScript}
+          </div>
+        </div>
+
+        <div class="cc-result-grid">
+          <!-- User Code Column -->
+          <div class="cc-col-card">
+            <div class="cc-col-header user-header">
+              <span>👤 YOUR SOLUTION ATTEMPT</span>
+              <span>${userLines.length} lines • ${userCode.length} chars</span>
+            </div>
+            <pre class="cc-col-pre"><code>${escapeHtml(userCode)}</code></pre>
+          </div>
+
+          <!-- Official 10/10 Actual Solution -->
+          <div class="cc-col-card">
+            <div class="cc-col-header actual-header">
+              <span>🌟 10/10 ACTUAL PRODUCTION SOLUTION</span>
+              <button class="code-action-btn" style="padding:2px 8px; font-size:0.72rem;" onclick="copyActualModalCode()">📋 Copy</button>
+            </div>
+            <pre class="cc-col-pre"><code>${escapeHtml(actualCode)}</code></pre>
+          </div>
+        </div>
+      `;
+
+      resultArea.style.display = "flex";
+      resultArea.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function onPlaygroundQuestionChange(qId) {
+      selectedPracticeQuestionId = qId;
+      if (currentLessonId === "playgrounds") {
+        document.getElementById("lesson-content").innerHTML = renderPlaygrounds();
+      }
+    }
+
+    function runPlaygroundQuestionCompare() {
+      const q = PRACTICE_QUESTIONS_LIBRARY.find(item => item.id === selectedPracticeQuestionId);
+      if (!q) return;
+      const userCode = (document.getElementById("pg-user-code-scratchpad").value || "").trim();
+      if (!userCode) {
+        showToast("⚠️ Please write or paste your solution in the scratchpad first!");
+        return;
+      }
+      showCodeCompareModal(q.title, q.code, q.lang);
+      const modalTa = document.getElementById("cc-user-code-input");
+      if (modalTa) modalTa.value = userCode;
+      runCodeComparison();
+    }
+
+    function launchPlaygroundQuestionCloud() {
+      const q = PRACTICE_QUESTIONS_LIBRARY.find(item => item.id === selectedPracticeQuestionId);
+      if (!q) return;
+      const userCode = (document.getElementById("pg-user-code-scratchpad").value || "").trim();
+      const codeToRun = userCode || q.code;
+      navigator.clipboard.writeText(codeToRun).then(() => {
+        showToast(`✓ Code copied! Opening ${q.cloudUrl}...`);
+        window.open(q.cloudUrl, "_blank");
+      }).catch(() => {
+        window.open(q.cloudUrl, "_blank");
+      });
+    }
+
+    function revealPlaygroundQuestionSolution() {
+      const q = PRACTICE_QUESTIONS_LIBRARY.find(item => item.id === selectedPracticeQuestionId);
+      if (!q) return;
+      showCodeCompareModal(q.title, q.code, q.lang);
+    }
+
+    function copyPlaygroundQuestionStub() {
+      const q = PRACTICE_QUESTIONS_LIBRARY.find(item => item.id === selectedPracticeQuestionId);
+      if (!q) return;
+      navigator.clipboard.writeText(q.code).then(() => {
+        showToast(`✓ Solution for "${q.title}" copied to clipboard!`);
+      });
+    }
+
+    function copyTemplateCode(key) {
+      const tmpl = PLAYGROUND_TEMPLATES[key];
+      if (!tmpl) return;
+      navigator.clipboard.writeText(tmpl.code).then(() => {
+        showToast(`✓ ${tmpl.title} copied! Ready to paste and run.`);
+      });
+    }
+
+    function launchTemplate(key) {
+      const tmpl = PLAYGROUND_TEMPLATES[key];
+      if (!tmpl) return;
+      navigator.clipboard.writeText(tmpl.code).then(() => {
+        showToast(`✓ ${tmpl.title} copied! Opening ${tmpl.url}...`);
+        window.open(tmpl.url, "_blank");
+      }).catch(() => {
+        window.open(tmpl.url, "_blank");
+      });
+    }
+
+    function switchPlaygroundTab(type, tabKey) {
+      if (type === "fiddle") {
+        activeFiddleTab = tabKey;
+      } else if (type === "oracle") {
+        activeOracleTab = tabKey;
+      }
+      if (currentLessonId === "playgrounds") {
+        document.getElementById("lesson-content").innerHTML = renderPlaygrounds();
+      }
+    }
+
+    function renderPlaygrounds() {
+      const fiddleTmpl = PLAYGROUND_TEMPLATES[activeFiddleTab] || PLAYGROUND_TEMPLATES.csharp_oop;
+      const oracleTmpl = PLAYGROUND_TEMPLATES[activeOracleTab] || PLAYGROUND_TEMPLATES.oracle_joins;
+      const curQ = PRACTICE_QUESTIONS_LIBRARY.find(item => item.id === selectedPracticeQuestionId) || PRACTICE_QUESTIONS_LIBRARY[0];
+
+      // Build options for dropdown
+      const csQuestions = PRACTICE_QUESTIONS_LIBRARY.filter(q => q.category === "C# Live Coding");
+      const sqlQuestions = PRACTICE_QUESTIONS_LIBRARY.filter(q => q.category === "Oracle SQL & LINQ");
+
+      const selectOptionsHtml = `
+        <optgroup label="C# Live Coding Programs (${csQuestions.length} Questions)">
+          ${csQuestions.map(q => `<option value="${q.id}" ${q.id === selectedPracticeQuestionId ? 'selected' : ''}>${escapeHtml(q.title)}</option>`).join("")}
+        </optgroup>
+        <optgroup label="Oracle SQL & LINQ Queries (${sqlQuestions.length} Questions)">
+          ${sqlQuestions.map(q => `<option value="${q.id}" ${q.id === selectedPracticeQuestionId ? 'selected' : ''}>${escapeHtml(q.title)}</option>`).join("")}
+        </optgroup>
+      `;
+
+      const fiddleTabsHtml = [
+        { key: "csharp_oop", label: "1. OOP & DI" },
+        { key: "csharp_async", label: "2. Async Pipeline" },
+        { key: "csharp_linq", label: "3. LINQ GroupBy" },
+        { key: "csharp_coding", label: "4. Live Coding (O(N))" }
+      ].map(t => `
+        <button class="pg-tab-btn ${activeFiddleTab === t.key ? 'active' : ''}" onclick="switchPlaygroundTab('fiddle', '${t.key}')">
+          ${t.label}
+        </button>
+      `).join("");
+
+      const oracleTabsHtml = [
+        { key: "oracle_joins", label: "1. Tables & Joins" },
+        { key: "oracle_window", label: "2. Window Functions" },
+        { key: "oracle_2nd_salary", label: "3. 2nd Highest Salary" },
+        { key: "oracle_plsql", label: "4. PL/SQL Cursor" }
+      ].map(t => `
+        <button class="pg-tab-btn ${activeOracleTab === t.key ? 'active' : ''}" onclick="switchPlaygroundTab('oracle', '${t.key}')">
+          ${t.label}
+        </button>
+      `).join("");
+
+      return `
+        <div class="pg-container">
+          <!-- Hero Section -->
+          <div class="pg-hero">
+            <div class="fp-badge-pill">⚡ Mobile Cloud Execution Hub</div>
+            <h1 class="pg-title">Cloud Coding Sandboxes: .NET Fiddle & Oracle Live SQL</h1>
+            <p class="pg-subtitle">
+              You do not need an expensive laptop to code like a senior developer. Run real <strong>C# / .NET 8</strong> programs 
+              in <strong>.NET Fiddle</strong> and real <strong>Oracle SQL & PL/SQL</strong> in <strong>Oracle Live SQL</strong> directly on your 
+              <strong>iPhone 16 Safari browser</strong>. Practice coding and compare your attempt with the 10/10 production solution!
+            </p>
+          </div>
+
+          <!-- Question Practice & Code Comparator Section -->
+          <div class="pg-templates-section" style="border-color:var(--accent); box-shadow: 0 4px 20px rgba(56, 189, 248, 0.1);">
+            <div class="pg-sec-header">
+              <div class="pg-sec-title">
+                <span>🎯</span>
+                <span>Question Practice & Code Comparator</span>
+              </div>
+              <span class="pg-badge-free">Self-Evaluation Mode</span>
+            </div>
+
+            <!-- Question Select Dropdown -->
+            <div class="pg-select-box">
+              <label for="pg-question-select" class="pg-select-label">Select Interview Problem:</label>
+              <select id="pg-question-select" class="pg-select-dropdown" onchange="onPlaygroundQuestionChange(this.value)">
+                ${selectOptionsHtml}
+              </select>
+            </div>
+
+            <!-- Selected Question Card -->
+            <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:16px;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap; margin-bottom:8px;">
+                <h3 style="margin:0; font-size:1.1rem; color:var(--text-primary);">${escapeHtml(curQ.title)}</h3>
+                <span class="cc-modal-badge">${escapeHtml(curQ.category)}</span>
+              </div>
+              <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.5; margin-bottom:10px;">
+                <strong>Problem Requirements:</strong> ${escapeHtml(curQ.desc)}
+              </p>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:10px; font-size:0.78rem; background:var(--bg-secondary); padding:10px 12px; border-radius:8px; border:1px solid var(--border);">
+                <div><strong>⚡ Constraints:</strong> <span style="color:var(--accent);">${escapeHtml(curQ.constraints)}</span></div>
+                <div><strong>🧪 Example Input/Output:</strong> <span style="color:var(--text-secondary);">${escapeHtml(curQ.testCase)}</span></div>
+              </div>
+            </div>
+
+            <!-- User Code Scratchpad -->
+            <div class="cc-input-box" style="margin-bottom:14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <label for="pg-user-code-scratchpad" style="font-size:0.82rem; font-weight:700; color:var(--text-primary);">
+                  ✍️ Your Solution Attempt (Handwritten or Typed):
+                </label>
+                <span style="font-size:0.74rem; color:var(--text-secondary);">Type here or copy from your notebook</span>
+              </div>
+              <textarea 
+                id="pg-user-code-scratchpad" 
+                class="cc-textarea" 
+                placeholder="// Practice coding '${escapeHtml(curQ.title)}' here...&#10;// When done, click [Compare with Actual Solution] below!"
+              ></textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="cc-actions-bar">
+              <button class="cc-btn-primary" onclick="runPlaygroundQuestionCompare()">
+                <span>🔍 Compare My Code with 10/10 Solution</span>
+              </button>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button class="cc-btn-secondary" onclick="launchPlaygroundQuestionCloud()">
+                  <span>▶ Run in ${curQ.lang === 'sql' ? 'Oracle Live SQL' : '.NET Fiddle'} ↗</span>
+                </button>
+                <button class="cc-btn-secondary" onclick="revealPlaygroundQuestionSolution()">
+                  <span>👁️ Reveal 10/10 Actual Solution</span>
+                </button>
+                <button class="cc-btn-secondary" onclick="copyPlaygroundQuestionStub()">
+                  <span>📋 Copy Solution</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2 Main Playground Cards -->
+          <div class="pg-cards-grid">
+            <!-- .NET Fiddle Card -->
+            <div class="pg-card card-fiddle">
+              <div>
+                <div class="pg-card-top">
+                  <span class="pg-card-icon">🔷</span>
+                  <div>
+                    <div class="pg-card-title">.NET Fiddle</div>
+                    <div class="pg-card-meta">Official C# & .NET 8 Cloud Sandbox</div>
+                    <span class="pg-badge-free">✓ 100% Free • No Login Needed</span>
+                  </div>
+                </div>
+                <div class="pg-card-desc" style="margin-top:14px;">
+                  Online C# compiler and IDE. Test classes, inheritance, LINQ queries, Async/Await tasks, and NuGet libraries in seconds on mobile Safari.
+                </div>
+              </div>
+              <div class="pg-card-actions">
+                <a href="https://dotnetfiddle.net/" target="_blank" rel="noopener noreferrer" class="pg-btn-primary" style="background:#0284c7;">
+                  <span>🚀 Open .NET Fiddle ↗</span>
+                </a>
+                <button class="pg-btn-secondary" onclick="launchTemplate('${activeFiddleTab}')">
+                  <span>📋 Copy & Open Template</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Oracle Live SQL Card -->
+            <div class="pg-card card-livesql">
+              <div>
+                <div class="pg-card-top">
+                  <span class="pg-card-icon">🗄️</span>
+                  <div>
+                    <div class="pg-card-title">Oracle Live SQL</div>
+                    <div class="pg-card-meta">Official Oracle 19c / 23ai Cloud Workspace</div>
+                    <span class="pg-badge-free">✓ Free Oracle Cloud Account</span>
+                  </div>
+                </div>
+                <div class="pg-card-desc" style="margin-top:14px;">
+                  Oracle's official web workspace. Create schemas, practice Inner/Left/Full Outer Joins, test Analytical Functions, and debug PL/SQL packages.
+                </div>
+              </div>
+              <div class="pg-card-actions">
+                <a href="https://livesql.oracle.com/" target="_blank" rel="noopener noreferrer" class="pg-btn-primary" style="background:#ef4444;">
+                  <span>🚀 Open Oracle Live SQL ↗</span>
+                </a>
+                <button class="pg-btn-secondary" onclick="launchTemplate('${activeOracleTab}')">
+                  <span>📋 Copy & Open Script</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 1: C# .NET Fiddle Starter Templates -->
+          <div class="pg-templates-section">
+            <div class="pg-sec-header">
+              <div class="pg-sec-title">
+                <span>🔷</span>
+                <span>.NET Fiddle C# Starter Templates</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button class="pg-btn-secondary" style="padding:6px 12px; font-size:0.78rem;" onclick="copyTemplateCode('${activeFiddleTab}')">
+                  📋 Copy Code
+                </button>
+                <button class="pg-btn-primary" style="padding:6px 14px; font-size:0.78rem; background:#0284c7;" onclick="launchTemplate('${activeFiddleTab}')">
+                  🚀 Launch in .NET Fiddle ↗
+                </button>
+              </div>
+            </div>
+
+            <div class="pg-template-tabs">
+              ${fiddleTabsHtml}
+            </div>
+
+            <p style="font-size:0.84rem; color:var(--text-secondary); margin-bottom:10px;">
+              <strong>${escapeHtml(fiddleTmpl.title)}:</strong> ${escapeHtml(fiddleTmpl.desc)}
+            </p>
+
+            <div class="pg-code-preview-box">
+              <div class="pg-code-preview-header">
+                <span class="code-lang-tag">C# (.NET 8 CONSOLE)</span>
+                <button class="code-action-btn" onclick="copyTemplateCode('${activeFiddleTab}')">
+                  <span>📋 Copy Code</span>
+                </button>
+              </div>
+              <pre class="pg-code-preview-pre"><code>${escapeHtml(fiddleTmpl.code)}</code></pre>
+            </div>
+          </div>
+
+          <!-- Section 2: Oracle Live SQL Starter Scripts -->
+          <div class="pg-templates-section">
+            <div class="pg-sec-header">
+              <div class="pg-sec-title">
+                <span>🗄️</span>
+                <span>Oracle Live SQL Starter Scripts</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button class="pg-btn-secondary" style="padding:6px 12px; font-size:0.78rem;" onclick="copyTemplateCode('${activeOracleTab}')">
+                  📋 Copy Script
+                </button>
+                <button class="pg-btn-primary" style="padding:6px 14px; font-size:0.78rem; background:#ef4444;" onclick="launchTemplate('${activeOracleTab}')">
+                  🚀 Launch in Oracle Live SQL ↗
+                </button>
+              </div>
+            </div>
+
+            <div class="pg-template-tabs">
+              ${oracleTabsHtml}
+            </div>
+
+            <p style="font-size:0.84rem; color:var(--text-secondary); margin-bottom:10px;">
+              <strong>${escapeHtml(oracleTmpl.title)}:</strong> ${escapeHtml(oracleTmpl.desc)}
+            </p>
+
+            <div class="pg-code-preview-box">
+              <div class="pg-code-preview-header">
+                <span class="code-lang-tag">ORACLE SQL & PL/SQL</span>
+                <button class="code-action-btn" onclick="copyTemplateCode('${activeOracleTab}')">
+                  <span>📋 Copy Script</span>
+                </button>
+              </div>
+              <pre class="pg-code-preview-pre"><code>${escapeHtml(oracleTmpl.code)}</code></pre>
+            </div>
+          </div>
+
+          <!-- Mobile Practice Guide -->
+          <div class="pg-templates-section" style="background:linear-gradient(180deg, var(--bg-secondary) 0%, rgba(56, 189, 248, 0.04) 100%);">
+            <div class="pg-sec-title" style="margin-bottom:12px;">
+              <span>📱</span>
+              <span>4-Step Mobile Coding Workflow (iPhone 16)</span>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px;">
+              <div style="background:var(--bg-card); padding:14px; border-radius:10px; border:1px solid var(--border);">
+                <div style="font-size:0.84rem; font-weight:800; color:var(--accent); margin-bottom:4px;">1. Handwrite First</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.45;">
+                  Always write the algorithm logic or SQL query in your notebook with a pen before typing. This cements syntax without IDE auto-complete crutches.
+                </div>
+              </div>
+              <div style="background:var(--bg-card); padding:14px; border-radius:10px; border:1px solid var(--border);">
+                <div style="font-size:0.84rem; font-weight:800; color:var(--accent); margin-bottom:4px;">2. One-Tap Copy</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.45;">
+                  Tap <strong>[▶ Run in .NET Fiddle]</strong> or <strong>[▶ Run in Oracle Live SQL]</strong> above any lesson code snippet to automatically copy it.
+                </div>
+              </div>
+              <div style="background:var(--bg-card); padding:14px; border-radius:10px; border:1px solid var(--border);">
+                <div style="font-size:0.84rem; font-weight:800; color:var(--accent); margin-bottom:4px;">3. Run in Cloud</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.45;">
+                  Paste into Safari and tap <strong>Run</strong> (▶). Test boundary conditions, null inputs, and verify outputs in real time.
+                </div>
+              </div>
+              <div style="background:var(--bg-card); padding:14px; border-radius:10px; border:1px solid var(--border);">
+                <div style="font-size:0.84rem; font-weight:800; color:var(--accent); margin-bottom:4px;">4. Compare & Grade</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary); line-height:1.45;">
+                  Tap <strong>[🔍 Compare My Code]</strong> to check side-by-side with the 10/10 production solution and verify edge cases!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     function selectLesson(id) {
       currentLessonId = id;
       document.getElementById("search-input").value = "";
+
+      const homeBtn = document.getElementById("home-nav-btn");
+      const timetableBtn = document.getElementById("timetable-nav-btn");
+      const trackerBtn = document.getElementById("tracker-nav-btn");
+      const playgroundsBtn = document.getElementById("playgrounds-nav-btn");
+      if (homeBtn) homeBtn.classList.toggle("active", id === "welcome");
+      if (timetableBtn) timetableBtn.classList.toggle("active", id === "timetable");
+      if (trackerBtn) trackerBtn.classList.toggle("active", id === "tracker");
+      if (playgroundsBtn) playgroundsBtn.classList.toggle("active", id === "playgrounds");
+
+      if (id === "playgrounds") {
+        document.getElementById("current-chapter-badge").textContent = "⚡ Cloud Coding Sandboxes (.NET Fiddle & Oracle Live SQL)";
+        document.getElementById("complete-btn").style.display = "none";
+        document.getElementById("lesson-content").innerHTML = renderPlaygrounds();
+
+        const footer = document.getElementById("lesson-footer");
+        footer.innerHTML = `
+          <button class="nav-card-btn" onclick="selectLesson('tracker')">
+            ← Daily Routine & Habit Journal
+          </button>
+          <button class="nav-card-btn" style="background:var(--accent); color:#fff; font-weight:700;" onclick="selectLesson('code-02')">
+            Practice 15 C# Live Coding Programs →
+          </button>
+        `;
+        renderSidebar();
+        document.getElementById("content-scroll").scrollTop = 0;
+        toggleMobileSidebar(false);
+        return;
+      }
+
+      if (id === "welcome") {
+        document.getElementById("current-chapter-badge").textContent = "🌟 Welcome & Motivation Hub";
+        document.getElementById("complete-btn").style.display = "none";
+        document.getElementById("lesson-content").innerHTML = renderFrontPage();
+
+        const footer = document.getElementById("lesson-footer");
+        footer.innerHTML = `
+          <div></div>
+          <button class="nav-card-btn" style="background:var(--accent); color:#fff; font-weight:700;" onclick="selectLesson('timetable')">
+            Open 30-Day Timetable & Carryover →
+          </button>
+        `;
+        renderSidebar();
+        document.getElementById("content-scroll").scrollTop = 0;
+        toggleMobileSidebar(false);
+        return;
+      }
+
+      if (id === "timetable") {
+        document.getElementById("current-chapter-badge").textContent = "📅 30-Day Timetable & Carry-Forward Tracker";
+        document.getElementById("complete-btn").style.display = "none";
+        document.getElementById("lesson-content").innerHTML = renderTimetable();
+
+        const footer = document.getElementById("lesson-footer");
+        footer.innerHTML = `
+          <button class="nav-card-btn" onclick="selectLesson('welcome')">
+            ← Home & Motivation Hub
+          </button>
+          <button class="nav-card-btn" style="background:var(--accent); color:#fff; font-weight:700;" onclick="selectLesson('tracker')">
+            Open Daily Routine Tracker →
+          </button>
+        `;
+        renderSidebar();
+        document.getElementById("content-scroll").scrollTop = 0;
+        toggleMobileSidebar(false);
+        return;
+      }
+
+      if (id === "tracker") {
+        document.getElementById("current-chapter-badge").textContent = "🧘 Daily Routine Tracker & Habit Journal";
+        document.getElementById("complete-btn").style.display = "none";
+        document.getElementById("lesson-content").innerHTML = renderDailyTracker();
+
+        const footer = document.getElementById("lesson-footer");
+        footer.innerHTML = `
+          <button class="nav-card-btn" onclick="selectLesson('welcome')">
+            ← Home & Motivation Hub
+          </button>
+          <button class="nav-card-btn" style="background:var(--accent); color:#fff; font-weight:700;" onclick="selectLesson('timetable')">
+            Open 30-Day Timetable →
+          </button>
+        `;
+        renderSidebar();
+        document.getElementById("content-scroll").scrollTop = 0;
+        toggleMobileSidebar(false);
+        return;
+      }
+
+      document.getElementById("complete-btn").style.display = "inline-block";
       const meta = FLAT_LESSONS.find(l => l.id === id);
       document.getElementById("current-chapter-badge").textContent = meta ? meta.chapter : "";
 
@@ -941,6 +5785,12 @@
         prevBtn.textContent = `← Previous: ${prev.title.split(":")[0]}`;
         prevBtn.onclick = () => selectLesson(prev.id);
         footer.appendChild(prevBtn);
+      } else if (idx === 0) {
+        const homePrev = document.createElement("button");
+        homePrev.className = "nav-card-btn";
+        homePrev.textContent = `← Home & Motivation Hub`;
+        homePrev.onclick = () => selectLesson("welcome");
+        footer.appendChild(homePrev);
       } else {
         footer.appendChild(document.createElement("div"));
       }
@@ -998,7 +5848,7 @@
       document.body.style.fontSize = currentFontSize + "px";
     }
 
-    // Live Search Across All 28 Lessons
+    // Live Search Across All 39 Lessons
     document.getElementById("search-input").addEventListener("input", function (e) {
       const q = e.target.value.trim().toLowerCase();
       if (!q) {
@@ -1035,9 +5885,21 @@
       document.getElementById("lesson-content").innerHTML = resultsHtml;
     });
 
+    // Mobile Floating Scroll To Top
+    document.getElementById("content-scroll").addEventListener("scroll", function(e) {
+      const topBtn = document.getElementById("mobile-top-btn");
+      if (topBtn) {
+        topBtn.style.display = e.target.scrollTop > 350 ? "inline-flex" : "none";
+      }
+    });
+
+    function scrollToTopContent() {
+      document.getElementById("content-scroll").scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     // Initialize on load
     window.addEventListener("DOMContentLoaded", () => {
-      selectLesson("oop-01");
+      selectLesson("welcome");
     });
   </script>
 </body>

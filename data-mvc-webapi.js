@@ -5,6 +5,43 @@ window.INTERVIEW_LESSONS["mvc-01"] = `# ASP.NET MVC & Core Lesson 1: Architectur
 ---
 
 ## Q1: What is the MVC Pattern and how does a Request flow in ASP.NET Core MVC?
+
+\`\`\`diagram
+                     ASP.NET CORE MVC REQUEST LIFECYCLE FLOW
+                     
+  [ Browser / Client ]
+           │ HTTP Request (e.g., GET /Orders/Details/105)
+           ▼
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                   ASP.NET Core Middleware Pipeline              │
+  │  [ExceptionHandler] ──► [StaticFiles] ──► [Routing] ──► [Auth]  │
+  └────────────────────────────────┬────────────────────────────────┘
+                                   │ Routes to matched Controller
+                                   ▼
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                          CONTROLLER                             │
+  │                    OrderController.Details(105)                 │
+  │  1. Model Binding (maps '105' from route to int id parameter)   │
+  │  2. Calls Service / Repository for data                         │
+  └──────────────────┬───────────────────────────▲──────────────────┘
+                     │ (Fetch Data)              │ (Returns DTO/Model)
+                     ▼                           │
+  ┌─────────────────────────────────────┐        │
+  │       BUSINESS SERVICE / MODEL      │────────┘
+  │       IOrderService / Oracle DB     │
+  └──────────────────┬──────────────────┘
+                     │ Returns populated ViewModel
+                     ▼
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                             VIEW                                │
+  │                      Details.cshtml (Razor)                     │
+  │  Combines HTML template + Model data ──► Produces HTML output   │
+  └────────────────────────────────┬────────────────────────────────┘
+                                   │ HTTP Response (HTML)
+                                   ▼
+  [ Browser / Client ] ◄── Renders Web Page on User Screen!
+\`\`\`
+
 * **Simple Meaning:** MVC separates an application into 3 parts so UI, data, and control logic are not mixed together:
   * **M (Model):** Business data and database entities (\`Employee\`, \`OrderViewModel\`).
   * **V (View):** The UI screen (\`.cshtml\` Razor HTML pages).
@@ -122,6 +159,49 @@ window.INTERVIEW_LESSONS["mvc-02"] = `# ASP.NET MVC & Core Lesson 2: Program.cs,
 ---
 
 ## Q2: What is Middleware in ASP.NET Core and how does the Request Pipeline work?
+
+\`\`\`diagram
+                 ASP.NET CORE MIDDLEWARE PIPELINE EXECUTION
+                 
+       Incoming HTTP Request                     Outgoing HTTP Response
+               │                                           ▲
+               ▼                                           │
+  ┌─────────────────────────┐                 ┌─────────────────────────┐
+  │  ExceptionHandler (In)  │                 │ ExceptionHandler (Out)  │ ◄── Catches unhandled errors!
+  └────────────┬────────────┘                 └────────────▲────────────┘
+               │ await next()                              │
+               ▼                                           │
+  ┌─────────────────────────┐                 ┌─────────────────────────┐
+  │  HttpsRedirection (In)  │                 │ HttpsRedirection (Out)  │
+  └────────────┬────────────┘                 └────────────▲────────────┘
+               │ await next()                              │
+               ▼                                           │
+  ┌─────────────────────────┐                 ┌─────────────────────────┐
+  │    StaticFiles (In)     │                 │    StaticFiles (Out)    │ (Short-circuits if file found)
+  └────────────┬────────────┘                 └────────────▲────────────┘
+               │ await next()                              │
+               ▼                                           │
+  ┌─────────────────────────┐                 ┌─────────────────────────┐
+  │      Routing (In)       │                 │      Routing (Out)      │ (Selects Endpoint / Action)
+  └────────────┬────────────┘                 └────────────▲────────────┘
+               │ await next()                              │
+               ▼                                           │
+  ┌─────────────────────────┐                 ┌─────────────────────────┐
+  │  Authentication (In)    │                 │  Authentication (Out)   │ (Who are you? Populates User)
+  └────────────┬────────────┘                 └────────────▲────────────┘
+               │ await next()                              │
+               ▼                                           │
+  ┌─────────────────────────┐                 ┌─────────────────────────┐
+  │   Authorization (In)    │                 │   Authorization (Out)   │ (Are you allowed? Checks Roles)
+  └────────────┬────────────┘                 └────────────▲────────────┘
+               │ await next()                              │
+               ▼                                           │
+  ┌────────────────────────────────────────────────────────┴────────────┐
+  │                  ENDPOINT / CONTROLLER ACTION                       │
+  │             Executes Business Logic & Prepares Result               │
+  └─────────────────────────────────────────────────────────────────────┘
+\`\`\`
+
 * **Simple Meaning:** Middleware is a chain of software components assembled in \`Program.cs\` that every HTTP request passes through on the way **in** to the Controller, and every HTTP response passes through in reverse order on the way **out**!
 * **Correct Order of Middleware in \`Program.cs\` (Interviewers ALWAYS ask this order!):**
   1. \`app.UseExceptionHandler()\` (Global error handler first so it catches everything below!)
@@ -352,6 +432,49 @@ window.INTERVIEW_LESSONS["api-02"] = `# Web API Lesson 2: JWT Authentication, Re
 ---
 
 ## Q2: What is a Refresh Token and why do we need it alongside a JWT Access Token?
+
+\`\`\`diagram
+              JWT ACCESS TOKEN + REFRESH TOKEN ROTATION FLOW
+              
+  [ Frontend Client ]                                       [ Auth Server / API ]
+          │                                                           │
+          │ 1. POST /api/auth/login { username, password }            │
+          ├──────────────────────────────────────────────────────────►│ (Validates credentials)
+          │                                                           │ Generates:
+          │                                                           │ • Access Token (exp: 15m)
+          │ 2. Return Tokens: Access Token (JSON) +                   │ • Refresh Token (exp: 7d, saved to DB)
+          │    Refresh Token (Secure HttpOnly Cookie)                 │
+          │◄──────────────────────────────────────────────────────────┤
+          │                                                           │
+          │ ─── NORMAL API REQUEST (Access Token is Valid) ────────── │
+          │                                                           │
+          │ 3. GET /api/orders (Header: Authorization Bearer <Token>) │
+          ├──────────────────────────────────────────────────────────►│ Validates signature & claims
+          │ 4. 200 OK + Orders Data JSON                              │
+          │◄──────────────────────────────────────────────────────────┤
+          │                                                           │
+          │ ─── AFTER 15 MINUTES (Access Token Expires) ───────────── │
+          │                                                           │
+          │ 5. GET /api/orders (Expired Access Token)                 │
+          ├──────────────────────────────────────────────────────────►│ Fails expiry check!
+          │ 6. 401 Unauthorized (Token Expired)                       │
+          │◄──────────────────────────────────────────────────────────┤
+          │                                                           │
+          │ ─── SILENT REFRESH (User is NOT logged out!) ──────────── │
+          │                                                           │
+          │ 7. POST /api/auth/refresh (Cookie: RefreshToken)          │
+          ├──────────────────────────────────────────────────────────►│ Validates Refresh Token in DB
+          │                                                           │ Revokes old Refresh Token
+          │ 8. Returns NEW Access Token (15m) +                       │ Issues NEW Refresh Token (Rotation)
+          │    NEW Refresh Token Cookie                               │
+          │◄──────────────────────────────────────────────────────────┤
+          │                                                           │
+          │ 9. Retries original GET /api/orders with NEW Access Token │
+          ├──────────────────────────────────────────────────────────►│
+          │ 10. 200 OK + Data returned seamlessly!                    │
+          │◄──────────────────────────────────────────────────────────┤
+\`\`\`
+
 * **Problem:** If a JWT Access Token is valid for 7 days and gets stolen, a hacker has access for 7 days. If it expires in 15 minutes, the user gets logged out every 15 minutes!
 * **Solution:**
   * Make the **JWT Access Token short-lived (15 minutes)**.

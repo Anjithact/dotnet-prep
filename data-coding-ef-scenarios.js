@@ -365,6 +365,29 @@ var orders = await _context.Orders
 ---
 
 ## Q3: Explain Eager Loading (\`Include\`), Lazy Loading, and the **N+1 Query Problem**.
+
+\`\`\`diagram
+                 THE N+1 QUERY PROBLEM & EAGER LOADING FIX
+                 
+  ❌ THE N+1 QUERY PROBLEM (Lazy Loading in a Loop):
+     Query 1: SELECT * FROM Departments; ──► Returns 100 Departments
+     Loop:
+       Iter 1: SELECT * FROM Employees WHERE DeptId = 1;   (Query #2)
+       Iter 2: SELECT * FROM Employees WHERE DeptId = 2;   (Query #3)
+       ...
+       Iter 100: SELECT * FROM Employees WHERE DeptId = 100; (Query #101)
+     ► Total: 1 + 100 = 101 ROUND TRIPS TO DATABASE (Huge latency & DB load!)
+     
+  ✅ THE EAGER LOADING FIX (.Include(d => d.Employees)):
+     Single Query:
+     ┌─────────────────────────────────────────────────────────────────┐
+     │ SELECT d.*, e.*                                                 │
+     │ FROM Departments d                                              │
+     │ LEFT JOIN Employees e ON d.DepartmentId = e.DepartmentId;       │
+     └─────────────────────────────────────────────────────────────────┘
+     ► Total: EXACTLY 1 DATABASE TRIP (Fast, efficient, scalable!)
+\`\`\`
+
 * **The N+1 Query Problem:**
   * Suppose you fetch **100 Departments** (\`1 query\`), and then inside a \`foreach\` loop you access \`dept.Employees\` with Lazy Loading enabled. EF Core executes **100 separate SQL queries** (1 for each department) = **101 database trips**!
 * **The Fix (Eager Loading with \`.Include()\`):**
@@ -389,6 +412,43 @@ window.INTERVIEW_LESSONS["scen-01"] = `# Chapter 10: Project Architecture, Produ
 ---
 
 ## Q1: How do you explain your Project Architecture in an Interview?
+
+\`\`\`diagram
+                 ENTERPRISE 4-LAYER APPLICATION ARCHITECTURE
+                 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ 1. PRESENTATION LAYER (Razor Views, jQuery AJAX, WinForms Desktop)      │
+  └────────────────────────────────────┬────────────────────────────────────┘
+                                       │ HTTP / JSON Payload
+                                       ▼
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ 2. API / CONTROLLER LAYER (ASP.NET Core ControllerBase / MVC Controller)│
+  │    • JWT / Cookie Authentication & Route Mapping                        │
+  │    • Model Validation (ModelState.IsValid) & DTO Translation            │
+  └────────────────────────────────────┬────────────────────────────────────┘
+                                       │ Injected Interface (Loose Coupling)
+                                       ▼
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ 3. BUSINESS SERVICE LAYER (IOrderService / OrderServiceImpl)            │
+  │    • Business Rules, Calculations, Workflow Logic                       │
+  │    • Caching Strategy (IMemoryCache / Redis) & Polly Retry Policies     │
+  └────────────────────────────────────┬────────────────────────────────────┘
+                                       │ Injected Interface
+                                       ▼
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ 4. DATA ACCESS LAYER (IOrderRepository / EF Core / ADO.NET)             │
+  │    • DbContext with AsNoTracking / OracleConnection with using blocks   │
+  │    • Parameterized Queries & SYS_REFCURSOR mapping                      │
+  └────────────────────────────────────┬────────────────────────────────────┘
+                                       │ Oracle Client (ODP.NET Core)
+                                       ▼
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ 5. DATABASE LAYER (Oracle Database 19c / SQL Server)                    │
+  │    • Stored Procedures, Packages (PKG_ORDERS), Triggers, Sequences      │
+  │    • B-Tree Indexes, ACID Transactions & Materialized Views             │
+  └─────────────────────────────────────────────────────────────────────────┘
+\`\`\`
+
 * **Speak this clear 4-Layer Architecture flow:**
   1. **Presentation / UI Layer:** ASP.NET Core MVC Razor Views (with JavaScript/jQuery AJAX) and Windows Forms / Web Clients.
   2. **API / Controller Layer:** Thin Controllers that handle Routing, JWT/Cookie Authentication, Model Validation, and return Views or JSON DTOs.
